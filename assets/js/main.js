@@ -1,369 +1,360 @@
-// --- Mapeamento de Habilidades para Classes do Font Awesome ---
-// Exemplo de mapeamento geral de ícones
+/*******************************************************
+ * 1) Mapeamento de Ícones -> Font Awesome
+ *******************************************************/
 const IconMapping = {
-  // -- Ícones de Comida --
   pizza: "fas fa-pizza-slice",
-  burger: "fas fa-burger",       // Requer FA 6+
-  hotdog: "fas fa-hotdog",       // Requer FA 6+
-  fries: "fas fa-french-fries",  // Requer FA 6+ (nome exato: fa-french-fries)
-  sushi: "fas fa-sushi",         // Requer FA 6+ (nome exato: fa-sushi ou fa-nigiri)
+  burger: "fas fa-burger",
+  hotdog: "fas fa-hotdog",
+  fries: "fas fa-french-fries",
+  sushi: "fas fa-sushi",
   fish: "fas fa-fish",
   bacon: "fas fa-bacon",
-  egg: "fas fa-egg",             // Requer FA 6+
+  egg: "fas fa-egg",
   cheese: "fas fa-cheese",
   bread: "fas fa-bread-slice",
-  croissant: "fas fa-croissant", // Requer FA 6+
+  croissant: "fas fa-croissant",
   carrot: "fas fa-carrot",
-  apple: "fas fa-apple-whole",   // Em versões mais novas do FA 6, é "fa-apple-whole"
+  apple: "fas fa-apple-whole",
   lemon: "fas fa-lemon",
   pepperHot: "fas fa-pepper-hot",
-  seedling: "fas fa-seedling",   // Plantinha
+  seedling: "fas fa-seedling",
   drumstick: "fas fa-drumstick-bite",
-  shrimp: "fas fa-shrimp",       // Requer FA 6+
-
-  // -- Ícones de Bebidas --
-  coffee: "fas fa-mug-saucer",           // Substituto de fa-coffee (FA 6)
-  tea: "fas fa-mug-hot",                 // FA 5/6
-  soda: "fas fa-cup-straw",              // Requer FA 6+ (nome exato: fa-cup-straw)
-  beer: "fas fa-beer-mug-empty",         // Nome antigo: fa-beer; no FA 6: "fa-beer-mug-empty"
+  shrimp: "fas fa-shrimp",
+  coffee: "fas fa-mug-saucer",
+  tea: "fas fa-mug-hot",
+  soda: "fas fa-cup-straw",
+  beer: "fas fa-beer-mug-empty",
   wine: "fas fa-wine-bottle",
-  cocktail: "fas fa-martini-glass-citrus", // FA 6 substituiu fa-cocktail
-
-  // -- Ícones de Doces / Sobremesas --
-  cupcake: "fas fa-cupcake",   // Requer FA 6+ (nome exato: fa-cupcake)
+  cocktail: "fas fa-martini-glass-citrus",
+  cupcake: "fas fa-cupcake",
   iceCream: "fas fa-ice-cream",
-  cake: "fas fa-cake-candles", // Em FA 6 “fa-cake-candles”
-
-  // -- Ícones Gerais (UI, Web, etc.) --
-  home: "fas fa-house",               // (FA 6) Substitui fa-home
+  cake: "fas fa-cake-candles",
+  home: "fas fa-house",
   user: "fas fa-user",
   envelope: "fas fa-envelope",
   phone: "fas fa-phone",
   mapMarker: "fas fa-map-marker-alt",
   shoppingCart: "fas fa-shopping-cart",
   check: "fas fa-check",
-  times: "fas fa-xmark",             // Em FA 6 foi substituído por fa-xmark
+  times: "fas fa-xmark",
   plus: "fas fa-plus",
   minus: "fas fa-minus",
   arrowRight: "fas fa-arrow-right",
   arrowLeft: "fas fa-arrow-left",
-  gear: "fas fa-gear",               // FA 6 substituiu fa-cog
-  search: "fas fa-magnifying-glass", // FA 6 substituiu fa-search
+  gear: "fas fa-gear",
+  search: "fas fa-magnifying-glass",
   trash: "fas fa-trash",
-  edit: "fas fa-pen-to-square",      // FA 6 substituiu fa-edit
-  save: "fas fa-floppy-disk",        // FA 6 substituiu fa-save
+  edit: "fas fa-pen-to-square",
+  save: "fas fa-floppy-disk",
   folder: "fas fa-folder",
   file: "fas fa-file",
   download: "fas fa-download",
   upload: "fas fa-upload",
-  
-  // -- Ícones de Redes Sociais (caso precise) --
   github: "fab fa-github",
   linkedin: "fab fa-linkedin",
   instagram: "fab fa-instagram",
   facebook: "fab fa-facebook",
   twitter: "fab fa-twitter",
-
-  // -- Exemplo de “fallback” genérico --
-  default: "fas fa-question", // Caso precise usar em chaves desconhecidas
+  default: "fas fa-question",
 };
 
-// --- Função para Detectar o Idioma do Navegador e Carregar o JSON Correspondente ---
+/*******************************************************
+ * 2) Detectar idioma e carregar JSON do perfil
+ *******************************************************/
 async function fetchProfileData() {
-  // Detecta o idioma do navegador
   let language = navigator.language || navigator.userLanguage;
-  language = language.substring(0, 2).toLowerCase(); // Extrai o código do idioma (ex: 'pt', 'en', 'es')
+  language = language.substring(0, 2).toLowerCase(); // 'pt', 'en', 'es', etc.
 
-  // Lista de idiomas suportados
   const supportedLanguages = ["pt", "en", "es"];
-
-  // Verifica se o idioma detectado é suportado; caso contrário, define como padrão ('pt')
   if (!supportedLanguages.includes(language)) {
     language = "pt";
   }
 
-  // Define o caminho do arquivo JSON baseado no idioma
   const url = `data/profile_${language}.json`;
 
   try {
     const response = await fetch(url);
-
     if (!response.ok) {
-      throw new Error(`Erro ao carregar o arquivo JSON: ${response.statusText}`);
+      throw new Error("Erro ao carregar o JSON: " + response.statusText);
     }
-
     const profileData = await response.json();
     return profileData;
   } catch (error) {
     console.error(error);
-    // Opcional: Retornar dados padrão ou exibir uma mensagem de erro para o usuário
     return null;
   }
 }
 
-// --- Funções para Atualizar Diferentes Partes do Perfil ---
+// Variável global para armazenar os dados do perfil (se precisar em outro lugar)
+let profileDataGlobal = null;
 
-// 1. Atualizar Informações do Perfil
-function updateProfileInfo(profileData) {
-  // Atualizar Foto de Perfil
-  const photo = document.getElementById("profile.photo");
-  if (photo) {
-    photo.src = profileData.photo;
-    photo.alt = profileData.name;
+/*******************************************************
+ * 3) Atualizar elementos de PERFIL
+ *******************************************************/
+function updatePerfil(perfilData) {
+  if (!perfilData) return;
+
+  // Foto
+  const photoElem = document.getElementById("profile-photo");
+  if (photoElem && perfilData.foto) {
+    photoElem.src = perfilData.foto;
+    photoElem.alt = perfilData.titulo || "Foto de Perfil";
   }
 
-  // Atualizar Nome
-  const name = document.getElementById("profile.name");
-  if (name) {
-    name.innerText = profileData.name;
+  // Título
+  const tituloElem = document.getElementById("perfil-titulo");
+  if (tituloElem) {
+    tituloElem.innerText = perfilData.titulo || "";
   }
 
-  // Atualizar Job
-  const jobContainer = document.getElementById("profile.job");
-  if (jobContainer) {
-    const jobText = jobContainer.querySelector(".info-text");
-    if (jobText) {
-      jobText.innerText = profileData.job;
+  // Slogan
+  const sloganElem = document.getElementById("perfil-slogan");
+  if (sloganElem) {
+    sloganElem.innerText = perfilData.slogan || "";
+  }
+
+  // Local
+  const localElem = document.getElementById("perfil-local-link");
+  if (localElem && perfilData.local) {
+    localElem.innerText = perfilData.local.texto || "";
+    localElem.href = perfilData.local.link || "#";
+    if (perfilData.local.link) {
+      localElem.style.cursor = "pointer";
+      localElem.setAttribute("target", "_blank");
+      localElem.setAttribute("rel", "noopener noreferrer");
     }
   }
 
-  // Atualizar Graduação
-  const graduateContainer = document.getElementById("profile.graduate");
-  if (graduateContainer) {
-    const graduateText = graduateContainer.querySelector(".info-text");
-    if (graduateText) {
-      graduateText.innerText = profileData.graduate;
-    }
+  // WhatsApp
+  const whatsElem = document.getElementById("perfil-whatsapp");
+  if (whatsElem) {
+    whatsElem.innerText = perfilData.contatoWhats || "";
+    const phoneNumber = (perfilData.contatoWhats || "").replace(/\D/g, "");
+    whatsElem.href = `https://wa.me/55${phoneNumber}`;
   }
 
-  // Atualizar a Barra de Progresso da Graduação
-  const graduetescaleContainer = document.getElementById("profile.graduetescale");
-  if (graduetescaleContainer && profileData.graduetescale) {
-    const progress = graduetescaleContainer.querySelector(".progress");
-    const progressText = graduetescaleContainer.querySelector(".progress-text");
-    if (progress && progressText) {
-      const completed = profileData.graduetescale.completed;
-      const total = profileData.graduetescale.total;
-      const percentage = Math.min((completed / total) * 100, 100).toFixed(2); // Limita a 100% e formata para 2 casas decimais
-      progress.style.width = `${percentage}%`;
-      progressText.innerText = `${completed} disciplinas cursadas de ${total} (${percentage}%)`;
-    }
+  // Email
+  const emailElem = document.getElementById("perfil-email");
+  if (emailElem) {
+    emailElem.innerText = perfilData.email || "";
+    emailElem.href = `mailto:${perfilData.email}`;
   }
 
-  // Atualizar Localização
-  const locationContainer = document.getElementById("profile.location");
-  if (locationContainer) {
-    const locationText = locationContainer.querySelector(".info-text");
-    if (locationText) {
-      locationText.innerText = profileData.location;
-    }
-  }
-
-  // Atualizar Telefone
-  const phone = document.getElementById("profile.phone");
-  if (phone) {
-    phone.innerText = profileData.phone;
-    // Remova caracteres não numéricos para a URL do WhatsApp
-    const phoneNumber = profileData.phone.replace(/\D/g, "");
-    phone.href = `https://wa.me/55${phoneNumber}`;
-  }
-
-  // Atualizar Email
-  const email = document.getElementById("profile.email");
-  if (email) {
-    email.innerText = profileData.email;
-    email.href = `mailto:${profileData.email}`;
-  }
-
-  // Atualizar o Título do Documento
-  if (profileData.title) {
-    document.title = profileData.title;
-  }
-}
-
-// 2. Atualizar Habilidades Técnicas (Hard Skills)
-function updateHardSkills(profileData) {
-  const hardSkills = document.getElementById("profile.skills.hardSkills");
-  if (hardSkills) {
-    hardSkills.innerHTML = profileData.skills.hardSkills
-      .map(
-        (skill) => `
-          <li>
-              <i class="${
-                skill.iconClass ||
-                IconMapping[skill.name] ||
-                "fas fa-tools"
-              }" aria-hidden="true"></i>
-              <span class="skill-name">${skill.name}</span>
-          </li>
-      `
-      )
-      .join("");
-  }
-
-  // Adicionar Event Listeners para Interatividade
-  document.querySelectorAll(".hard-skills li").forEach((item) => {
-    item.addEventListener("click", () => {
-      // Remove a classe 'active' de todos os itens
-      document.querySelectorAll(".hard-skills li").forEach((el) => el.classList.remove("active"));
-
-      // Adiciona a classe 'active' ao item clicado
-      item.classList.add("active");
-
-      // Define um tempo para esconder o balão automaticamente
-      setTimeout(() => {
-        item.classList.remove("active");
-      }, 2000); // 2 segundos
+  // Observações Iniciais
+  const obsList = document.getElementById("perfil-observacoesIniciais");
+  if (obsList && Array.isArray(perfilData.observacoesIniciais)) {
+    obsList.innerHTML = "";
+    perfilData.observacoesIniciais.forEach((obs) => {
+      const li = document.createElement("li");
+      li.innerText = obs;
+      obsList.appendChild(li);
     });
+  }
+
+  // Título da página (opcional)
+  if (perfilData.titulo) {
+    document.title = perfilData.titulo;
+  }
+}
+
+/*******************************************************
+ * 4) Criar dinamicamente o CARDÁPIO (categorias)
+ *******************************************************/
+function updateCategorias(categorias) {
+  if (!categorias) return;
+
+  const cardapioSection = document.getElementById("cardapio");
+  if (!cardapioSection) return;
+  cardapioSection.innerHTML = "";
+
+  categorias.forEach((categoria) => {
+    // Bloco do acordeon
+    const acordeonSection = document.createElement("section");
+    acordeonSection.classList.add("acordeon");
+
+    // Botão de abrir/fechar
+    const triggerButton = document.createElement("button");
+    triggerButton.type = "button";
+    triggerButton.classList.add("trigger");
+
+    // Título do acordeon
+    const h2 = document.createElement("h2");
+    h2.innerHTML = `<i class="fa-solid fa-utensils"></i> ${categoria.nome}`;
+    triggerButton.appendChild(h2);
+
+    // Conteúdo do acordeon
+    const contentDiv = document.createElement("div");
+    contentDiv.classList.add("content");
+
+    // Subtítulo (opcional)
+    if (categoria.subtitulo) {
+      const catSubtitle = document.createElement("p");
+      catSubtitle.classList.add("subtitulo");
+      catSubtitle.innerText = categoria.subtitulo;
+      contentDiv.appendChild(catSubtitle);
+    }
+
+    // Função auxiliar para criar um <li> com item do cardápio
+    function criarItemCardapio(item) {
+      const li = document.createElement("li");
+
+      // Imagem
+      const img = document.createElement("img");
+      img.src = item.image;
+      img.alt = item.nome;
+      img.classList.add("menu-item-image");
+      li.appendChild(img);
+
+      // Ícone
+      const iconClass =
+        item.icon ||
+        IconMapping[item.nome.toLowerCase().replace(/\s+/g, "")] ||
+        IconMapping.default;
+      const iconElem = document.createElement("i");
+      iconElem.className = iconClass + " menu-item-icon";
+      iconElem.setAttribute("aria-hidden", "true");
+      li.appendChild(iconElem);
+
+      // Nome
+      const strong = document.createElement("strong");
+      strong.innerText = item.nome;
+      li.appendChild(strong);
+
+      // Preço
+      const precoStr = getPreco(item);
+      if (precoStr) {
+        const span = document.createElement("span");
+        span.classList.add("preco");
+        span.innerText = precoStr;
+        li.appendChild(span);
+      }
+
+      // Descrição
+      if (item.descricao) {
+        li.appendChild(document.createElement("br"));
+        const em = document.createElement("em");
+        em.innerText = item.descricao;
+        li.appendChild(em);
+      }
+
+      // Botão Adicionar ao Carrinho
+      const addBtn = document.createElement("button");
+      addBtn.classList.add("btn-add-cart");
+      addBtn.innerText = "Adicionar ao Carrinho";
+      addBtn.addEventListener("click", () => {
+        addToCart(item);
+      });
+      li.appendChild(addBtn);
+
+      return li;
+    }
+
+    // Subcategorias
+    if (Array.isArray(categoria.subcategorias)) {
+      categoria.subcategorias.forEach((subcat) => {
+        const subcatTitle = document.createElement("h3");
+        subcatTitle.innerText = subcat.nome;
+        contentDiv.appendChild(subcatTitle);
+
+        const ulSub = document.createElement("ul");
+        subcat.itens.forEach((item) => {
+          const li = criarItemCardapio(item);
+          ulSub.appendChild(li);
+        });
+        contentDiv.appendChild(ulSub);
+      });
+    }
+
+    // Itens diretos (sem subcategorias)
+    if (Array.isArray(categoria.itens)) {
+      const ul = document.createElement("ul");
+      categoria.itens.forEach((item) => {
+        const li = criarItemCardapio(item);
+        ul.appendChild(li);
+      });
+      contentDiv.appendChild(ul);
+    }
+
+    // Toggle do acordeon
+    triggerButton.addEventListener("click", () => {
+      acordeonSection.classList.toggle("open");
+    });
+
+    // Monta e adiciona
+    acordeonSection.appendChild(triggerButton);
+    acordeonSection.appendChild(contentDiv);
+    cardapioSection.appendChild(acordeonSection);
   });
-
-  // Adiciona um evento global para detectar cliques fora dos itens
-  document.addEventListener("click", (event) => {
-    // Verifica se o clique não foi em um item da lista
-    if (!event.target.closest(".hard-skills li")) {
-      document.querySelectorAll(".hard-skills li").forEach((el) => el.classList.remove("active"));
-    }
-  });
 }
 
-// 3. Atualizar Habilidades Comportamentais (Soft Skills)
-function updateSoftSkills(profileData) {
-  const softSkills = document.getElementById("profile.skills.softSkills");
-  if (softSkills) {
-    softSkills.innerHTML = profileData.skills.softSkills
-      .map((skill) => `<li>${skill}</li>`)
-      .join("");
+// Função para obter string de preço
+function getPreco(item) {
+  if (typeof item.preco === "number") {
+    return `R$ ${item.preco.toFixed(2)}`;
+  }
+  if (
+    typeof item.precoGrande === "number" &&
+    typeof item.precoPequena === "number"
+  ) {
+    return `Grande: R$ ${item.precoGrande.toFixed(
+      2
+    )} / Pequena: R$ ${item.precoPequena.toFixed(2)}`;
+  }
+  return "";
+}
+
+/*******************************************************
+ * 5) Observações Finais
+ *******************************************************/
+function updateObservacoesFinais(obsFinais) {
+  const obsSection = document.getElementById("observacoesFinais");
+  if (!obsSection) return;
+  obsSection.innerHTML = "";
+
+  if (Array.isArray(obsFinais)) {
+    const ul = document.createElement("ul");
+    obsFinais.forEach((texto) => {
+      const li = document.createElement("li");
+      li.innerText = texto;
+      ul.appendChild(li);
+    });
+    obsSection.appendChild(ul);
   }
 }
 
-// 4. Atualizar Idiomas
-function updateLanguages(profileData) {
-  const languages = document.getElementById("profile.languages");
-  if (languages) {
-    languages.innerHTML = profileData.languages
-      .map(
-        (language) => `
-          <li>
-              <i class="fas fa-language" aria-hidden="true"></i>
-              <span class="info-text">${language}</span>
-          </li>
-      `
-      )
-      .join("");
+/*******************************************************
+ * 6) Rodapé (WhatsApp, Instagram)
+ *******************************************************/
+function updateFooterLinks(footerData) {
+  if (!footerData) return;
+
+  // WhatsApp
+  const footerWhatsApp = document.getElementById("footer-whatsapp");
+  if (footerWhatsApp && footerData.contatoWhats) {
+    const phoneNumber = footerData.contatoWhats.replace(/\D/g, "");
+    footerWhatsApp.href = `https://wa.me/55${phoneNumber}`;
+  }
+
+  // Instagram
+  const footerInsta = document.getElementById("footer-instagram");
+  if (footerInsta && footerData.contatoInsta) {
+    const instaUser = footerData.contatoInsta.replace("@", "");
+    footerInsta.href = `https://instagram.com/${instaUser}`;
   }
 }
 
-// 5. Atualizar Portfólio
-function updatePortfolio(profileData) {
-  const portfolio = document.getElementById("profile.portfolio");
-  if (portfolio) {
-    portfolio.innerHTML = profileData.portfolio
-      .map((project) => {
-        // Escolhe o ícone com base na existência do link do GitHub
-        const iconClass = project.github ? 'fab fa-github' : 'fas fa-link';
-        // Se houver um link do GitHub, adiciona um ícone adicional para o GitHub
-        const githubLink = project.github
-          ? `<a href="${project.github}" target="_blank" aria-label="GitHub">
-               <i class="fab fa-github"></i>
-             </a>`
-          : '';
-        return `
-          <li>
-            <h3>
-              <i class="${iconClass}"></i> ${project.name}
-            </h3>
-            <a href="${project.url}" target="_blank">${project.url}</a>
-          </li>
-        `;
-      })
-      .join("");
-  }
-}
-
-// 6. Atualizar Experiência Profissional
-function updateProfessionalExperience(profileData) {
-  const professionalExperience = document.getElementById("profile.professionalExperience");
-  if (professionalExperience) {
-    professionalExperience.innerHTML = profileData.professionalExperience
-      .map(
-        (experience) => `
-          <li>
-              <h3 class="title">${experience.name}</h3>
-              <p class="period">${experience.period}</p>
-              <p>${experience.description}</p>
-          </li>
-      `
-      )
-      .join("");
-  }
-}
-
-// 7. Atualizar Títulos dos Accordions
-function updateAccordionTitles(profileData) {
-  const accordionTitlesMapping = {
-    titleSkills: "acordeon.titleSkills",
-    titleLanguages: "acordeon.titleLanguages",
-    titlePortfolio: "acordeon.titlePortfolio",
-    titleProfessionalExperience: "acordeon.titleProfessionalExperience",
-  };
-
-  for (const [jsonKey, elementId] of Object.entries(accordionTitlesMapping)) {
-    const titleElement = document.getElementById(elementId);
-    if (titleElement && profileData[jsonKey]) {
-      titleElement.innerText = profileData[jsonKey];
-    }
-  }
-}
-
-// 8. Atualizar Títulos das Seções Internas das Habilidades
-function updateSkillTitles(profileData) {
-  const skillTitlesMapping = {
-    titleHardSkills: "skills.titleHardSkills",
-    titleSoftSkills: "skills.titleSoftSkills",
-  };
-
-  for (const [jsonKey, elementId] of Object.entries(skillTitlesMapping)) {
-    const titleElement = document.getElementById(elementId);
-    if (titleElement && profileData.skills[jsonKey]) {
-      titleElement.innerText = profileData.skills[jsonKey];
-    }
-  }
-}
-
-// --- Função Principal para Carregar e Atualizar o Perfil ---
-(async () => {
-  try {
-    const profileData = await fetchProfileData();
-    if (profileData) {
-      updateProfileInfo(profileData);
-      updateSoftSkills(profileData);
-      updateHardSkills(profileData);
-      updateLanguages(profileData);
-      updatePortfolio(profileData);
-      updateProfessionalExperience(profileData);
-      updateAccordionTitles(profileData); // Atualizar títulos dos accordions
-      updateSkillTitles(profileData); // Atualizar títulos das seções internas das habilidades
-    } else {
-      console.error("Dados do perfil não foram carregados.");
-    }
-  } catch (error) {
-    console.error("Erro ao atualizar o perfil:", error);
-  }
-})();
-
-// --- Funções para Alternar Tema (Claro/Escuro) ---
+/*******************************************************
+ * 7) Tema Claro/Escuro
+ *******************************************************/
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
-  if (!themeToggle) return; // Verifica se o elemento existe
+  if (!themeToggle) return;
 
-  const toggleIcon = themeToggle.querySelector("i"); // Seleciona o ícone dentro do botão
+  const toggleIcon = themeToggle.querySelector("i");
   const currentTheme = localStorage.getItem("theme") || "dark";
 
-  // Função para atualizar o ícone com base no tema
   const updateIcon = (theme) => {
-    // Remove ambas as classes de toggle
     toggleIcon.classList.remove("fa-toggle-off", "fa-toggle-on");
-
     if (theme === "light") {
       toggleIcon.classList.add("fa-toggle-on");
     } else {
@@ -371,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Aplicar o tema salvo anteriormente e atualizar o ícone
+  // Aplica o tema salvo
   if (currentTheme === "light") {
     document.body.classList.add("light-theme");
   } else {
@@ -379,42 +370,264 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   updateIcon(currentTheme);
 
-  // Adicionar evento de clique para alternar o tema
+  // Clique para alternar
   themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("light-theme");
     document.body.classList.toggle("dark-theme");
-
-    const theme = document.body.classList.contains("light-theme") ? "light" : "dark";
+    const theme = document.body.classList.contains("light-theme")
+      ? "light"
+      : "dark";
     updateIcon(theme);
     localStorage.setItem("theme", theme);
   });
 });
 
-// --- Funções para Favoritar Página ---
-const favoriteToggle = document.getElementById("favorite-toggle");
-if (favoriteToggle) { // Verifica se o elemento existe
-  const favoriteIcon = favoriteToggle.querySelector("i"); // Ícone de favorito
-  const isFavorited = localStorage.getItem("isFavorited") === "true";
+/*******************************************************
+ * 8) Balão de Imagem (Mobile)
+ *******************************************************/
+function closeAllImageBalloons() {
+  const balloons = document.querySelectorAll(".image-balloon");
+  balloons.forEach((balloon) => balloon.remove());
+}
 
-  // Função para atualizar o ícone de favorito
-  const updateFavoriteIcon = (favorited) => {
-    if (favorited) {
-      favoriteIcon.classList.remove("fa-regular", "fa-star");
-      favoriteIcon.classList.add("fa-solid", "fa-star");
-    } else {
-      favoriteIcon.classList.remove("fa-solid", "fa-star");
-      favoriteIcon.classList.add("fa-regular", "fa-star");
-    }
-  };
+function initializeImageBalloons() {
+  const isSmallScreen = () => window.innerWidth < 600;
+  const actionIcons = document.querySelectorAll(".menu-item-icon");
 
-  // Aplicar o estado de favorito salvo anteriormente e atualizar o ícone
-  updateFavoriteIcon(isFavorited);
+  actionIcons.forEach((icon) => {
+    icon.addEventListener("click", (event) => {
+      if (!isSmallScreen()) return;
 
-  // Evento de clique para alternar o favorito
-  favoriteToggle.addEventListener("click", () => {
-    const favorited = localStorage.getItem("isFavorited") === "true";
-    const newFavoriteStatus = !favorited;
-    updateFavoriteIcon(newFavoriteStatus);
-    localStorage.setItem("isFavorited", newFavoriteStatus);
+      event.stopPropagation();
+      closeAllImageBalloons();
+
+      const productItem = icon.closest("li");
+      const productImage = productItem.querySelector(".menu-item-image");
+      const imageSrc = productImage ? productImage.src : null;
+      const imageAlt = productImage ? productImage.alt : "Imagem";
+
+      if (!imageSrc) return;
+
+      const balloon = document.createElement("div");
+      balloon.classList.add("image-balloon");
+      balloon.innerHTML = `<img src="${imageSrc}" alt="${imageAlt}" />`;
+
+      const rect = icon.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft =
+        window.pageXOffset || document.documentElement.scrollLeft;
+
+      balloon.style.top = `${rect.top + scrollTop - 200}px`;
+      balloon.style.left = `${rect.left + scrollLeft - 200}px`;
+      document.body.appendChild(balloon);
+
+      // Fecha clicando fora
+      document.addEventListener("click", function onClickOutside(ev) {
+        if (!balloon.contains(ev.target) && ev.target !== icon) {
+          balloon.remove();
+          document.removeEventListener("click", onClickOutside);
+        }
+      });
+    });
   });
 }
+
+window.addEventListener("resize", () => {
+  closeAllImageBalloons();
+});
+
+/*******************************************************
+ * 9) LÓGICA DE CARRINHO (com remover item + modal)
+ *******************************************************/
+let cart = [];
+
+/** Extrai o preço numérico do item */
+function extractPriceNumber(item) {
+  if (typeof item.preco === "number") return item.preco;
+  if (typeof item.precoGrande === "number") return item.precoGrande;
+  return 0;
+}
+
+/** Adiciona (ou incrementa) o item no carrinho */
+function addToCart(item) {
+  const nome = item.nome || "Produto Sem Nome";
+  const precoNum = extractPriceNumber(item);
+
+  const existingIndex = cart.findIndex((prod) => prod.nome === nome);
+  if (existingIndex >= 0) {
+    cart[existingIndex].quantidade += 1;
+  } else {
+    cart.push({
+      nome: nome,
+      preco: precoNum,
+      quantidade: 1,
+    });
+  }
+  console.log("Carrinho Atual:", cart);
+  alert(`Você adicionou "${nome}" ao carrinho!`);
+}
+
+/** Remove completamente o item do carrinho (independente da quantidade) */
+function removeItem(index) {
+  cart.splice(index, 1);
+  updateCartUI();
+}
+
+/** Atualiza o conteúdo do modal de carrinho */
+function updateCartUI() {
+  const cartContent = document.getElementById("cart-content");
+  if (!cartContent) return;
+
+  cartContent.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartContent.innerHTML = "<p>O carrinho está vazio.</p>";
+    return;
+  }
+
+  // Exibe cada item
+  cart.forEach((item, idx) => {
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+
+    const subtotal = (item.preco * item.quantidade).toFixed(2);
+
+    div.innerHTML = `
+      <span>
+        <strong>${item.nome}</strong> (x${item.quantidade}) 
+        - R$ ${item.preco.toFixed(2)} cada 
+        <br /> Subtotal: R$ ${subtotal}
+      </span>
+    `;
+
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remover";
+    removeBtn.classList.add("remove-btn");
+    removeBtn.addEventListener("click", () => {
+      removeItem(idx);
+    });
+
+    div.appendChild(removeBtn);
+    cartContent.appendChild(div);
+  });
+}
+
+/** Constrói a mensagem de WhatsApp (itens do carrinho) */
+function montarMensagemWhatsApp() {
+  if (cart.length === 0) {
+    return "Carrinho vazio!";
+  }
+
+  let mensagem = "Olá, gostaria de fazer o seguinte pedido:\n\n";
+  let total = 0;
+
+  cart.forEach((item) => {
+    const subtotal = item.preco * item.quantidade;
+    total += subtotal;
+    mensagem += `- ${item.nome} (x${item.quantidade}) = R$ ${subtotal.toFixed(
+      2
+    )}\n`;
+  });
+
+  mensagem += `\nTotal: R$ ${total.toFixed(2)}`;
+  return mensagem;
+}
+
+/** Abre o WhatsApp com o carrinho */
+function sendOrder() {
+  if (cart.length === 0) {
+    alert("Carrinho vazio!");
+    return;
+  }
+
+  // Exemplo: pegue do JSON
+  let numeroWhats = "5511999999999"; 
+  if (profileDataGlobal && profileDataGlobal.footer) {
+    // Se no footer tiver 'contatoWhats', use
+    const footerData = profileDataGlobal.footer;
+    if (footerData.contatoWhats) {
+      numeroWhats = footerData.contatoWhats.replace(/\D/g, "");
+      numeroWhats = "55" + numeroWhats; // prefixo + nº limpo
+    }
+  }
+
+  const mensagem = montarMensagemWhatsApp();
+  const encodedMsg = encodeURIComponent(mensagem);
+
+  const url = `https://wa.me/${numeroWhats}?text=${encodedMsg}`;
+  window.open(url, "_blank");
+}
+
+/*******************************************************
+ * 10) MODAL DO CARRINHO (Abrir, Fechar, Enviar Pedido)
+ *******************************************************/
+document.addEventListener("DOMContentLoaded", () => {
+  // Botão de abrir o carrinho
+  const cartButton = document.getElementById("cart-button");
+  // Modal e conteúdo
+  const cartModal = document.getElementById("cart-modal");
+  const closeCartBtn = document.getElementById("close-cart");
+  const sendOrderBtn = document.getElementById("send-order");
+
+  if (cartButton && cartModal) {
+    cartButton.addEventListener("click", () => {
+      // Atualiza a UI antes de mostrar
+      updateCartUI();
+      cartModal.style.display = "flex"; // exibe o modal
+    });
+  }
+
+  // Fechar o modal
+  if (closeCartBtn && cartModal) {
+    closeCartBtn.addEventListener("click", () => {
+      cartModal.style.display = "none";
+    });
+  }
+
+  // Clicar fora do conteúdo -> fecha modal
+  if (cartModal) {
+    window.addEventListener("click", (e) => {
+      if (e.target === cartModal) {
+        cartModal.style.display = "none";
+      }
+    });
+  }
+
+  // Enviar pedido
+  if (sendOrderBtn) {
+    sendOrderBtn.addEventListener("click", () => {
+      sendOrder();
+    });
+  }
+});
+
+/*******************************************************
+ * 11) Inicialização Geral (fetch JSON, etc.)
+ *******************************************************/
+(async () => {
+  try {
+    const data = await fetchProfileData();
+    if (!data) {
+      console.error("Não foi possível carregar dados de perfil.");
+      return;
+    }
+    profileDataGlobal = data;
+
+    // 1) Atualiza PERFIL
+    updatePerfil(data.perfil);
+
+    // 2) Categorias (cardápio)
+    updateCategorias(data.categorias);
+
+    // 3) Observações finais
+    updateObservacoesFinais(data.observacoesFinais);
+
+    // 4) Rodapé
+    updateFooterLinks(data.footer);
+
+    // 5) Balões de imagem (mobile)
+    initializeImageBalloons();
+  } catch (err) {
+    console.error("Erro geral:", err);
+  }
+})();

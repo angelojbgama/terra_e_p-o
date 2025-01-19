@@ -13,19 +13,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Título da página -->
     <title>Carregando...</title>
 
-    <!-- Normalize CSS para padronizar estilos entre navegadores -->
+    <!-- Normalize CSS -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     />
 
-    <!-- Font Awesome para ícones -->
+    <!-- Font Awesome (all.min) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
 
     <!-- Google Fonts: Open Sans -->
@@ -44,187 +46,123 @@
     <main class="main">
       <!-- Cabeçalho com foto e informações do perfil -->
       <header class="header">
-        <!-- Foto de perfil -->
+        <!-- Foto de perfil carregada dinamicamente -->
         <img
-          src="../assets/img/my-photo.jpg"
+          src="assets/img/my-photo.jpg"
           alt="Foto de Perfil"
           class="photo"
-          id="profile.photo"
+          id="profile-photo"
         />
 
-        <!-- Nome do perfil -->
-        <h1 class="title">
-          <span id="profile.name">Carregando...</span>
-        </h1>
-
-        <!-- Informações adicionais do perfil -->
+        <!-- Nome do perfil e informações -->
         <div class="information">
-          <!-- Profissão -->
-          <p class="job" id="profile.job">
-            <i
-              class="fas fa-briefcase"
-              aria-hidden="true"
-              aria-label="Profissão"
-            ></i>
-            <span class="info-text">Carregando...</span>
-          </p>
+          <h1 class="title">
+            <span id="perfil-titulo">Carregando...</span>
+          </h1>
 
-          <!-- Formação acadêmica -->
-          <p class="graduate" id="profile.graduate">
-            <i
-              class="fas fa-user-graduate"
-              aria-hidden="true"
-              aria-label="Formação"
-            ></i>
-            <span class="info-text">Carregando...</span>
-          </p>
+          <!-- Slogan do perfil -->
+          <p class="slogan" id="perfil-slogan">Carregando...</p>
 
-          <!-- Barra de Progresso da Graduação -->
-          <div class="progress-container" id="profile.graduetescale">
-            <div class="progress-bar">
-              <div class="progress"></div>
-            </div>
-            <span class="progress-text">Carregando...</span>
-          </div>
-
-          <!-- Localização -->
-          <p class="location" id="profile.location">
-            <i
-              class="fas fa-map-marker-alt"
-              aria-hidden="true"
-              aria-label="Localização"
-            ></i>
-            <span class="info-text">Carregando...</span>
-          </p>
-
-          <!-- Telefone -->
-          <p class="phone" id="profile.phone-container">
-            <i
-              class="fas fa-phone"
-              aria-hidden="true"
-              aria-label="Telefone"
-            ></i>
-            <a href="" id="profile.phone" class="info-text">Carregando...</a>
-          </p>
-
-          <!-- Email -->
-          <p class="email" id="profile.email-container">
-            <i
-              class="fas fa-envelope"
-              aria-hidden="true"
-              aria-label="Email"
-            ></i>
-            <a href="mailto:ex@mail.com" id="profile.email" class="info-text">
+          <!-- Telefone (WhatsApp) -->
+          <p class="phone" id="perfil-whatsapp-container">
+            <i class="fas fa-phone" aria-hidden="true"></i>
+            <a href="#" id="perfil-whatsapp" class="info-text">
               Carregando...
             </a>
           </p>
-        </div>
 
-        <!-- Botão para alternar tema (claro/escuro) -->
-        <button
-          id="theme-toggle"
-          class="theme-toggle"
-          aria-label="Alternar Tema"
-        >
-          <i class="fa-solid fa-toggle-off"></i>
-        </button>
-      </header>
+          <!-- Localização -->
+          <p class="location" id="perfil-local">
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            <a
+              href="#"
+              id="perfil-local-link"
+              class="info-text"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Carregando...</a
+            >
+          </p>
 
-      <!-- Seção de Acordeão: Habilidades -->
-      <section class="acordeon open">
-        <button class="trigger" type="button">
-          <h2 id="acordeon.titleSkills">Carregando...</h2>
-        </button>
+          <!-- Email -->
+          <p class="email" id="perfil-email-container">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <a href="mailto:ex@mail.com" id="perfil-email" class="info-text">
+              Carregando...
+            </a>
+          </p>
 
-        <div class="content">
-          <div class="skills">
-            <!-- Habilidades Técnicas -->
-            <section class="tools">
-              <h3 id="skills.titleHardSkills">Carregando...</h3>
-              <ul id="profile.skills.hardSkills" class="hard-skills">
-                <!-- Itens de habilidades técnicas -->
-              </ul>
-            </section>
-
-            <!-- Habilidades Pessoais -->
-            <section class="personal">
-              <h3 id="skills.titleSoftSkills">Carregando...</h3>
-              <ul id="profile.skills.softSkills">
-                <li>Carregando...</li>
-                <li>Carregando...</li>
-                <li>Carregando...</li>
-              </ul>
-            </section>
+          <!-- Box de Observações Iniciais -->
+          <div class="observacoes-box">
+            <h2>Observações Iniciais</h2>
+            <ul id="perfil-observacoesIniciais"></ul>
           </div>
         </div>
-      </section>
 
-      <!-- Seção de Acordeão: Idiomas -->
-      <section class="acordeon">
-        <button class="trigger" type="button">
-          <h2 id="acordeon.titleLanguages">Carregando...</h2>
-        </button>
+        <!-- Container para Botões (Tema + Carrinho) -->
+        <div class="header-buttons">
+          <!-- Botão do Carrinho -->
+          <button
+            id="cart-button"
+            class="cart-button"
+            aria-label="Carrinho"
+            title="Ver Carrinho"
+          >
+            <i class="fa-solid fa-shopping-cart"></i>
+          </button>
 
-        <div class="content">
-          <ul class="languages" id="profile.languages">
-            <li>Carregando...</li>
-          </ul>
+          <!-- Botão para alternar tema (claro/escuro) -->
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Alternar Tema"
+          >
+            <i class="fa-solid fa-toggle-off"></i>
+          </button>
         </div>
+      </header>
+
+      <!-- SEÇÃO PARA O CARDÁPIO (categorias do JSON) -->
+      <section id="cardapio" class="cardapio">
+        <!-- Acordeons serão inseridos dinamicamente via JS -->
       </section>
 
-      <!-- Seção de Acordeão: Portfólio -->
-      <section class="acordeon">
-        <button class="trigger" type="button">
-          <h2 id="acordeon.titlePortfolio">Carregando...</h2>
-        </button>
-
-        <div class="content">
-          <ul class="portfolio" id="profile.portfolio">
-            <!-- Itens do portfólio -->
-          </ul>
-        </div>
+      <!-- SEÇÃO PARA OBSERVAÇÕES FINAIS -->
+      <section id="observacoesFinais" class="observacoes-finais">
+        <!-- As observações serão inseridas dinamicamente via JS -->
       </section>
 
-      <!-- Seção de Acordeão: Experiência Profissional -->
-      <section class="acordeon">
-        <button class="trigger" type="button">
-          <h2 id="acordeon.titleProfessionalExperience">Carregando...</h2>
-        </button>
-
-        <div class="content">
-          <ul class="experience" id="profile.professionalExperience">
-            <!-- Itens de experiência profissional -->
-          </ul>
-        </div>
-      </section>
-
-      <!-- Contêiner para seções de acordeão inseridas dinamicamente -->
-      <section id="acordeon-container" class="acordeon-container">
-        <!-- As seções do acordeon serão inseridas aqui dinamicamente pelo JavaScript -->
-      </section>
-
-      <!-- Rodapé com links para GitHub e LinkedIn -->
+      <!-- Rodapé com links para WhatsApp e Instagram -->
       <footer>
-        <a
-          href="https://github.com/angelojbgama"
-          target="_blank"
-          aria-label="GitHub"
-        >
-          <i class="fab fa-github"></i>
+        <a href="#" id="footer-whatsapp" target="_blank" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
         </a>
         <a
-          href="https://www.linkedin.com/in/angelojbgama/"
+          href="#"
+          id="footer-instagram"
           target="_blank"
-          aria-label="LinkedIn"
+          aria-label="Instagram"
         >
-          <i class="fab fa-linkedin"></i>
+          <i class="fab fa-instagram"></i>
         </a>
       </footer>
     </main>
 
+    <!-- MODAL DO CARRINHO (inicialmente oculto) -->
+    <div id="cart-modal" style="display: none;">
+      <div id="cart-modal-content">
+        <h2>Carrinho</h2>
+        <div id="cart-content"></div>
+
+        <div class="modal-buttons">
+          <button id="close-cart">Fechar</button>
+          <button id="send-order">Enviar Pedido</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Scripts JavaScript -->
     <script src="assets/js/acordeon.js"></script>
-    <script src="assets/js/api.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>

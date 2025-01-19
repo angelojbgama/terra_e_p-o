@@ -22,10 +22,10 @@
   --accordion-bg-color: #1f1f1f;
   --accordion-hover-bg-color: #333333;
   --toggle-button-color: #ffffff;
+
   /* Variáveis para os balões */
   --balloon-bg-color: rgba(0, 0, 0, 0.8);
   --balloon-text-color: #ffffff;
-  /* Adicione mais variáveis conforme necessário */
 }
 
 body.light-theme {
@@ -38,10 +38,9 @@ body.light-theme {
   --accordion-bg-color: #f0f0f0;
   --accordion-hover-bg-color: #d3d3d3;
   --toggle-button-color: #000000;
-  /* Variáveis para os balões no tema claro */
+
   --balloon-bg-color: rgba(255, 255, 255, 0.9);
   --balloon-text-color: #000000;
-  /* Ajuste mais variáveis conforme necessário */
 }
 
 /* ===========================================================
@@ -51,6 +50,8 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -65,18 +66,20 @@ a:hover {
 }
 
 /* ===========================================================
-   4. Contêiner Principal
+   4. Contêiner Principal (.main)
+   - Mobile-first: estilização básica em telas pequenas.
 =========================================================== */
 .main {
-  margin: 4rem auto; /* Centraliza o contêiner com margem superior e inferior */
+  margin: 2rem auto; /* Margem para dar respiro no topo/rodapé */
   padding: 1rem;
-  max-width: 1100px; /* Reduz a largura máxima para permitir o background nas bordas */
-  width: 80%; /* Largura relativa para responsividade */
+  max-width: 1100px;
+  width: 90%; /* Largura maior para telas menores */
   border: 1px solid var(--border-color);
   border-radius: 1rem;
   background-color: var(--header-bg-color);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s, background-color 0.3s;
+  position: relative; /* para usar ::before e ::after */
 }
 
 /* ===========================================================
@@ -88,13 +91,9 @@ a:hover {
   background-image: url("../img/background.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  display: inline-block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 140vw;
-  height: 100vh;
+  position: absolute;
   z-index: -1;
+  opacity: 0.1; /* Deixa bem sutil */
 }
 
 .main::after {
@@ -106,126 +105,127 @@ a:hover {
 }
 
 /* ===========================================================
-   6. Header
+   6. Header (Mobile-first)
 =========================================================== */
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  padding: 1rem;
 }
 
+/* Foto de Perfil */
 .header .photo {
-  width: 14rem;
-  height: 14rem;
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
 }
 
+/* Título e Slogan */
 .header .title {
-  font-family: "Neue Machina", sans-serif; /* Aplica a fonte personalizada */
+  font-family: "Neue Machina", sans-serif;
   text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--header-text-color);
 }
 
-.information {
+.header .slogan {
+  font-family: "Neue Machina", sans-serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.header .information {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
 }
 
-.information p {
+.header .information p {
   display: flex;
   align-items: center;
   margin: 0.5rem 0;
-  font-size: 1.125rem;
-}
-
-.information p i {
-  margin-right: 0.5rem; /* Espaçamento entre o ícone e o texto */
-  font-size: 1.25rem; /* Tamanho do ícone */
-  color: var(--text-color); /* Cor do ícone, adaptável ao tema */
-  transition: color 0.3s;
-}
-
-/* ===========================================================
-   7. Seção de Ferramentas
-=========================================================== */
-
-/* Estilos para a Barra de Progresso */
-.progress-container {
-  width: 100%;
-  margin-top: 0.5rem;
-}
-
-.progress-bar {
-  width: 100%;
-  background-color: #e0e0e0;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  height: 20px;
-}
-
-.progress {
-  height: 100%;
-  width: 0%;
-  background-color: var(--text-color); 
-  transition: width 0.5s ease-in-out;
-}
-
-.progress-text {
-  display: block;
-  text-align: center;
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--text-color);
-}
-
-.tools h3 {
-  margin-bottom: 1rem;
-  color: var(--text-color);
-}
-
-.hard-skills {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 colunas */
-  gap: 1rem; /* Espaçamento entre os itens */
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.hard-skills li {
-  display: flex;
-  align-items: center; /* Alinha verticalmente ícone e texto */
-  background-color: var(--accordion-bg-color);
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  transition: transform 0.3s, background-color 0.3s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  cursor: pointer; /* Indica que o item é clicável */
-  position: relative; /* Para posicionar o balão */
-}
-
-.hard-skills li:hover {
-  transform: translateY(-5px);
-  background-color: var(--accordion-hover-bg-color);
-}
-
-.hard-skills li i {
-  font-size: 1.5rem;
-  margin-right: 0.75rem; /* Espaçamento entre o ícone e o nome */
-  color: var(--text-color);
-  transition: color 0.3s;
-}
-
-.hard-skills li .skill-name {
   font-size: 1rem;
+}
+
+.header .information p i {
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
   color: var(--text-color);
+  transition: color 0.3s;
 }
 
 /* ===========================================================
-   8. Accordion
+   6.1. Container para Theme Toggle e Cart Button lado a lado
 =========================================================== */
+.header-buttons {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Botão de tema */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--toggle-button-color);
+  transition: color 0.3s;
+  font-size: 1.75rem; /* Ajuste o tamanho do ícone */
+}
+
+.theme-toggle i {
+  transition: transform 0.3s, color 0.3s;
+}
+
+/* Botão do carrinho */
+.cart-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--toggle-button-color);
+  transition: color 0.3s;
+  font-size: 1.75rem; /* Ajuste o tamanho do ícone */
+}
+
+/* Ao passar o mouse, pode aumentar levemente */
+.theme-toggle:hover i,
+.cart-button:hover i {
+  transform: scale(1.1);
+}
+
+/* ===========================================================
+   7. Accordion (Mobile-first)
+=========================================================== */
+.btn-add-cart {
+  background-color: transparent;          /* Início transparente */
+  color: var(--text-color);               /* Usa a cor de texto do tema */
+  border: 1px solid var(--border-color);  /* Usa a cor de borda do tema */
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;                      /* Pequeno espaçamento superior */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-add-cart:hover {
+  /* Ao passar o mouse, inverte as cores */
+  background-color: var(--text-color);
+  color: var(--accordion-bg-color);
+}
+
 .acordeon {
   display: flex;
   flex-direction: column;
@@ -248,9 +248,9 @@ a:hover {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background-color: transparent;
   color: var(--text-color);
   border: none;
@@ -260,16 +260,16 @@ a:hover {
 
 .acordeon .trigger h2 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   text-align: start;
 }
 
 .acordeon .trigger::after {
-  font-family: "Font Awesome 6 Free"; /* Família de fontes do Font Awesome */
-  content: "\f077"; /* Unicode do ícone de seta para cima (fa-chevron-up) */
-  font-weight: 900; /* Peso da fonte para ícones sólidos */
+  font-family: "Font Awesome 6 Free";
+  content: "\f077"; /* ícone seta para cima (fa-chevron-up) */
+  font-weight: 900;
   transition: transform 0.25s;
-  color: var(--text-color); /* Cor do ícone, adaptável ao tema */
+  color: var(--text-color);
 }
 
 .acordeon.open .trigger::after {
@@ -282,361 +282,388 @@ a:hover {
   opacity: 0;
   transition: opacity 0.25s ease-in-out, height 0.25s ease-in-out,
     padding 0.25s ease-in-out;
-  padding: 0 1rem 0 2rem;
+  padding: 0 1rem;
 }
 
 .acordeon.open .content {
   display: block;
   height: auto;
   opacity: 1;
-  padding: 0 1rem 1rem 2rem;
+  padding: 0 1rem 1rem;
 }
 
 /* ===========================================================
-   9. Experiência
-=========================================================== */
-.experience {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.experience li {
-  margin-bottom: 1rem;
-}
-
-.experience li .period {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.experience li .period::before {
-  font-family: "Font Awesome 6 Free"; /* Família de fontes do Font Awesome */
-  content: "\f133"; /* Unicode do ícone de calendário (fa-calendar) */
-  font-weight: 900; /* Peso da fonte para ícones sólidos */
-  margin-right: 0.5rem;
-  color: var(--text-color); /* Cor do ícone, adaptável ao tema */
-  font-size: 1rem; /* Tamanho do ícone */
-}
-
-/* ===========================================================
-   10. Footer
+   8. Footer (Mobile-first)
 =========================================================== */
 footer {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  padding: 0rem;
+  padding: 1rem 0;
 }
 
-/* Estilização dos Links do Footer */
 footer a {
-  color: var(--text-color); /* Cor do ícone adaptável ao tema */
-  font-size: 2rem; /* Tamanho dos ícones no footer */
+  color: var(--text-color);
+  font-size: 1.75rem;
   margin: 0 0.5rem;
   transition: color 0.3s, transform 0.3s;
 }
 
-/* Efeito de Hover nos Ícones */
 footer a:hover {
-  transform: scale(1.2); /* Aumenta o tamanho do ícone no hover */
+  transform: scale(1.2);
 }
 
 /* ===========================================================
-   11. Languages
-=========================================================== */
-.languages {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.languages li {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-right: 1rem;
-  font-weight: 700;
-  position: relative; /* Para posicionar o ícone */
-  padding-left: 1.5rem; /* Espaço para o ícone */
-  margin-bottom: 0.5rem; /* Espaçamento entre os itens */
-  list-style: none; /* Remove marcadores padrão */
-}
-
-.languages li i {
-  margin-right: 0.5rem; /* Espaçamento entre o ícone e o texto */
-  font-size: 1.5rem; /* Tamanho do ícone */
-  color: var(--text-color); /* Cor do ícone, adaptável ao tema */
-  transition: color 0.3s;
-}
-
-/* ===========================================================
-   12. Portfolio
-=========================================================== */
-.portfolio {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.portfolio li {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin: 1rem 0;
-}
-
-.portfolio li h3 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin: 0;
-  margin-bottom: 0.5rem;
-}
-
-.portfolio li h3 i.fas.fa-link,
-.portfolio li h3 i.fab.fa-github {
-  margin-right: 0.5rem; 
-}
-
-/* ===========================================================
-   13. Skills
-=========================================================== */
-.skills {
-  display: flex;
-  flex-direction: column;
-}
-
-.skills .tools ul {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 colunas */
-  gap: 1rem; /* Espaçamento entre os itens */
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.skills .tools ul li {
-  display: flex;
-  align-items: center;
-  background-color: var(--accordion-bg-color);
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  transition: transform 0.3s, background-color 0.3s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.skills .tools ul li:hover {
-  transform: translateY(-5px);
-  background-color: var(--accordion-hover-bg-color);
-}
-
-.skills .tools ul li i {
-  font-size: 1.5rem;
-  margin-right: 0.75rem; /* Espaçamento entre o ícone e o nome */
-  color: var(--text-color);
-  transition: color 0.3s;
-}
-
-.skills .tools ul li .skill-name {
-  font-size: 1rem;
-  color: var(--text-color);
-}
-
-.skills .personal ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-}
-
-.skills .personal ul li {
-  margin-left: 2rem;
-  padding: 0.5rem;
-}
-
-/* ===========================================================
-   14. Theme Toggle
-=========================================================== */
-/* Estilo para o botão de alternância */
-.theme-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--toggle-button-color);
-  transition: color 0.3s;
-}
-
-/* Estilização do Ícone dentro do Botão de Alternância */
-.theme-toggle i {
-  font-size: 2rem; /* Tamanho do ícone */
-  transition: transform 0.3s, color 0.3s; /* Transições para efeitos */
-}
-
-
-/* ===========================================================
-   15. Transições Suaves
+   9. Transições Suaves
 =========================================================== */
 .acordeon,
 .header,
 footer,
-.skills,
-.languages,
-.portfolio,
-.experience,
 .information {
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 /* ===========================================================
-   16. Responsividade
+   10. Lista de Produtos (Mobile-first)
 =========================================================== */
-/* Ajuste para Telas Menores */
-@media only screen and (max-width: 600px) {
-  .main {
-    padding: 1rem;
-    margin: 1rem auto;
-    border-radius: 0.5rem;
-  }
-  .hard-skills {
-    display: flex; /* Altera o display para flex */
-    flex-wrap: wrap; /* Permite quebra de linha para evitar overflow */
-    justify-content: center; /* Centraliza os itens */
-    gap: 0.5rem; /* Reduz o espaçamento entre os itens */
-    padding: 0;
-    margin: 0;
-  }
+.acordeon .content ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 
-  .hard-skills li {
-    position: relative; /* Necessário para posicionar o balão */
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    cursor: pointer; /* Indica que o item é clicável */
-  }
+.acordeon .content ul li {
+  background-color: var(--accordion-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
 
-  .hard-skills li .skill-name {
-    display: none; /* O texto está escondido por padrão */
-    position: absolute;
-    bottom: 60px; /* Posiciona o balão acima do ícone */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--balloon-bg-color); /* Usa a variável de fundo */
-    color: var(--balloon-text-color); /* Usa a variável de texto */
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    white-space: nowrap; /* Evita que o texto quebre em várias linhas */
-    font-size: 0.8rem;
-    z-index: 10;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra do balão */
-    transition: background-color 0.3s, color 0.3s; /* Transições suaves */
-  }
+.acordeon .content ul li:hover {
+  transform: translateY(-5px);
+  background-color: var(--accordion-hover-bg-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 
-  .hard-skills li.active .skill-name {
-    display: block; /* Mostra o balão quando o item está ativo */
-  }
-  
-  .hard-skills li .skill-name {
-    display: none; /* Esconde o texto do nome da habilidade */
-  }
+.acordeon .content ul li img.menu-item-image {
+  display: none; /* Oculta a imagem no mobile (se desejar) */
+}
 
-  .hard-skills li i {
-    font-size: 2rem; /* Aumenta o tamanho dos ícones para melhor visibilidade */
-    margin: 0; /* Remove a margem direita */
-  }
+.acordeon .content ul li strong {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
 
-  .skills .tools ul li i {
-    font-size: 1.5rem;
-    margin-right: 0rem; /* Espaçamento entre o ícone e o nome */
-    color: var(--text-color);
-    transition: color 0.3s;
-  }
+.acordeon .content ul li .preco {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
 
-  .skills .tools ul li {
-    display: flex;
-    align-items: center;
-    background-color: var(--accordion-bg-color);
-    padding: 0rem 0rem;
-    border-radius: 0.5rem;
-    transition: transform 0.3s, background-color 0.3s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
+.acordeon .content ul li em {
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
 
-  .skills .tools ul {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas para telas menores */
-    gap: 1rem; /* Espaçamento entre os itens */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+/* Ícone de Ação (Balão de Imagem) */
+.acordeon .content ul li i.menu-item-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+}
 
-  .theme-toggle {
-    top: 0rem;
-    right: 0rem;
+.acordeon .content ul li i.menu-item-icon:hover {
+  transform: scale(1.2);
+  color: var(--accordion-bg-color);
+}
+
+.acordeon .content ul li strong,
+.acordeon .content ul li .preco,
+.acordeon .content ul li em {
+  margin-top: 1.5rem; /* Espaço para o ícone */
+}
+
+/* Balão de Imagem */
+.image-balloon {
+  position: absolute;
+  background-color: var(--balloon-bg-color);
+  color: var(--balloon-text-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transform: translateY(-10px);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.image-balloon img {
+  width: 200px;
+  height: auto;
+  border-radius: 0.25rem;
+}
+
+/* Animação de Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Ajustes para Telas a partir de 768px */
-@media only screen and (min-width: 768px) {
+/* ===========================================================
+   11. Observações Box (Mobile-first)
+=========================================================== */
+.observacoes-box {
+  background-color: var(--accordion-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.observacoes-box h2 {
+  font-family: "Neue Machina", sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+#perfil-observacoesIniciais {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#perfil-observacoesIniciais li {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+/* ===========================================================
+   12. MODAL DO CARRINHO
+=========================================================== */
+#cart-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none; /* Oculto por padrão */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+#cart-modal-content {
+  background-color: var(--header-bg-color);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+#cart-content {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+/* Itens do carrinho dentro do modal */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.25rem;
+}
+
+.cart-item span {
+  font-size: 0.9rem;
+}
+
+/* Botão remover item */
+.remove-btn {
+  background: #cc0000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.remove-btn:hover {
+  background-color: #aa0000;
+}
+
+/* Botões dentro do modal (fechar, enviar) */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.modal-buttons button {
+  background-color: var(--toggle-button-color);
+  border: none;
+  border-radius: 0.25rem;
+  color: var(--accordion-bg-color);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.modal-buttons button:hover {
+  background-color: var(--text-color);
+  color: var(--accordion-bg-color);
+}
+
+/* ===========================================================
+   13. Media Queries
+=========================================================== */
+@media (max-width: 480px) {
+  * {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   .main {
-    max-width: 1024px;
-    margin: 2rem auto;
+    margin: 0;
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    width: 100%;
   }
+}
 
-  .main::before,
-  .main::after {
-    width: 70vw;
-  }
-
+/* Telas médias (tablet) a partir de 768px */
+@media (min-width: 768px) {
   .header {
-    display: grid;
-    grid-template-areas:
-      "photo title"
-      "photo information";
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
   }
 
   .header .photo {
-    grid-area: photo;
-    margin: 0 auto;
-  }
-
-  .header .title {
-    grid-area: title;
-    text-align: start;
-    max-width: 210px;
+    width: 14rem;
+    height: 14rem;
+    margin-bottom: 0;
+    margin-right: 2rem;
   }
 
   .header .information {
-    grid-area: information;
+    text-align: left;
+    align-items: flex-start;
   }
 
-  .skills {
+  .acordeon .content ul li img.menu-item-image {
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .acordeon .content ul li strong {
+    font-size: 1.1rem;
+  }
+
+  .acordeon .content ul li .preco {
+    font-size: 1rem;
+  }
+
+  .acordeon .content ul li em {
+    font-size: 0.9rem;
+  }
+}
+
+/* Telas grandes (desktop) a partir de 992px */
+@media (min-width: 992px) {
+  .header {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    padding: 2rem;
+  }
+
+  .main {
+    width: 80%;
+  }
+
+  .header .photo {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .header .title {
+    font-size: 2rem;
+  }
+
+  .header .slogan {
+    font-size: 1.25rem;
+  }
+
+  .acordeon .content ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .acordeon .content ul li {
+    align-items: center;
+    text-align: center;
+  }
+
+  .acordeon .content ul li img.menu-item-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .acordeon .content ul li strong {
+    font-size: 1.25rem;
+  }
+}
+
+/* Opcional: telas ainda maiores (ex: 1200px) */
+@media (min-width: 1200px) {
+  .main {
+    max-width: 1200px;
   }
 }
