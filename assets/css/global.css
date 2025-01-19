@@ -26,25 +26,60 @@
   /* Variáveis para os balões */
   --balloon-bg-color: rgba(0, 0, 0, 0.8);
   --balloon-text-color: #ffffff;
-}
 
-body.light-theme {
+  /* Variáveis para a barra de rolagem */
+  --scrollbar-track-color: #1f1f1f;
+  --scrollbar-thumb-color: #333333;
+  --scrollbar-thumb-hover-color: #555555;
+
   /* Tema Claro */
-  --bg-color: #d3d3d3;
-  --text-color: #000000;
-  --header-bg-color: #f0f0f0;
-  --header-text-color: #000000;
-  --border-color: #000000;
-  --accordion-bg-color: #f0f0f0;
-  --accordion-hover-bg-color: #d3d3d3;
-  --toggle-button-color: #000000;
-
-  --balloon-bg-color: rgba(255, 255, 255, 0.9);
-  --balloon-text-color: #000000;
+  --light-bg-color: #d3d3d3;
+  --light-text-color: #000000;
+  --light-header-bg-color: #f0f0f0;
+  --light-header-text-color: #000000;
+  --light-border-color: #000000;
+  --light-accordion-bg-color: #f0f0f0;
+  --light-accordion-hover-bg-color: #d3d3d3;
+  --light-toggle-button-color: #000000;
+  --light-scrollbar-track-color: #f0f0f0;
+  --light-scrollbar-thumb-color: #d3d3d3;
+  --light-scrollbar-thumb-hover-color: #bfbfbf;
 }
 
 /* ===========================================================
-   3. Estilos Básicos
+   Tema Claro
+=========================================================== */
+body.light-theme {
+  /* Tema Claro */
+  --bg-color: var(--light-bg-color);
+  --text-color: var(--light-text-color);
+  --header-bg-color: var(--light-header-bg-color);
+  --header-text-color: var(--light-header-text-color);
+  --border-color: var(--light-border-color);
+  --accordion-bg-color: var(--light-accordion-bg-color);
+  --accordion-hover-bg-color: var(--light-accordion-hover-bg-color);
+  --toggle-button-color: var(--light-toggle-button-color);
+
+  --balloon-bg-color: rgba(255, 255, 255, 0.9);
+  --balloon-text-color: #000000;
+
+  /* Variáveis para a barra de rolagem no tema claro */
+  --scrollbar-track-color: var(--light-scrollbar-track-color);
+  --scrollbar-thumb-color: var(--light-scrollbar-thumb-color);
+  --scrollbar-thumb-hover-color: var(--light-scrollbar-thumb-hover-color);
+}
+
+/* ===========================================================
+   3. Box Sizing Global
+=========================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ===========================================================
+   4. Estilos Básicos
 =========================================================== */
 body {
   background-color: var(--bg-color);
@@ -66,7 +101,7 @@ a:hover {
 }
 
 /* ===========================================================
-   4. Contêiner Principal (.main)
+   5. Contêiner Principal (.main)
    - Mobile-first: estilização básica em telas pequenas.
 =========================================================== */
 .main {
@@ -83,7 +118,7 @@ a:hover {
 }
 
 /* ===========================================================
-   5. Background Decorativo
+   6. Background Decorativo
 =========================================================== */
 .main::before,
 .main::after {
@@ -105,7 +140,7 @@ a:hover {
 }
 
 /* ===========================================================
-   6. Header (Mobile-first)
+   7. Header (Mobile-first)
 =========================================================== */
 .header {
   display: flex;
@@ -164,7 +199,7 @@ a:hover {
 }
 
 /* ===========================================================
-   6.1. Container para Theme Toggle e Cart Button lado a lado
+   7.1. Container para Theme Toggle e Cart Button lado a lado
 =========================================================== */
 .header-buttons {
   position: absolute;
@@ -207,25 +242,111 @@ a:hover {
 }
 
 /* ===========================================================
-   7. Accordion (Mobile-first)
+   8. Accordion (Mobile-first)
 =========================================================== */
+
+/* Botão Adicionar ao Carrinho */
 .btn-add-cart {
-  background-color: transparent;          /* Início transparente */
-  color: var(--text-color);               /* Usa a cor de texto do tema */
-  border: 1px solid var(--border-color);  /* Usa a cor de borda do tema */
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  margin-top: 1rem;                      /* Pequeno espaçamento superior */
+  margin-top: 1rem;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  display: flex; /* Adicionado para alinhar texto e ícone */
+  align-items: center; /* Centraliza verticalmente */
+  gap: 0.5rem; /* Espaço entre texto e ícone */
 }
 
 .btn-add-cart:hover {
-  /* Ao passar o mouse, inverte as cores */
   background-color: var(--text-color);
   color: var(--accordion-bg-color);
 }
 
+/* Efeito de brilho ao clicar */
+.btn-glow {
+  animation: glowPulse 0.8s ease;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 0px rgba(255, 255, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(255, 255, 0, 0.5);
+  }
+}
+
+/* ===========================================================
+   9. Modal de Seleção de Preço
+=========================================================== */
+#price-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none; /* Oculto por padrão */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000; /* Maior que o modal do carrinho */
+}
+
+#price-modal .modal-content {
+  background-color: var(--header-bg-color);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  overflow-x: hidden; /* Previne overflow horizontal */
+}
+
+#price-modal .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#price-modal h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.btn-price-option {
+  background-color: var(--toggle-button-color);
+  color: var(--accordion-bg-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 1rem;
+  width: 100%; /* Faz com que os botões ocupem a largura disponível */
+  max-width: 250px; /* Limita a largura máxima dos botões */
+  box-sizing: border-box; /* Garante que padding não cause overflow */
+}
+
+.btn-price-option:hover {
+  background-color: var(--text-color);
+  color: var(--accordion-bg-color);
+}
+
+/* ===========================================================
+   10. Accordion Styles
+=========================================================== */
 .acordeon {
   display: flex;
   flex-direction: column;
@@ -285,6 +406,7 @@ a:hover {
   padding: 0 1rem;
 }
 
+/* Quando aberto */
 .acordeon.open .content {
   display: block;
   height: auto;
@@ -293,7 +415,7 @@ a:hover {
 }
 
 /* ===========================================================
-   8. Footer (Mobile-first)
+   11. Footer (Mobile-first)
 =========================================================== */
 footer {
   width: 100%;
@@ -316,7 +438,7 @@ footer a:hover {
 }
 
 /* ===========================================================
-   9. Transições Suaves
+   12. Transições Suaves
 =========================================================== */
 .acordeon,
 .header,
@@ -326,13 +448,13 @@ footer,
 }
 
 /* ===========================================================
-   10. Lista de Produtos (Mobile-first)
+   13. Lista de Produtos (Mobile-first)
 =========================================================== */
 .acordeon .content ul {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 0;
+  padding-left: 0;
   margin: 0;
   list-style: none;
 }
@@ -349,6 +471,8 @@ footer,
   align-items: center;
   text-align: center;
   position: relative;
+  word-wrap: break-word; /* Garante que palavras longas quebrem */
+  overflow: hidden; /* Previne overflow interno */
 }
 
 .acordeon .content ul li:hover {
@@ -359,6 +483,8 @@ footer,
 
 .acordeon .content ul li img.menu-item-image {
   display: none; /* Oculta a imagem no mobile (se desejar) */
+  max-width: 100%; /* Garante que a imagem não exceda a largura do container */
+  height: auto; /* Mantém a proporção da imagem */
 }
 
 .acordeon .content ul li strong {
@@ -432,7 +558,7 @@ footer,
 }
 
 /* ===========================================================
-   11. Observações Box (Mobile-first)
+   14. Observações Box (Mobile-first)
 =========================================================== */
 .observacoes-box {
   background-color: var(--accordion-bg-color);
@@ -465,7 +591,7 @@ footer,
 }
 
 /* ===========================================================
-   12. MODAL DO CARRINHO
+   15. MODAL DO CARRINHO
 =========================================================== */
 #cart-modal {
   position: fixed;
@@ -480,7 +606,7 @@ footer,
   z-index: 9999;
 }
 
-#cart-modal-content {
+#cart-modal .modal-content {
   background-color: var(--header-bg-color);
   color: var(--text-color);
   padding: 2rem;
@@ -489,15 +615,19 @@ footer,
   max-width: 500px;
   position: relative;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  overflow-x: hidden; /* Previne overflow horizontal */
+  max-height: 90vh; /* Limita a altura para evitar overflow vertical */
+  display: flex;
+  flex-direction: column;
 }
 
 #cart-content {
-  max-height: 300px;
+  flex: 1 1 auto;
   overflow-y: auto;
   margin-bottom: 1rem;
+  word-wrap: break-word; /* Garante que palavras longas quebrem */
 }
 
-/* Itens do carrinho dentro do modal */
 .cart-item {
   display: flex;
   justify-content: space-between;
@@ -509,6 +639,7 @@ footer,
 
 .cart-item span {
   font-size: 0.9rem;
+  word-wrap: break-word; /* Garante que textos longos quebrem */
 }
 
 /* Botão remover item */
@@ -549,23 +680,51 @@ footer,
 }
 
 /* ===========================================================
-   13. Media Queries
+   16. Cart Total
+=========================================================== */
+.cart-total {
+  text-align: right;
+  margin-top: 1rem;
+  font-size: 1.2em;
+  font-weight: bold;
+  word-wrap: break-word; /* Garante que textos longos quebrem */
+}
+
+/* ===========================================================
+   17. Media Queries
 =========================================================== */
 @media (max-width: 480px) {
-  * {
-    box-sizing: border-box;
+  .header-buttons {
+    position: absolute;
+    top: -0.5rem;
+    right: -1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
   }
-  html,
-  body {
-    overflow-x: hidden;
-  }
-
   .main {
     margin: 0;
     max-width: 100%;
     border: none;
     border-radius: 0;
     width: 100%;
+  }
+
+  /* Ajuste da largura dos modais em dispositivos muito pequenos */
+  .modal-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  /* Melhorar a responsividade dos botões dentro dos modais */
+  .modal-buttons {
+    flex-direction: column;
+  }
+
+  .modal-buttons button {
+    width: 100%;
+    max-width: none;
   }
 }
 
@@ -662,6 +821,308 @@ footer,
 }
 
 /* Opcional: telas ainda maiores (ex: 1200px) */
+@media (min-width: 1200px) {
+  .main {
+    max-width: 1200px;
+  }
+}
+
+/* ===========================================================
+   18. Estilização da Barra de Rolagem
+=========================================================== */
+
+/* Estilização para Webkit Browsers (Chrome, Safari, Edge) */
+#cart-modal .modal-content::-webkit-scrollbar,
+#price-modal .modal-content::-webkit-scrollbar,
+#cart-content::-webkit-scrollbar,
+#price-options::-webkit-scrollbar {
+  width: 12px;
+}
+
+#cart-modal .modal-content::-webkit-scrollbar-track,
+#price-modal .modal-content::-webkit-scrollbar-track,
+#cart-content::-webkit-scrollbar-track,
+#price-options::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color);
+  border-radius: 6px;
+}
+
+#cart-modal .modal-content::-webkit-scrollbar-thumb,
+#price-modal .modal-content::-webkit-scrollbar-thumb,
+#cart-content::-webkit-scrollbar-thumb,
+#price-options::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-color);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbar-track-color);
+}
+
+#cart-modal .modal-content::-webkit-scrollbar-thumb:hover,
+#price-modal .modal-content::-webkit-scrollbar-thumb:hover,
+#cart-content::-webkit-scrollbar-thumb:hover,
+#price-options::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover-color);
+}
+
+/* Estilização para Firefox */
+#cart-modal .modal-content,
+#price-modal .modal-content,
+#cart-content,
+#price-options {
+  scrollbar-width: thin; /* "auto" ou "thin" */
+  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+}
+
+/* ===========================================================
+   19. Observações Box (Mobile-first)
+=========================================================== */
+.observacoes-box {
+  background-color: var(--accordion-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.observacoes-box h2 {
+  font-family: "Neue Machina", sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+#perfil-observacoesIniciais {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#perfil-observacoesIniciais li {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+/* ===========================================================
+   20. Modal do Carrinho - Ajustes para Evitar Overflow
+=========================================================== */
+
+/* Estilos para .modal-content geral */
+.modal-content {
+  background-color: var(--header-bg-color);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  overflow-x: hidden; /* Previne overflow horizontal */
+  max-height: 90vh; /* Limita a altura para evitar overflow vertical */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Conteúdo do Carrinho */
+#cart-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  word-wrap: break-word; /* Garante que palavras longas quebrem */
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.25rem;
+}
+
+.cart-item span {
+  font-size: 0.9rem;
+  word-wrap: break-word; /* Garante que textos longos quebrem */
+}
+
+/* Botão remover item */
+.remove-btn {
+  background: #cc0000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.remove-btn:hover {
+  background-color: #aa0000;
+}
+
+/* Botões dentro do modal (fechar, enviar) */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.modal-buttons button {
+  background-color: var(--toggle-button-color);
+  border: none;
+  border-radius: 0.25rem;
+  color: var(--accordion-bg-color);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.modal-buttons button:hover {
+  background-color: var(--text-color);
+  color: var(--accordion-bg-color);
+}
+
+/* ===========================================================
+   21. Cart Total
+=========================================================== */
+.cart-total {
+  text-align: right;
+  margin-top: 1rem;
+  font-size: 1.2em;
+  font-weight: bold;
+  word-wrap: break-word; /* Garante que textos longos quebrem */
+}
+
+/* ===========================================================
+   22. Media Queries
+=========================================================== */
+@media (max-width: 480px) {
+  .header-buttons {
+    position: absolute;
+    top: -0.5rem;
+    right: -1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .main {
+    margin: 0;
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+  }
+
+  /* Ajuste da largura dos modais em dispositivos muito pequenos */
+  .modal-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  /* Melhorar a responsividade dos botões dentro dos modais */
+  .modal-buttons {
+    flex-direction: column;
+  }
+
+  .modal-buttons button {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+
+  .header .photo {
+    width: 14rem;
+    height: 14rem;
+    margin-bottom: 0;
+    margin-right: 2rem;
+  }
+
+  .header .information {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .acordeon .content ul li img.menu-item-image {
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .acordeon .content ul li strong {
+    font-size: 1.1rem;
+  }
+
+  .acordeon .content ul li .preco {
+    font-size: 1rem;
+  }
+
+  .acordeon .content ul li em {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    padding: 2rem;
+  }
+
+  .main {
+    width: 80%;
+  }
+
+  .header .photo {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .header .title {
+    font-size: 2rem;
+  }
+
+  .header .slogan {
+    font-size: 1.25rem;
+  }
+
+  .acordeon .content ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .acordeon .content ul li {
+    align-items: center;
+    text-align: center;
+  }
+
+  .acordeon .content ul li img.menu-item-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .acordeon .content ul li strong {
+    font-size: 1.25rem;
+  }
+}
+
 @media (min-width: 1200px) {
   .main {
     max-width: 1200px;

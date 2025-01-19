@@ -1,4 +1,25 @@
 {
+  "texts": {
+    "adicionarAoCarrinho": "Adicionar ao Carrinho",
+    "bemVindo": "Bem-vindo",
+    "tituloPagina": "Título da Página",
+    "fechar": "Fechar",
+    "enviarPedido": "Enviar Pedido",
+    "carrinhoVazio": "O carrinho está vazio.",
+    "tituloCarrinho": "Carrinho",
+    "observacoesIniciaisTitulo": "Observações Iniciais",
+    "remover": "Remover",
+    "grande": "Grande",
+    "pequena": "Pequena",
+    "cada": "cada",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "mensagemPedido": "Olá, gostaria de fazer o seguinte pedido:",
+    "produtoSemNome": "Produto Sem Nome",
+    "escolhaTamanhoTitulo": "Escolha o Tamanho",
+    "fotoPerfil": "Foto de Perfil",
+    "tituloModalPreco": "Escolha o Tamanho"
+  },
   "perfil": {
     "foto": "https://pps.whatsapp.net/v/t61.24694-24/122766043_180134643595352_7992627227379500289_n.jpg?ccb=11-4&oh=01_Q5AaIDf44nIsI05SnYL-nYUT9d9-ARg1AtMuLf2_SGWZMMkH&oe=678F8700&_nc_sid=5e03e0&_nc_cat=103",
     "titulo": "TERRA PÃO PIZZERIA",
@@ -721,12 +742,5 @@
         }
       ]
     }
-  ],
-  "observacoesFinais": {
-    "importante": "Taxa de entrega R$ 6, grátis para compras a partir de R$ 48 ou R$ 54 (ou pagamentos em dinheiro/pix). Consulte variações.",
-    "horario": "De quinta a domingo, das 18h à meia-noite.",
-    "endereco": "RUA MANUEL DE MACEDO 36 A, esquina com as Praias da Imbuca e Gaivotas, Paquetá, RJ. CEP 20396-090",
-    "sobre": "Terra Pão Pizzeria - Paquetá no coração, desde 2016.",
-    "estoque": "Todos os itens do cardápio estão sujeitos à ruptura de estoque, sem aviso prévio."
-  }
+  ]
 }

@@ -89,7 +89,16 @@ async function fetchProfileData() {
 let profileDataGlobal = null;
 
 /*******************************************************
- * 3) Atualizar elementos de PERFIL
+ * 3) Helper Function para acessar textos do JSON
+ *******************************************************/
+function t(key) {
+  return profileDataGlobal && profileDataGlobal.texts && profileDataGlobal.texts[key]
+    ? profileDataGlobal.texts[key]
+    : key;
+}
+
+/*******************************************************
+ * 4) Atualizar elementos de PERFIL
  *******************************************************/
 function updatePerfil(perfilData) {
   if (!perfilData) return;
@@ -98,13 +107,13 @@ function updatePerfil(perfilData) {
   const photoElem = document.getElementById("profile-photo");
   if (photoElem && perfilData.foto) {
     photoElem.src = perfilData.foto;
-    photoElem.alt = perfilData.titulo || "Foto de Perfil";
+    photoElem.alt = perfilData.titulo || t("tituloPagina");
   }
 
   // Título
   const tituloElem = document.getElementById("perfil-titulo");
   if (tituloElem) {
-    tituloElem.innerText = perfilData.titulo || "";
+    tituloElem.innerText = perfilData.titulo || t("tituloPagina");
   }
 
   // Slogan
@@ -152,13 +161,13 @@ function updatePerfil(perfilData) {
   }
 
   // Título da página (opcional)
-  if (perfilData.titulo) {
-    document.title = perfilData.titulo;
+  if (perfilData.titulo || t("tituloPagina")) {
+    document.title = perfilData.titulo || t("tituloPagina");
   }
 }
 
 /*******************************************************
- * 4) Criar dinamicamente o CARDÁPIO (categorias)
+ * 5) Criar dinamicamente o CARDÁPIO (categorias)
  *******************************************************/
 function updateCategorias(categorias) {
   if (!categorias) return;
@@ -240,10 +249,26 @@ function updateCategorias(categorias) {
       // Botão Adicionar ao Carrinho
       const addBtn = document.createElement("button");
       addBtn.classList.add("btn-add-cart");
-      addBtn.innerText = "Adicionar ao Carrinho";
-      addBtn.addEventListener("click", () => {
-        addToCart(item);
-      });
+      addBtn.innerHTML = `${t('adicionarAoCarrinho')} <i class="fa-solid fa-cart-plus"></i>`;
+
+      // Verifica se o item tem múltiplos preços
+      const hasMultiplePrices =
+        (typeof item.precoGrande === "number" &&
+          typeof item.precoPequena === "number") ||
+        (item.precoGrande && item.precoPequena);
+
+      if (hasMultiplePrices) {
+        // Se tiver múltiplos preços, abre o modal de seleção
+        addBtn.addEventListener("click", (e) => {
+          openPriceModal(item, e.currentTarget);
+        });
+      } else {
+        // Se tiver um único preço, adiciona diretamente
+        addBtn.addEventListener("click", (e) => {
+          addToCart(item, null, e.currentTarget);
+        });
+      }
+
       li.appendChild(addBtn);
 
       return li;
@@ -287,7 +312,9 @@ function updateCategorias(categorias) {
   });
 }
 
-// Função para obter string de preço
+/*******************************************************
+ * 6) Função para obter string de preço
+ *******************************************************/
 function getPreco(item) {
   if (typeof item.preco === "number") {
     return `R$ ${item.preco.toFixed(2)}`;
@@ -296,34 +323,13 @@ function getPreco(item) {
     typeof item.precoGrande === "number" &&
     typeof item.precoPequena === "number"
   ) {
-    return `Grande: R$ ${item.precoGrande.toFixed(
-      2
-    )} / Pequena: R$ ${item.precoPequena.toFixed(2)}`;
+    return `${t('grande')}: R$ ${item.precoGrande.toFixed(2)} / ${t('pequena')}: R$ ${item.precoPequena.toFixed(2)}`;
   }
   return "";
 }
 
 /*******************************************************
- * 5) Observações Finais
- *******************************************************/
-function updateObservacoesFinais(obsFinais) {
-  const obsSection = document.getElementById("observacoesFinais");
-  if (!obsSection) return;
-  obsSection.innerHTML = "";
-
-  if (Array.isArray(obsFinais)) {
-    const ul = document.createElement("ul");
-    obsFinais.forEach((texto) => {
-      const li = document.createElement("li");
-      li.innerText = texto;
-      ul.appendChild(li);
-    });
-    obsSection.appendChild(ul);
-  }
-}
-
-/*******************************************************
- * 6) Rodapé (WhatsApp, Instagram)
+ * 7) Rodapé (WhatsApp, Instagram)
  *******************************************************/
 function updateFooterLinks(footerData) {
   if (!footerData) return;
@@ -344,7 +350,7 @@ function updateFooterLinks(footerData) {
 }
 
 /*******************************************************
- * 7) Tema Claro/Escuro
+ * 8) Tema Claro/Escuro
  *******************************************************/
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
@@ -374,16 +380,14 @@ document.addEventListener("DOMContentLoaded", () => {
   themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("light-theme");
     document.body.classList.toggle("dark-theme");
-    const theme = document.body.classList.contains("light-theme")
-      ? "light"
-      : "dark";
+    const theme = document.body.classList.contains("light-theme") ? "light" : "dark";
     updateIcon(theme);
     localStorage.setItem("theme", theme);
   });
 });
 
 /*******************************************************
- * 8) Balão de Imagem (Mobile)
+ * 9) Balão de Imagem (Mobile)
  *******************************************************/
 function closeAllImageBalloons() {
   const balloons = document.querySelectorAll(".image-balloon");
@@ -404,7 +408,7 @@ function initializeImageBalloons() {
       const productItem = icon.closest("li");
       const productImage = productItem.querySelector(".menu-item-image");
       const imageSrc = productImage ? productImage.src : null;
-      const imageAlt = productImage ? productImage.alt : "Imagem";
+      const imageAlt = productImage ? productImage.alt : t("fotoPerfil");
 
       if (!imageSrc) return;
 
@@ -414,8 +418,7 @@ function initializeImageBalloons() {
 
       const rect = icon.getBoundingClientRect();
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollLeft =
-        window.pageXOffset || document.documentElement.scrollLeft;
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
       balloon.style.top = `${rect.top + scrollTop - 200}px`;
       balloon.style.left = `${rect.left + scrollLeft - 200}px`;
@@ -437,34 +440,51 @@ window.addEventListener("resize", () => {
 });
 
 /*******************************************************
- * 9) LÓGICA DE CARRINHO (com remover item + modal)
+ * 10) LÓGICA DE CARRINHO (com remover item + modal + brilho no botão)
  *******************************************************/
 let cart = [];
 
 /** Extrai o preço numérico do item */
-function extractPriceNumber(item) {
-  if (typeof item.preco === "number") return item.preco;
-  if (typeof item.precoGrande === "number") return item.precoGrande;
-  return 0;
+function extractPriceNumber(item, selectedPrice) {
+  if (selectedPrice === "grande" && typeof item.precoGrande === "number")
+    return item.precoGrande;
+  if (selectedPrice === "pequena" && typeof item.precoPequena === "number")
+    return item.precoPequena;
+  // Fallback
+  return typeof item.preco === "number" ? item.preco : 0;
 }
 
 /** Adiciona (ou incrementa) o item no carrinho */
-function addToCart(item) {
-  const nome = item.nome || "Produto Sem Nome";
-  const precoNum = extractPriceNumber(item);
+function addToCart(item, selectedPrice, button) {
+  const nome = item.nome || t("produtoSemNome");
+  const precoNum = extractPriceNumber(item, selectedPrice);
 
-  const existingIndex = cart.findIndex((prod) => prod.nome === nome);
+  // Cria uma chave única para o item com base no nome e preço
+  const key = `${nome}_${precoNum}`;
+
+  const existingIndex = cart.findIndex((prod) => prod.key === key);
   if (existingIndex >= 0) {
     cart[existingIndex].quantidade += 1;
   } else {
     cart.push({
+      key: key, // chave única
       nome: nome,
       preco: precoNum,
       quantidade: 1,
     });
   }
   console.log("Carrinho Atual:", cart);
-  alert(`Você adicionou "${nome}" ao carrinho!`);
+
+  // Atualiza a UI do carrinho
+  updateCartUI();
+
+  // === BRILHO NO BOTÃO ===
+  if (button) {
+    button.classList.add("btn-glow");
+    setTimeout(() => {
+      button.classList.remove("btn-glow");
+    }, 800);
+  }
 }
 
 /** Remove completamente o item do carrinho (independente da quantidade) */
@@ -481,9 +501,15 @@ function updateCartUI() {
   cartContent.innerHTML = "";
 
   if (cart.length === 0) {
-    cartContent.innerHTML = "<p>O carrinho está vazio.</p>";
+    cartContent.innerHTML = `<p>${t('carrinhoVazio')}</p>`;
     return;
   }
+
+  let total = 0; // Variável para acumular o total
+
+  // Cria um container para os itens do carrinho
+  const itemsContainer = document.createElement("div");
+  itemsContainer.classList.add("cart-items");
 
   // Exibe cada item
   cart.forEach((item, idx) => {
@@ -491,63 +517,71 @@ function updateCartUI() {
     div.classList.add("cart-item");
 
     const subtotal = (item.preco * item.quantidade).toFixed(2);
+    total += parseFloat(subtotal); // Adiciona ao total
 
     div.innerHTML = `
-      <span>
+      <span class="item-details">
         <strong>${item.nome}</strong> (x${item.quantidade}) 
-        - R$ ${item.preco.toFixed(2)} cada 
-        <br /> Subtotal: R$ ${subtotal}
+        - R$ ${item.preco.toFixed(2)} ${t('cada')} 
+        <br /> ${t('subtotal')}: R$ ${subtotal}
       </span>
     `;
 
     const removeBtn = document.createElement("button");
-    removeBtn.textContent = "Remover";
+    removeBtn.textContent = t('remover');
     removeBtn.classList.add("remove-btn");
     removeBtn.addEventListener("click", () => {
       removeItem(idx);
     });
 
     div.appendChild(removeBtn);
-    cartContent.appendChild(div);
+    itemsContainer.appendChild(div);
   });
+
+  cartContent.appendChild(itemsContainer);
+
+  // Cria um elemento para exibir o total
+  const totalContainer = document.createElement("div");
+  totalContainer.classList.add("cart-total");
+  totalContainer.innerHTML = `
+    <strong>${t('total')}: R$ ${total.toFixed(2)}</strong>
+  `;
+  cartContent.appendChild(totalContainer);
 }
 
 /** Constrói a mensagem de WhatsApp (itens do carrinho) */
 function montarMensagemWhatsApp() {
   if (cart.length === 0) {
-    return "Carrinho vazio!";
+    return t('carrinhoVazio');
   }
 
-  let mensagem = "Olá, gostaria de fazer o seguinte pedido:\n\n";
+  let mensagem = `${t('mensagemPedido')}\n\n`;
   let total = 0;
 
   cart.forEach((item) => {
     const subtotal = item.preco * item.quantidade;
     total += subtotal;
-    mensagem += `- ${item.nome} (x${item.quantidade}) = R$ ${subtotal.toFixed(
-      2
-    )}\n`;
+    mensagem += `- ${item.nome} (x${item.quantidade}) = R$ ${subtotal.toFixed(2)}\n`;
   });
 
-  mensagem += `\nTotal: R$ ${total.toFixed(2)}`;
+  mensagem += `\n${t('total')}: R$ ${total.toFixed(2)}`;
   return mensagem;
 }
 
 /** Abre o WhatsApp com o carrinho */
 function sendOrder() {
   if (cart.length === 0) {
-    alert("Carrinho vazio!");
+    alert(t('carrinhoVazio'));
     return;
   }
 
-  // Exemplo: pegue do JSON
-  let numeroWhats = "5511999999999"; 
+  // Pega o número do JSON (se existir)
+  let numeroWhats = "5511999999999"; // fallback
   if (profileDataGlobal && profileDataGlobal.footer) {
-    // Se no footer tiver 'contatoWhats', use
     const footerData = profileDataGlobal.footer;
     if (footerData.contatoWhats) {
       numeroWhats = footerData.contatoWhats.replace(/\D/g, "");
-      numeroWhats = "55" + numeroWhats; // prefixo + nº limpo
+      numeroWhats = "55" + numeroWhats;
     }
   }
 
@@ -559,7 +593,7 @@ function sendOrder() {
 }
 
 /*******************************************************
- * 10) MODAL DO CARRINHO (Abrir, Fechar, Enviar Pedido)
+ * 11) MODAL DO CARRINHO (Abrir, Fechar, Enviar Pedido)
  *******************************************************/
 document.addEventListener("DOMContentLoaded", () => {
   // Botão de abrir o carrinho
@@ -577,10 +611,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // **Reativar os Event Listeners dos Botões**
+
   // Fechar o modal
   if (closeCartBtn && cartModal) {
+    // Não atualizar o innerText aqui
     closeCartBtn.addEventListener("click", () => {
       cartModal.style.display = "none";
+    });
+  }
+
+  // Enviar pedido (WhatsApp)
+  if (sendOrderBtn) {
+    // Não atualizar o innerText aqui
+    sendOrderBtn.addEventListener("click", () => {
+      sendOrder();
     });
   }
 
@@ -593,16 +638,80 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Enviar pedido
-  if (sendOrderBtn) {
-    sendOrderBtn.addEventListener("click", () => {
-      sendOrder();
+  // Modal de Seleção de Preço
+  const priceModal = document.getElementById("price-modal");
+  const closePriceModalBtn = document.getElementById("close-price-modal");
+  const priceOptionsContainer = document.getElementById("price-options");
+
+  // Fecha o modal de preço
+  if (closePriceModalBtn && priceModal) {
+    closePriceModalBtn.innerHTML = "&times;"; // Mantém o símbolo de fechar
+    closePriceModalBtn.addEventListener("click", () => {
+      priceModal.style.display = "none";
+    });
+  }
+
+  // Fecha o modal de preço ao clicar fora
+  if (priceModal) {
+    window.addEventListener("click", (e) => {
+      if (e.target === priceModal) {
+        priceModal.style.display = "none";
+      }
     });
   }
 });
 
 /*******************************************************
- * 11) Inicialização Geral (fetch JSON, etc.)
+ * 12) Modal de Seleção de Preço
+ *******************************************************/
+
+/**
+ * Abre o modal para seleção de preço e gerencia a escolha do usuário.
+ * @param {Object} item - O item que está sendo adicionado ao carrinho.
+ * @param {HTMLElement} button - O botão que foi clicado para adicionar ao carrinho.
+ */
+function openPriceModal(item, button) {
+  const priceModal = document.getElementById("price-modal");
+  const priceOptionsContainer = document.getElementById("price-options");
+
+  if (!priceModal || !priceOptionsContainer) return;
+
+  // Limpa as opções anteriores
+  priceOptionsContainer.innerHTML = "";
+
+  // Cria opções com base nos preços disponíveis
+  if (item.precoGrande) {
+    const btnGrande = document.createElement("button");
+    btnGrande.classList.add("btn-price-option");
+    btnGrande.innerText = `${t('grande')} - R$ ${item.precoGrande.toFixed(2)}`;
+    btnGrande.addEventListener("click", () => {
+      // Adiciona ao carrinho com preço grande
+      addToCart(item, "grande", button);
+      // Fecha o modal
+      priceModal.style.display = "none";
+    });
+    priceOptionsContainer.appendChild(btnGrande);
+  }
+
+  if (item.precoPequena) {
+    const btnPequena = document.createElement("button");
+    btnPequena.classList.add("btn-price-option");
+    btnPequena.innerText = `${t('pequena')} - R$ ${item.precoPequena.toFixed(2)}`;
+    btnPequena.addEventListener("click", () => {
+      // Adiciona ao carrinho com preço pequena
+      addToCart(item, "pequena", button);
+      // Fecha o modal
+      priceModal.style.display = "none";
+    });
+    priceOptionsContainer.appendChild(btnPequena);
+  }
+
+  // Exibe o modal
+  priceModal.style.display = "flex";
+}
+
+/*******************************************************
+ * 13) Inicialização Geral (fetch JSON, etc.)
  *******************************************************/
 (async () => {
   try {
@@ -619,15 +728,54 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2) Categorias (cardápio)
     updateCategorias(data.categorias);
 
-    // 3) Observações finais
-    updateObservacoesFinais(data.observacoesFinais);
-
-    // 4) Rodapé
+    // 3) Rodapé
     updateFooterLinks(data.footer);
 
-    // 5) Balões de imagem (mobile)
+    // 4) Balões de imagem (mobile)
     initializeImageBalloons();
+
+    // 5) Atualiza textos dinâmicos nos botões e elementos que dependem do JSON após o carregamento
+    atualizarTextosDinamicos();
   } catch (err) {
     console.error("Erro geral:", err);
   }
 })();
+
+/*******************************************************
+ * 14) Atualizar Textos Estáticos
+ *******************************************************/
+function atualizarTextosDinamicos() {
+  // Atualizar títulos, botões e outros elementos estáticos
+  const observacoesTitulo = document.getElementById("observacoesIniciaisTitulo");
+  if (observacoesTitulo) {
+    observacoesTitulo.innerText = t("observacoesIniciaisTitulo");
+  }
+
+  const tituloCarrinho = document.getElementById("tituloCarrinho");
+  if (tituloCarrinho) {
+    tituloCarrinho.innerText = t("tituloCarrinho");
+  }
+
+  const escolhaTamanhoTitulo = document.getElementById("escolhaTamanhoTitulo");
+  if (escolhaTamanhoTitulo) {
+    escolhaTamanhoTitulo.innerText = t("escolhaTamanhoTitulo");
+  }
+
+  // Atualizar botões do modal do carrinho
+  const closeCartBtn = document.getElementById("close-cart");
+  if (closeCartBtn) {
+    closeCartBtn.innerText = t('fechar');
+  }
+
+  const sendOrderBtn = document.getElementById("send-order");
+  if (sendOrderBtn) {
+    sendOrderBtn.innerText = t('enviarPedido');
+  }
+
+  // Atualizar outros textos estáticos conforme necessário
+  // Exemplo:
+  // const algumElemento = document.getElementById("algum-elemento");
+  // if (algumElemento) {
+  //   algumElemento.innerText = t("chaveCorrespondente");
+  // }
+}

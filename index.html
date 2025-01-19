@@ -80,8 +80,9 @@
               class="info-text"
               target="_blank"
               rel="noopener noreferrer"
-              >Carregando...</a
             >
+              Carregando...
+            </a>
           </p>
 
           <!-- Email -->
@@ -94,7 +95,7 @@
 
           <!-- Box de Observações Iniciais -->
           <div class="observacoes-box">
-            <h2>Observações Iniciais</h2>
+            <h2 id="observacoesIniciaisTitulo">Observações Iniciais</h2>
             <ul id="perfil-observacoesIniciais"></ul>
           </div>
         </div>
@@ -116,11 +117,36 @@
             id="theme-toggle"
             class="theme-toggle"
             aria-label="Alternar Tema"
+            title="Alternar Tema"
           >
             <i class="fa-solid fa-toggle-off"></i>
           </button>
         </div>
       </header>
+
+      <!-- MODAL DO CARRINHO (inicialmente oculto) -->
+      <div id="cart-modal" class="modal" style="display: none;">
+        <div id="cart-modal-content" class="modal-content">
+          <h2 id="tituloCarrinho">Carrinho</h2>
+          <div id="cart-content"></div>
+
+          <div class="modal-buttons">
+            <button id="close-cart">Fechar</button>
+            <button id="send-order">Enviar Pedido</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL DE SELEÇÃO DE PREÇO (inicialmente oculto) -->
+      <div id="price-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <span class="close" id="close-price-modal">&times;</span>
+          <h2 id="escolhaTamanhoTitulo">Escolha o Tamanho</h2>
+          <div id="price-options">
+            <!-- Opções de preço serão inseridas dinamicamente via JS -->
+          </div>
+        </div>
+      </div>
 
       <!-- SEÇÃO PARA O CARDÁPIO (categorias do JSON) -->
       <section id="cardapio" class="cardapio">
@@ -147,19 +173,6 @@
         </a>
       </footer>
     </main>
-
-    <!-- MODAL DO CARRINHO (inicialmente oculto) -->
-    <div id="cart-modal" style="display: none;">
-      <div id="cart-modal-content">
-        <h2>Carrinho</h2>
-        <div id="cart-content"></div>
-
-        <div class="modal-buttons">
-          <button id="close-cart">Fechar</button>
-          <button id="send-order">Enviar Pedido</button>
-        </div>
-      </div>
-    </div>
 
     <!-- Scripts JavaScript -->
     <script src="assets/js/acordeon.js"></script>
