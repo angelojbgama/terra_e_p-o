@@ -1,127 +1,746 @@
 {
-  "title": "Me and My Work",
-  "name": "Angelo Gama",
-  "photo": "https://raw.githubusercontent.com/angelojbgama/sobremim/main/assets/img/my-photo.jpg",
-  "job": "Programmer",
-  "graduate": "Systems Analysis and Development",
-  "graduetescale": {
-    "completed": 15,
-    "total": 35
+  "texts": {
+    "adicionarAoCarrinho": "Add to Cart",
+    "bemVindo": "Welcome",
+    "tituloPagina": "Page Title",
+    "fechar": "Close",
+    "enviarPedido": "Send Order",
+    "carrinhoVazio": "The cart is empty.",
+    "tituloCarrinho": "Cart",
+    "observacoesIniciaisTitulo": "Initial Notes",
+    "remover": "Remove",
+    "grande": "Large",
+    "pequena": "Small",
+    "cada": "each",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "mensagemPedido": "Hello, I would like to place the following order:",
+    "produtoSemNome": "Unnamed Product",
+    "escolhaTamanhoTitulo": "Choose the Size",
+    "fotoPerfil": "Profile Picture",
+    "tituloModalPreco": "Choose the Size"
   },
-  "location": "Brazil - RJ",
-  "phone": "(21) 98030-9664",
-  "email": "angelojbgama@gmail.com",
-  "titleSkills": "Skills",
-  "skills": {
-    "titleHardSkills": "Technical Skills",
-    "hardSkills": [
-      {
-        "name": "Python",
-        "iconClass": "fab fa-python"
-      },
-      {
-        "name": "C++",
-        "iconClass": "fas fa-code"
-      },
-      {
-        "name": "JavaScript",
-        "iconClass": "fab fa-js-square"
-      },
-      {
-        "name": "Django",
-        "iconClass": "fas fa-leaf"
-      },
-      {
-        "name": "Docker",
-        "iconClass": "fab fa-docker"
-      },
-      {
-        "name": "Celery",
-        "iconClass": "fas fa-rocket"
-      },
-      {
-        "name": "RabbitMQ",
-        "iconClass": "fas fa-server"
-      },
-      {
-        "name": "PostgreSQL",
-        "iconClass": "fas fa-database"
-      },
-      {
-        "name": "Git",
-        "iconClass": "fab fa-git-alt"
-      }
-    ],
-    "titleSoftSkills": "Behavioral Skills",
-    "softSkills": [
-      "Adaptation to new technologies",
-      "Problem-solving",
-      "Ability to abstract",
-      "User-focused thinking",
-      "Persistence"
+  "perfil": {
+    "foto": "https://pps.whatsapp.net/v/t61.24694-24/122766043_180134643595352_7992627227379500289_n.jpg?ccb=11-4&oh=01_Q5AaIDf44nIsI05SnYL-nYUT9d9-ARg1AtMuLf2_SGWZMMkH&oe=678F8700&_nc_sid=5e03e0&_nc_cat=103",
+    "titulo": "TERRA PÃO PIZZERIA",
+    "local": {
+      "texto": "Praça dos Gatos, Paquetá - RJ",
+      "link": "https://www.google.com/maps/dir//R.+Manoel+Macedo,+36+-+Paquet%C3%A1,+Rio+de+Janeiro+-+RJ,+20396-090/@-22.7658849,-43.1877483,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x999d75eb163ad3:0x3f3cda8e48ca423a!2m2!1d-43.1053467!2d-22.765906?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D"
+    },
+    "slogan": "Paquetá in the heart, since 2016!",
+    "contatoWhats": "21 989 563 078",
+    "contatoInsta": "@terrapaoforneria",
+    "email": "emailrestaurante@gmail.com",
+    "observacoesIniciais": [
+      "Reservations and delivery: order via WhatsApp!",
+      "From Thursday to Sunday, from six to midnight (and some holidays).",
+      "Delivery fee of R$ 6",
+      "(free from R$ 48 or R$ 54, depending on the original block)."
     ]
   },
-  "titleLanguages": "Languages",
-  "languages": ["Portuguese BR", "English (Intermediate)", "Spanish (Basic)"],
-  "titlePortfolio": "Portfolio",
-  "portfolio": [
+  "footer": {
+    "contatoWhats": "21 989 563 078",
+    "contatoInsta": "@terrapaopizzeria"
+  },
+  "categorias": [
     {
-      "name": "Bike2Bike",
-      "url": "https://github.com/angelojbgama/Bike2Bike",
-      "github": true
+      "nome": "Starters, Appetizers & Other Fun",
+      "itens": [
+        {
+          "nome": "OLiVE NERi",
+          "preco": 6.0,
+          "descricao": "Simple portion of black olives, uncle.",
+          "icon": "fa-solid fa-olive",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "BRUSCHETTA",
+          "preco": 15.0,
+          "descricao": "Pair of bruschettas: Italian bread toast with tomato, extra virgin olive oil, garlic, and basil.",
+          "icon": "fa-solid fa-bread-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "FUGAZZETA",
+          "preco": 36.0,
+          "descricao": "Argentinian Bolludez, with cheese, olive oil, onion, and oregano.",
+          "icon": "fa-solid fa-cheese",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "FOCACCiA ROSMARiNO",
+          "preco": 18.0,
+          "descricao": "What Cariocas call white pizza: thin and crispy focaccia with olive oil, salt, and rosemary.",
+          "icon": "fa-solid fa-bread-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "KACHAPURi",
+          "preco": 27.0,
+          "descricao": "The 'cátiapure' is a typical Georgian boat-shaped bread with cheese, fresh egg yolk, salt, and freshly ground pepper.",
+          "icon": "fa-solid fa-bread-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "TÓRTANO",
+          "preco": 27.0,
+          "descricao": "Braided baguette with calabrese sausage, oregano, cream cheese, and onion.",
+          "icon": "fa-solid fa-bread-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "TÂMARA & BACON",
+          "preco": 27.0,
+          "descricao": "Duo of bruschettas with blanched large dates, crispy bacon, and spicy honey threads.",
+          "icon": "fa-solid fa-bacon",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "KEBAB",
+          "preco": 39.0,
+          "descricao": "Pita bread, grilled chicken breast with lemon and spices, onion, tomato, Greek sauce, and salad.",
+          "icon": "fa-solid fa-shish-kebab",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "CAMARÃO À PAULISTA",
+          "preco": 36.0,
+          "descricao": "Shrimp à Paulista in the heart of Rio; sautéed with salt, olive oil, garlic, and lemon.",
+          "icon": "fa-solid fa-shrimp",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "QUATRO QUEIJOS (Prato)",
+          "preco": 66.0,
+          "descricao": "Plate of four cold cheeses, served with rosemary focaccia.",
+          "icon": "fa-solid fa-cheese",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "FOCACCiA Di RÉCIO",
+          "preco": 66.0,
+          "descricao": "Double-layered focaccia, thin and crispy, with fresh buffalo stracciatella (inspired by Recco DOP focaccia).",
+          "icon": "fa-solid fa-bread-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "TÁVOLA REDONDA",
+          "preco": 96.0,
+          "descricao": "Board with four cheeses + 2 types of cold cuts (e.g., Italian salami) + rosemary focaccia + fruit, cherry tomato, and lemon.",
+          "icon": "fa-solid fa-utensils",
+          "image": "https://placehold.co/100"
+        }
+      ]
     },
     {
-      "name": "Petpedia",
-      "url": "https://github.com/angelojbgama/Petpedia",
-      "github": true
+      "nome": "Salads & Burratas",
+      "itens": [
+        {
+          "nome": "BURRATA AMATRiCiANA",
+          "preco": 72.0,
+          "descricao": "Buffalo burrata on ciabatta bread, classic Roman tomato sauce, basil, and crispy bacon; serves two people.",
+          "icon": "fa-solid fa-cheese",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "BURRATA GENOVA",
+          "preco": 72.0,
+          "descricao": "Focaccia, burrata, cherry tomatoes, walnut pesto, basil, and extra virgin olive oil.",
+          "icon": "fa-solid fa-cheese",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "SALADA TRiCOLOR",
+          "preco": 21.0,
+          "descricao": "Bed of colorful leaves, tomato, onion, and olives.",
+          "icon": "fa-solid fa-seedling",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "SALADA MAGREBi",
+          "preco": 66.0,
+          "descricao": "Tricolor salad, Algerian couscous, date pieces, shrimp, and dried meat.",
+          "icon": "fa-solid fa-seedling",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "SALADA ALL TONNO",
+          "preco": 66.0,
+          "descricao": "Tricolor salad, mustard and honey dressing, sliced pear, and tuna.",
+          "icon": "fa-solid fa-seedling",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "SALADA DAMASCO",
+          "preco": 66.0,
+          "descricao": "Tricolor salad, gorgonzola dressing, apricot, and raisins.",
+          "icon": "fa-solid fa-seedling",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "SALADA ALL TONNO (variação)",
+          "preco": 45.0,
+          "descricao": "Tricolor salad, mustard and honey dressing, sliced pear, chopped walnuts, tuna pieces, and sesame.",
+          "icon": "fa-solid fa-seedling",
+          "image": "https://placehold.co/100"
+        }
+      ]
     },
     {
-      "name": "Password Generator App in React.Native",
-      "url": "https://github.com/angelojbgama/bat-pass-app",
-      "github": true
+      "nome": "Savory Pizzas",
+      "subtitulo": "The best place in the world is here! Sizes 36cm (large) or 27cm (small)",
+      "itens": [
+        {
+          "nome": "MARiNARA",
+          "precoGrande": 48.0,
+          "precoPequena": 30.0,
+          "descricao": "San Marzano pelati tomatoes, extra virgin olive oil, sliced fresh garlic, oregano, and basil.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "MARGHERiTA",
+          "precoGrande": 54.0,
+          "precoPequena": 36.0,
+          "descricao": "San Marzano pelati tomatoes, extra virgin olive oil, cow mozzarella, Parmesan, and basil.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "ALHO & PARMESÃO",
+          "precoGrande": 54.0,
+          "precoPequena": 36.0,
+          "descricao": "Tomato sauce, mozzarella, garlic, and oregano.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "CALABRESA",
+          "precoGrande": 54.0,
+          "precoPequena": 36.0,
+          "descricao": "Tomato sauce, mozzarella, calabrese sausage, and oregano.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "SP",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Pelati tomatoes, basil, garlic, onion, calabrese sausage, extra calabrese, oregano, and olives.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "CAMPONESA",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Pelati tomatoes, onion, mozzarella, crispy bacon, Parmesan, and basil.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "SiCiLiANA",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Olive oil and garlic, mozzarella, zucchini caponata, roasted peppers, sun-dried tomatoes, and arugula.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "PAGÚ (vegan)",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Pelati tomatoes, oregano, garlic, basil, sliced onions, organic and fresh Paris mushrooms, capers, olives, and sesame.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "CHiCKEN LOVERS",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Tomato sauce, mozzarella, sliced cheese dollops, grilled chicken breast, and oregano.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "CALABRUTUS",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Tomato sauce, mozzarella, calabrese (extra), sliced cheese dollops, and oregano.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "BACON LOVERS",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Cream, mozzarella, poached eggs, garlic, Parmesan, extra bacon, and pepper.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "III QUEiJOS",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Pelati tomatoes, mozzarella, gorgonzola, and Parmesan.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "PEPPERONi",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Tomato sauce, mozzarella, pepperoni, and fresh basil.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "FUNGHi & GORGONZOLA",
+          "precoGrande": 72.0,
+          "precoPequena": 45.0,
+          "descricao": "Pelati tomatoes, mozzarella, organic and fresh Paris mushrooms, extra virgin olive oil, blue cheese, and basil.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "XiQUE-XiQUE",
+          "precoGrande": 72.0,
+          "precoPequena": 45.0,
+          "descricao": "Tomato sauce, mozzarella, shredded dried meat, sliced cheese dollops, and oregano.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "PEPPERONi LOVERS",
+          "precoGrande": 72.0,
+          "precoPequena": 45.0,
+          "descricao": "Tomato sauce, mozzarella, extra pepperoni, and sliced cheese dollops.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "NONNA",
+          "precoGrande": 72.0,
+          "precoPequena": 45.0,
+          "descricao": "Organic banana, mozzarella, caramel n' salt, cream, sugar, and cinnamon.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "PRAÇA XV",
+          "precoGrande": 84.0,
+          "precoPequena": 57.0,
+          "descricao": "Tomato sauce, onion, garlic, mozzarella, calabrese, shredded dried meat, bacon, poached eggs, olives, and oregano.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "PAQUETÁ",
+          "precoGrande": 84.0,
+          "precoPequena": 57.0,
+          "descricao": "Tomato sauce, mozzarella, shrimp, sliced cheese dollops, garlic in olive oil, and lemon zest (stock limited).",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "SiNiSTRA",
+          "precoGrande": 84.0,
+          "precoPequena": 57.0,
+          "descricao": "Tomato sauce, mozzarella, sliced cheese dollops, blue cheese, pepperoni, and Parmesan.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "VESÚViO",
+          "precoGrande": 84.0,
+          "precoPequena": 57.0,
+          "descricao": "Pelati tomatoes, mozzarella, onion, fresh Paris mushrooms, pepperoni, crispy bacon, and spicy honey threads.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "EL PATRÓN",
+          "precoGrande": 84.0,
+          "precoPequena": 57.0,
+          "descricao": "Pelati tomatoes, garlic, mozzarella, fresh Paris mushrooms, sun-dried tomatoes, crispy bacon, zucchini caponata, red pepper, and Parmesan.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "CONTEMPORÂNEA (búfala & tomate)",
+          "precoGrande": 87.0,
+          "descricao": "Pelati tomatoes, garlic, basil, abundant Parmesan, fresh buffalo stracciatella, extra virgin olive oil.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "THAT'S AMORE!",
+          "precoGrande": 96.0,
+          "descricao": "Pelati tomatoes, garlic, basil, capers, buffalo stracciatella, Parmesan, pepperoni, and Genovese pesto.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "VÊNUS BRANCA (búfala & pera)",
+          "precoGrande": 96.0,
+          "descricao": "Buffalo stracciatella, sliced pear, gorgonzola, honey threads, and walnut.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "VÊNUS NEGRA (búfala & tâmara)",
+          "precoGrande": 96.0,
+          "descricao": "Extra virgin olive oil, buffalo stracciatella, large dates, crispy bacon, and edible flowers.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "SANTA MARiA (búfala & pesto)",
+          "precoGrande": 96.0,
+          "descricao": "Pelati tomatoes, walnut pesto, olive oil, garlic, basil, Parmesan, and fresh buffalo burrata at the end.",
+          "icon": "fa-solid fa-pizza-slice",
+          "image": "https://placehold.co/100"
+        }
+      ]
     },
     {
-      "name": "Notebook Web Scraping with RESTful API",
-      "url": "https://github.com/angelojbgama/crawler-jr",
-      "github": true
+      "nome": "Calzones",
+      "subtitulo": "Large (36cm) or Small (27cm)",
+      "itens": [
+        {
+          "nome": "DA CASA",
+          "precoGrande": 54.0,
+          "precoPequena": 36.0,
+          "descricao": "Extra virgin olive oil, garlic, extra mozzarella, oregano, and sesame.",
+          "icon": "fa-solid fa-bread-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "COGÚ",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Pelati tomatoes, mozzarella, organic and fresh Paris mushrooms, basil.",
+          "icon": "fa-solid fa-bread-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "BACON",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Mozzarella, garlic, oregano, sesame, and crispy bacon.",
+          "icon": "fa-solid fa-bread-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "BACON & COGÚ",
+          "precoGrande": 72.0,
+          "precoPequena": 45.0,
+          "descricao": "Pelati tomatoes, mozzarella, mushrooms, bacon, poached egg, and basil.",
+          "icon": "fa-solid fa-bread-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "28 APRiLE (or BELLA CiAO)",
+          "precoGrande": 72.0,
+          "precoPequena": 45.0,
+          "descricao": "Olive oil, garlic, mozzarella, oregano, sliced cheese dollops, sun-dried tomatoes, grilled chicken breast with lemon, and oregano.",
+          "icon": "fa-solid fa-bread-slice",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "HOT HONEY",
+          "precoGrande": 72.0,
+          "precoPequena": 45.0,
+          "descricao": "Olive oil, garlic, mozzarella, pepperoni, sliced cheese dollops, extra pepperoni, slightly spicy honey, and sesame.",
+          "icon": "fa-solid fa-bread-slice",
+          "image": "https://placehold.co/100"
+        }
+      ]
     },
     {
-      "name": "Automation and PDF Reader Program with Regex Search in Python",
-      "url": "https://github.com/angelojbgama/Programa-de-leitor-de-pdf-e-busca-por-Regex",
-      "github": true
+      "nome": "Dessert Pizzas",
+      "itens": [
+        {
+          "nome": "NUT (Nutella™)",
+          "precoGrande": 57.0,
+          "precoPequena": 36.0,
+          "descricao": "Hazelnut and chocolate cream, original Nutella™.",
+          "icon": "fa-solid fa-cookie",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "ISTAR",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Hazelnut and chocolate cream with fresh strawberries.",
+          "icon": "fa-solid fa-ice-cream",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "BLONDiE",
+          "precoGrande": 66.0,
+          "precoPequena": 39.0,
+          "descricao": "Fresh strawberries with gratinated white chocolate.",
+          "icon": "fa-solid fa-ice-cream",
+          "image": "https://placehold.co/100"
+        }
+      ]
     },
     {
-      "name": "Automation and Data Analysis in Python: Artificial Intelligence and Price Predictions",
-      "url": "https://github.com/angelojbgama/Projeto-Python-IA-Intelig-ncia-Artificial-e-Previs-es",
-      "github": true
+      "nome": "Desserts",
+      "itens": [
+        {
+          "nome": "MORANGO COM CHANTiLLY",
+          "preco": 18.0,
+          "descricao": "Bowl of fresh strawberries with whipped cream.",
+          "icon": "fa-solid fa-ice-cream",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "CHOCOLATE COM PIMENTA",
+          "preco": 18.0,
+          "descricao": "Slice of the famous Setúbal cake, semi-dark chocolate with a slight kick.",
+          "icon": "fa-solid fa-candy-cane",
+          "image": "https://placehold.co/100"
+        },
+        {
+          "nome": "CREMA CATALANA",
+          "preco": 24.0,
+          "descricao": "Catalan dessert (creme brûlée), here with cumaru vanilla and caramelized on the spot.",
+          "icon": "fa-solid fa-cake-candles",
+          "image": "https://placehold.co/100"
+        }
+      ]
     },
     {
-      "name": "Python Insights - Analyzing Data with Python",
-      "url": "https://github.com/angelojbgama/Python-Insights-Analisando-Dados-com-Python/tree/main",
-      "github": true
-    },
-    {
-      "name": "Python Power UP - Automation Project",
-      "url": "https://github.com/angelojbgama/Python-Power-Up-Automa-o-de-Tarefas/tree/main",
-      "github": true
-    }
-  ],
-  "titleProfessionalExperience": "Professional Experience",
-  "professionalExperience": [
-    {
-      "name": "COPPETEC Foundation, Rio de Janeiro - Programmer",
-      "period": "April 2024 - Present",
-      "description": "I develop a SaaS solution for detecting damage in pipelines. I analyze requirements, fix bugs, implement improvements, and develop new features following best practices."
-    },
-    {
-      "name": "PLL Group, Rio de Janeiro - Electronics Technician",
-      "period": "February 2016 - November 2019",
-      "description": "I repaired electronic devices, provided technical support, maintained administrative systems, and performed diagnostics to optimize systems."
-    },
-    {
-      "name": "GMX, Rio de Janeiro - Electronics Technician",
-      "period": "July 2012 - October 2015",
-      "description": "I repaired electronics (smartphones, desktops, laptops), provided technical support to clients, and improved administrative systems through updates."
+      "nome": "Beverages",
+      "subcategorias": [
+        {
+          "nome": "Waters",
+          "itens": [
+            {
+              "nome": "Mineral Water",
+              "preco": 4.5,
+              "descricao": "500ml",
+              "icon": "fa-solid fa-water",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Mineral Water (variation)",
+              "preco": 5.0,
+              "descricao": "500ml",
+              "icon": "fa-solid fa-water",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Minalba Gás Water",
+              "preco": 6.0,
+              "descricao": "500ml",
+              "icon": "fa-solid fa-water",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Zero Tonic Water",
+              "preco": 7.5,
+              "descricao": "350ml",
+              "icon": "fa-solid fa-glass-water",
+              "image": "https://placehold.co/100"
+            }
+          ]
+        },
+        {
+          "nome": "Juices & Teas",
+          "itens": [
+            {
+              "nome": "Orange Juice",
+              "preco": 12.0,
+              "descricao": "400ml",
+              "icon": "fa-solid fa-glass-whiskey",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Mate",
+              "preco": 4.5,
+              "descricao": "300ml (some versions list R$5, unify if desired)",
+              "icon": "fa-solid fa-mug-hot",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Mate with Lemon",
+              "preco": 4.5,
+              "descricao": "300ml (same as above)",
+              "icon": "fa-solid fa-mug-hot",
+              "image": "https://placehold.co/100"
+            }
+          ]
+        },
+        {
+          "nome": "Soft Drinks",
+          "observacao": "Drink in moderation",
+          "itens": [
+            {
+              "nome": "Guaraná Antártica",
+              "preco": 7.5,
+              "descricao": "350ml",
+              "icon": "fa-solid fa-cocktail",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Guaraná Zero",
+              "preco": 7.5,
+              "descricao": "350ml",
+              "icon": "fa-solid fa-cocktail",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Coca Cola",
+              "preco": 7.5,
+              "descricao": "350ml",
+              "icon": "fa-solid fa-cocktail",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Coca Zero",
+              "preco": 7.5,
+              "descricao": "350ml",
+              "icon": "fa-solid fa-cocktail",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Pepsi",
+              "preco": 15.0,
+              "descricao": "1.5L",
+              "icon": "fa-solid fa-cocktail",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Coca-Cola (1.5L)",
+              "preco": 15.0,
+              "icon": "fa-solid fa-cocktail",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Coca Zero (1.5L)",
+              "preco": 15.0,
+              "icon": "fa-solid fa-cocktail",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Guaraná Antártica (1.5L)",
+              "preco": 15.0,
+              "icon": "fa-solid fa-cocktail",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "Guaraná Zero (1.5L)",
+              "preco": 15.0,
+              "icon": "fa-solid fa-cocktail",
+              "image": "https://placehold.co/100"
+            }
+          ]
+        },
+        {
+          "nome": "Beers",
+          "observacao": "Drink in moderation",
+          "itens": [
+            {
+              "nome": "SPATEN",
+              "preco": 15.0,
+              "descricao": "5.2% - 600ml",
+              "icon": "fa-solid fa-beer-mug-empty",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "BUDWEISER",
+              "preco": 15.0,
+              "descricao": "5% - 600ml",
+              "icon": "fa-solid fa-beer-mug-empty",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "A ANTÁRTICA ORIGINAL",
+              "preco": 15.0,
+              "descricao": "600ml",
+              "icon": "fa-solid fa-beer-mug-empty",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "COLORADO LAGER",
+              "preco": 21.0,
+              "descricao": "5% - 600ml",
+              "icon": "fa-solid fa-beer-mug-empty",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "COLORADO IPA",
+              "preco": 27.0,
+              "descricao": "6.7% - 600ml",
+              "icon": "fa-solid fa-beer-mug-empty",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "A ILHA PILSEN",
+              "preco": 12.0,
+              "descricao": "330ml",
+              "icon": "fa-solid fa-beer-mug-empty",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "STELLA ARTOIS",
+              "preco": 12.0,
+              "descricao": "330ml",
+              "icon": "fa-solid fa-beer-mug-empty",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "A ILHA IPA",
+              "preco": 15.0,
+              "descricao": "330ml",
+              "icon": "fa-solid fa-beer-mug-empty",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "HEINEKEN",
+              "preco": 15.0,
+              "descricao": "330ml",
+              "icon": "fa-solid fa-beer-mug-empty",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "HOEGAARDEN witbier",
+              "preco": 15.0,
+              "descricao": "330ml",
+              "icon": "fa-solid fa-beer-mug-empty",
+              "image": "https://placehold.co/100"
+            }
+          ]
+        },
+        {
+          "nome": "Wines & Sparkling",
+          "observacao": "Drink in moderation! Check our wine list.",
+          "itens": [
+            {
+              "nome": "WHITE TABLE WINE",
+              "preco": 27.0,
+              "descricao": "Wines of the week (first version). In another section, R$ 24.",
+              "icon": "fa-solid fa-wine-glass",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "RED TABLE WINE",
+              "preco": 24.0,
+              "icon": "fa-solid fa-wine-glass",
+              "image": "https://placehold.co/100"
+            },
+            {
+              "nome": "CORK FEE",
+              "preco": 24.0,
+              "icon": "fa-solid fa-wine-glass",
+              "image": "https://placehold.co/100"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
