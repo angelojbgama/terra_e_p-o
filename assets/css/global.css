@@ -10,7 +10,7 @@
 }
 
 /* ===========================================================
-   2. Variáveis de Tema
+ 2. Variáveis de Tema
 =========================================================== */
 :root {
   /* Tema Escuro (Padrão) */
@@ -47,7 +47,7 @@
 }
 
 /* ===========================================================
-   Tema Claro
+ 3. Tema Claro
 =========================================================== */
 body.light-theme {
   /* Tema Claro */
@@ -70,7 +70,7 @@ body.light-theme {
 }
 
 /* ===========================================================
-   3. Box Sizing Global
+ 4. Box Sizing Global
 =========================================================== */
 *,
 *::before,
@@ -79,7 +79,7 @@ body.light-theme {
 }
 
 /* ===========================================================
-   4. Estilos Básicos
+ 5. Estilos Básicos
 =========================================================== */
 body {
   background-color: var(--bg-color);
@@ -101,8 +101,7 @@ a:hover {
 }
 
 /* ===========================================================
-   5. Contêiner Principal (.main)
-   - Mobile-first: estilização básica em telas pequenas.
+ 6. Contêiner Principal (.main)
 =========================================================== */
 .main {
   margin: 2rem auto; /* Margem para dar respiro no topo/rodapé */
@@ -118,7 +117,7 @@ a:hover {
 }
 
 /* ===========================================================
-   6. Background Decorativo
+ 7. Background Decorativo
 =========================================================== */
 .main::before,
 .main::after {
@@ -140,7 +139,7 @@ a:hover {
 }
 
 /* ===========================================================
-   7. Header (Mobile-first)
+ 8. Header (Mobile-first)
 =========================================================== */
 .header {
   display: flex;
@@ -199,7 +198,7 @@ a:hover {
 }
 
 /* ===========================================================
-   7.1. Container para Theme Toggle e Cart Button lado a lado
+ 9. Container para Theme Toggle e Cart Button lado a lado
 =========================================================== */
 .header-buttons {
   position: absolute;
@@ -211,7 +210,7 @@ a:hover {
   gap: 1rem;
 }
 
-/* Botão de tema */
+/* Botão de Tema */
 .theme-toggle {
   background: none;
   border: none;
@@ -225,7 +224,7 @@ a:hover {
   transition: transform 0.3s, color 0.3s;
 }
 
-/* Botão do carrinho */
+/* Botão do Carrinho */
 .cart-button {
   background: none;
   border: none;
@@ -235,17 +234,15 @@ a:hover {
   font-size: 1.75rem; /* Ajuste o tamanho do ícone */
 }
 
-/* Ao passar o mouse, pode aumentar levemente */
+/* Hover nos Botões */
 .theme-toggle:hover i,
 .cart-button:hover i {
   transform: scale(1.1);
 }
 
 /* ===========================================================
-   8. Accordion (Mobile-first)
+ 10. Botão Adicionar ao Carrinho
 =========================================================== */
-
-/* Botão Adicionar ao Carrinho */
 .btn-add-cart {
   background-color: transparent;
   color: var(--text-color);
@@ -255,7 +252,7 @@ a:hover {
   margin-top: 1rem;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  display: flex; /* Adicionado para alinhar texto e ícone */
+  display: flex; /* Alinha texto e ícone */
   align-items: center; /* Centraliza verticalmente */
   gap: 0.5rem; /* Espaço entre texto e ícone */
 }
@@ -272,18 +269,18 @@ a:hover {
 
 @keyframes glowPulse {
   0% {
-    box-shadow: 0 0 0px rgba(255, 255, 0, 0.5);
+      box-shadow: 0 0 0px rgba(255, 255, 0, 0.5);
   }
   50% {
-    box-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
+      box-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
   }
   100% {
-    box-shadow: 0 0 0px rgba(255, 255, 0, 0.5);
+      box-shadow: 0 0 0px rgba(255, 255, 0, 0.5);
   }
 }
 
 /* ===========================================================
-   9. Modal de Seleção de Preço
+ 11. Modal de Seleção de Preço
 =========================================================== */
 #price-modal {
   position: fixed;
@@ -334,7 +331,7 @@ a:hover {
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   font-size: 1rem;
-  width: 100%; /* Faz com que os botões ocupem a largura disponível */
+  width: 100%; /* Ocupa a largura disponível */
   max-width: 250px; /* Limita a largura máxima dos botões */
   box-sizing: border-box; /* Garante que padding não cause overflow */
 }
@@ -345,7 +342,7 @@ a:hover {
 }
 
 /* ===========================================================
-   10. Accordion Styles
+ 12. Accordion
 =========================================================== */
 .acordeon {
   display: flex;
@@ -402,7 +399,7 @@ a:hover {
   height: 0;
   opacity: 0;
   transition: opacity 0.25s ease-in-out, height 0.25s ease-in-out,
-    padding 0.25s ease-in-out;
+      padding 0.25s ease-in-out;
   padding: 0 1rem;
 }
 
@@ -415,40 +412,7 @@ a:hover {
 }
 
 /* ===========================================================
-   11. Footer (Mobile-first)
-=========================================================== */
-footer {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0;
-}
-
-footer a {
-  color: var(--text-color);
-  font-size: 1.75rem;
-  margin: 0 0.5rem;
-  transition: color 0.3s, transform 0.3s;
-}
-
-footer a:hover {
-  transform: scale(1.2);
-}
-
-/* ===========================================================
-   12. Transições Suaves
-=========================================================== */
-.acordeon,
-.header,
-footer,
-.information {
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-
-/* ===========================================================
-   13. Lista de Produtos (Mobile-first)
+ 13. Lista de Produtos (Atualizado)
 =========================================================== */
 .acordeon .content ul {
   display: flex;
@@ -463,7 +427,7 @@ footer,
   background-color: var(--accordion-bg-color);
   border: 1px solid var(--border-color);
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 1rem; /* Padding uniforme por padrão */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
   display: flex;
@@ -471,8 +435,8 @@ footer,
   align-items: center;
   text-align: center;
   position: relative;
-  word-wrap: break-word; /* Garante que palavras longas quebrem */
-  overflow: hidden; /* Previne overflow interno */
+  word-wrap: break-word;
+  overflow: hidden;
 }
 
 .acordeon .content ul li:hover {
@@ -481,52 +445,54 @@ footer,
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Imagem do Item */
 .acordeon .content ul li img.menu-item-image {
-  display: none; /* Oculta a imagem no mobile (se desejar) */
-  max-width: 100%; /* Garante que a imagem não exceda a largura do container */
-  height: auto; /* Mantém a proporção da imagem */
+  display: none; /* Oculta a imagem em dispositivos menores */
+  max-width: 100%;
+  height: auto;
 }
 
+/* Ícone de Ação (Balão de Imagem) */
+.acordeon .content ul li i.menu-item-icon {
+  display: block; /* Exibe o ícone em dispositivos menores */
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem; /* Alterado de right para left */
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+  z-index: 1;
+}
+
+.acordeon .content ul li i.menu-item-icon:hover {
+  transform: scale(1.3);
+  color: var(--accordion-bg-color);
+}
+
+/* Nome do Item */
 .acordeon .content ul li strong {
   font-size: 1rem;
   margin-bottom: 0.5rem;
   color: var(--text-color);
 }
 
+/* Preço do Item */
 .acordeon .content ul li .preco {
   font-size: 0.9rem;
   color: var(--text-color);
   margin-bottom: 0.5rem;
 }
 
+/* Descrição do Item */
 .acordeon .content ul li em {
   font-size: 0.8rem;
   color: var(--text-color);
 }
 
-/* Ícone de Ação (Balão de Imagem) */
-.acordeon .content ul li i.menu-item-icon {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  font-size: 1.2rem;
-  color: var(--text-color);
-  cursor: pointer;
-  transition: transform 0.3s, color 0.3s;
-}
-
-.acordeon .content ul li i.menu-item-icon:hover {
-  transform: scale(1.2);
-  color: var(--accordion-bg-color);
-}
-
-.acordeon .content ul li strong,
-.acordeon .content ul li .preco,
-.acordeon .content ul li em {
-  margin-top: 1.5rem; /* Espaço para o ícone */
-}
-
-/* Balão de Imagem */
+/* ===========================================================
+ 14. Balão de Imagem
+=========================================================== */
 .image-balloon {
   position: absolute;
   background-color: var(--balloon-bg-color);
@@ -548,17 +514,17 @@ footer,
 /* Animação de Fade In */
 @keyframes fadeIn {
   from {
-    opacity: 0;
-    transform: translateY(-10px);
+      opacity: 0;
+      transform: translateY(-10px);
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+      opacity: 1;
+      transform: translateY(0);
   }
 }
 
 /* ===========================================================
-   14. Observações Box (Mobile-first)
+ 15. Observações Box
 =========================================================== */
 .observacoes-box {
   background-color: var(--accordion-bg-color);
@@ -591,7 +557,7 @@ footer,
 }
 
 /* ===========================================================
-   15. MODAL DO CARRINHO
+ 16. Modal do Carrinho
 =========================================================== */
 #cart-modal {
   position: fixed;
@@ -680,7 +646,7 @@ footer,
 }
 
 /* ===========================================================
-   16. Cart Total
+ 17. Cart Total
 =========================================================== */
 .cart-total {
   text-align: right;
@@ -691,144 +657,225 @@ footer,
 }
 
 /* ===========================================================
-   17. Media Queries
+ 18. Rodapé
 =========================================================== */
+footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+footer a {
+  color: var(--text-color);
+  font-size: 1.75rem;
+  margin: 0 0.5rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+footer a:hover {
+  transform: scale(1.2);
+}
+
+/* ===========================================================
+ 19. Balão de Imagem
+=========================================================== */
+
+/* As regras para .image-balloon já foram definidas acima */
+
+/* ===========================================================
+ 20. Botão de Carrinho Flutuante
+=========================================================== */
+.floating-cart-button {
+  position: fixed;
+  bottom: 1rem; /* Distância do fundo da tela */
+  right: 1rem; /* Distância da direita da tela */
+  background-color: var(--toggle-button-color);
+  color: var(--accordion-bg-color);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s, background-color 0.3s, color 0.3s;
+  z-index: 1000; /* Certifique-se de que o botão fique acima de outros elementos */
+}
+
+.floating-cart-button:hover {
+  transform: scale(1.1);
+  background-color: var(--text-color);
+  color: var(--accordion-bg-color);
+}
+
+.floating-cart-button i {
+  font-size: 1.5rem;
+}
+
+/* ===========================================================
+ 21. Media Queries (Atualizado)
+=========================================================== */
+
+/* Telas muito pequenas (máximo de 480px) */
 @media (max-width: 480px) {
   .header-buttons {
-    position: absolute;
-    top: -0.5rem;
-    right: -1rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
+      position: absolute;
+      top: -0.5rem;
+      right: -1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
   }
+
   .main {
-    margin: 0;
-    max-width: 100%;
-    border: none;
-    border-radius: 0;
-    width: 100%;
+      margin: 0;
+      max-width: 100%;
+      border: none;
+      border-radius: 0;
+      width: 100%;
   }
 
   /* Ajuste da largura dos modais em dispositivos muito pequenos */
   .modal-content {
-    width: 95%;
-    padding: 1rem;
+      width: 95%;
+      padding: 1rem;
   }
 
   /* Melhorar a responsividade dos botões dentro dos modais */
   .modal-buttons {
-    flex-direction: column;
+      flex-direction: column;
   }
 
   .modal-buttons button {
-    width: 100%;
-    max-width: none;
+      width: 100%;
+      max-width: none;
+  }
+
+  /* Ajustes no Padding dos Itens de Lista */
+  .acordeon .content ul li {
+      padding: 1rem 1rem 1rem 2rem; /* Adiciona padding-left quando o ícone está visível */
+  }
+
+  /* Exibe o ícone e oculta a imagem */
+  .acordeon .content ul li img.menu-item-image {
+      display: none; /* Garante que a imagem esteja oculta */
+  }
+
+  .acordeon .content ul li i.menu-item-icon {
+      display: block; /* Garante que o ícone esteja visível */
   }
 }
 
 /* Telas médias (tablet) a partir de 768px */
 @media (min-width: 768px) {
   .header {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2rem;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
   }
 
   .header .photo {
-    width: 14rem;
-    height: 14rem;
-    margin-bottom: 0;
-    margin-right: 2rem;
+      width: 14rem;
+      height: 14rem;
+      margin-bottom: 0;
+      margin-right: 2rem;
   }
 
   .header .information {
-    text-align: left;
-    align-items: flex-start;
+      text-align: left;
+      align-items: flex-start;
   }
 
   .acordeon .content ul li img.menu-item-image {
-    display: block;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
+      display: block; /* Exibe a imagem em telas médias e maiores */
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
   }
 
-  .acordeon .content ul li strong {
-    font-size: 1.1rem;
+  .acordeon .content ul li i.menu-item-icon {
+      display: none; /* Oculta o ícone em telas médias e maiores */
   }
 
-  .acordeon .content ul li .preco {
-    font-size: 1rem;
+  .acordeon .content ul li {
+      padding: 1rem; /* Reverte para padding padrão quando a imagem está visível */
   }
 
-  .acordeon .content ul li em {
-    font-size: 0.9rem;
+  /* Ajustes na lista de produtos */
+  .acordeon .content ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
   }
 }
 
 /* Telas grandes (desktop) a partir de 992px */
 @media (min-width: 992px) {
   .header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: center;
-    justify-items: center;
-    padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      justify-items: center;
+      padding: 2rem;
   }
 
   .main {
-    width: 80%;
+      width: 80%;
   }
 
   .header .photo {
-    width: 20rem;
-    height: 20rem;
+      width: 20rem;
+      height: 20rem;
   }
 
   .header .title {
-    font-size: 2rem;
+      font-size: 2rem;
   }
 
   .header .slogan {
-    font-size: 1.25rem;
+      font-size: 1.25rem;
   }
 
   .acordeon .content ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
   }
 
   .acordeon .content ul li {
-    align-items: center;
-    text-align: center;
+      align-items: center;
+      text-align: center;
   }
 
   .acordeon .content ul li img.menu-item-image {
-    width: 150px;
-    height: 150px;
+      width: 150px;
+      height: 150px;
   }
 
   .acordeon .content ul li strong {
-    font-size: 1.25rem;
+      font-size: 1.25rem;
   }
 }
 
-/* Opcional: telas ainda maiores (ex: 1200px) */
+/* Telas ainda maiores (ex: 1200px) */
 @media (min-width: 1200px) {
   .main {
-    max-width: 1200px;
+      max-width: 1200px;
   }
 }
 
 /* ===========================================================
-   18. Estilização da Barra de Rolagem
+ 22. Estilização da Barra de Rolagem
 =========================================================== */
 
 /* Estilização para Webkit Browsers (Chrome, Safari, Edge) */
@@ -870,261 +917,4 @@ footer,
 #price-options {
   scrollbar-width: thin; /* "auto" ou "thin" */
   scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
-}
-
-/* ===========================================================
-   19. Observações Box (Mobile-first)
-=========================================================== */
-.observacoes-box {
-  background-color: var(--accordion-bg-color);
-  border: 1px solid var(--border-color);
-  border-radius: 1rem;
-  padding: 0.5rem;
-  margin: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
-  text-align: center;
-}
-
-.observacoes-box h2 {
-  font-family: "Neue Machina", sans-serif;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--text-color);
-}
-
-#perfil-observacoesIniciais {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-#perfil-observacoesIniciais li {
-  margin-bottom: 0.75rem;
-  font-size: 0.9rem;
-  color: var(--text-color);
-}
-
-/* ===========================================================
-   20. Modal do Carrinho - Ajustes para Evitar Overflow
-=========================================================== */
-
-/* Estilos para .modal-content geral */
-.modal-content {
-  background-color: var(--header-bg-color);
-  color: var(--text-color);
-  padding: 2rem;
-  border-radius: 0.5rem;
-  width: 90%;
-  max-width: 500px;
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-  overflow-x: hidden; /* Previne overflow horizontal */
-  max-height: 90vh; /* Limita a altura para evitar overflow vertical */
-  display: flex;
-  flex-direction: column;
-}
-
-/* Conteúdo do Carrinho */
-#cart-content {
-  flex: 1 1 auto;
-  overflow-y: auto;
-  margin-bottom: 1rem;
-  word-wrap: break-word; /* Garante que palavras longas quebrem */
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0.5rem 0;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.25rem;
-}
-
-.cart-item span {
-  font-size: 0.9rem;
-  word-wrap: break-word; /* Garante que textos longos quebrem */
-}
-
-/* Botão remover item */
-.remove-btn {
-  background: #cc0000;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 0.3rem 0.6rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.remove-btn:hover {
-  background-color: #aa0000;
-}
-
-/* Botões dentro do modal (fechar, enviar) */
-.modal-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.modal-buttons button {
-  background-color: var(--toggle-button-color);
-  border: none;
-  border-radius: 0.25rem;
-  color: var(--accordion-bg-color);
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.modal-buttons button:hover {
-  background-color: var(--text-color);
-  color: var(--accordion-bg-color);
-}
-
-/* ===========================================================
-   21. Cart Total
-=========================================================== */
-.cart-total {
-  text-align: right;
-  margin-top: 1rem;
-  font-size: 1.2em;
-  font-weight: bold;
-  word-wrap: break-word; /* Garante que textos longos quebrem */
-}
-
-/* ===========================================================
-   22. Media Queries
-=========================================================== */
-@media (max-width: 480px) {
-  .header-buttons {
-    position: absolute;
-    top: -0.5rem;
-    right: -1rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-  }
-  .main {
-    margin: 0;
-    max-width: 100%;
-    border: none;
-    border-radius: 0;
-    width: 100%;
-  }
-
-  /* Ajuste da largura dos modais em dispositivos muito pequenos */
-  .modal-content {
-    width: 95%;
-    padding: 1rem;
-  }
-
-  /* Melhorar a responsividade dos botões dentro dos modais */
-  .modal-buttons {
-    flex-direction: column;
-  }
-
-  .modal-buttons button {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-@media (min-width: 768px) {
-  .header {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2rem;
-  }
-
-  .header .photo {
-    width: 14rem;
-    height: 14rem;
-    margin-bottom: 0;
-    margin-right: 2rem;
-  }
-
-  .header .information {
-    text-align: left;
-    align-items: flex-start;
-  }
-
-  .acordeon .content ul li img.menu-item-image {
-    display: block;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .acordeon .content ul li strong {
-    font-size: 1.1rem;
-  }
-
-  .acordeon .content ul li .preco {
-    font-size: 1rem;
-  }
-
-  .acordeon .content ul li em {
-    font-size: 0.9rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: center;
-    justify-items: center;
-    padding: 2rem;
-  }
-
-  .main {
-    width: 80%;
-  }
-
-  .header .photo {
-    width: 20rem;
-    height: 20rem;
-  }
-
-  .header .title {
-    font-size: 2rem;
-  }
-
-  .header .slogan {
-    font-size: 1.25rem;
-  }
-
-  .acordeon .content ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-
-  .acordeon .content ul li {
-    align-items: center;
-    text-align: center;
-  }
-
-  .acordeon .content ul li img.menu-item-image {
-    width: 150px;
-    height: 150px;
-  }
-
-  .acordeon .content ul li strong {
-    font-size: 1.25rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .main {
-    max-width: 1200px;
-  }
 }

@@ -92,9 +92,13 @@ let profileDataGlobal = null;
  * 3) Helper Function para acessar textos do JSON
  *******************************************************/
 function t(key) {
-  return profileDataGlobal && profileDataGlobal.texts && profileDataGlobal.texts[key]
-    ? profileDataGlobal.texts[key]
-    : key;
+  return (
+    profileDataGlobal &&
+    profileDataGlobal.texts &&
+    profileDataGlobal.texts[key]
+      ? profileDataGlobal.texts[key]
+      : key
+  );
 }
 
 /*******************************************************
@@ -212,16 +216,15 @@ function updateCategorias(categorias) {
       img.src = item.image;
       img.alt = item.nome;
       img.classList.add("menu-item-image");
+      img.loading = "lazy"; // Adiciona lazy loading para performance
       li.appendChild(img);
 
-      // Ícone
-      const iconClass =
-        item.icon ||
-        IconMapping[item.nome.toLowerCase().replace(/\s+/g, "")] ||
-        IconMapping.default;
+      // Ícone - Usar sempre fa-solid fa-image
+      const iconClass = "fa-solid fa-image menu-item-icon";
       const iconElem = document.createElement("i");
-      iconElem.className = iconClass + " menu-item-icon";
+      iconElem.className = iconClass;
       iconElem.setAttribute("aria-hidden", "true");
+      iconElem.setAttribute("aria-label", "Ver imagem"); // Acessibilidade
       li.appendChild(iconElem);
 
       // Nome
@@ -240,7 +243,8 @@ function updateCategorias(categorias) {
 
       // Descrição
       if (item.descricao) {
-        li.appendChild(document.createElement("br"));
+        const br = document.createElement("br");
+        li.appendChild(br);
         const em = document.createElement("em");
         em.innerText = item.descricao;
         li.appendChild(em);
@@ -253,8 +257,7 @@ function updateCategorias(categorias) {
 
       // Verifica se o item tem múltiplos preços
       const hasMultiplePrices =
-        (typeof item.precoGrande === "number" &&
-          typeof item.precoPequena === "number") ||
+        (typeof item.precoGrande === "number" && typeof item.precoPequena === "number") ||
         (item.precoGrande && item.precoPequena);
 
       if (hasMultiplePrices) {
@@ -421,7 +424,7 @@ function initializeImageBalloons() {
       const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
       balloon.style.top = `${rect.top + scrollTop - 200}px`;
-      balloon.style.left = `${rect.left + scrollLeft - 200}px`;
+      balloon.style.left = `${rect.left + scrollLeft + 10}px`;
       document.body.appendChild(balloon);
 
       // Fecha clicando fora
@@ -596,69 +599,49 @@ function sendOrder() {
  * 11) MODAL DO CARRINHO (Abrir, Fechar, Enviar Pedido)
  *******************************************************/
 document.addEventListener("DOMContentLoaded", () => {
-  // Botão de abrir o carrinho
   const cartButton = document.getElementById("cart-button");
-  // Modal e conteúdo
+  const floatingCartButton = document.getElementById("floating-cart-button");
   const cartModal = document.getElementById("cart-modal");
-  const closeCartBtn = document.getElementById("close-cart");
-  const sendOrderBtn = document.getElementById("send-order");
+  const closeCartButton = document.getElementById("close-cart");
+  const sendOrderButton = document.getElementById("send-order");
 
-  if (cartButton && cartModal) {
-    cartButton.addEventListener("click", () => {
-      // Atualiza a UI antes de mostrar
-      updateCartUI();
-      cartModal.style.display = "flex"; // exibe o modal
-    });
+  // Função para abrir o modal do carrinho
+  const openCartModal = () => {
+    cartModal.style.display = "flex";
+  };
+
+  // Função para fechar o modal do carrinho
+  const closeCartModal = () => {
+    cartModal.style.display = "none";
+  };
+
+  // Adicionar event listeners aos botões de carrinho
+  if (cartButton) {
+    cartButton.addEventListener("click", openCartModal);
+  }
+  if (floatingCartButton) {
+    floatingCartButton.addEventListener("click", openCartModal);
   }
 
-  // **Reativar os Event Listeners dos Botões**
-
-  // Fechar o modal
-  if (closeCartBtn && cartModal) {
-    // Não atualizar o innerText aqui
-    closeCartBtn.addEventListener("click", () => {
-      cartModal.style.display = "none";
-    });
+  // Event listener para fechar o modal
+  if (closeCartButton) {
+    closeCartButton.addEventListener("click", closeCartModal);
   }
 
-  // Enviar pedido (WhatsApp)
-  if (sendOrderBtn) {
-    // Não atualizar o innerText aqui
-    sendOrderBtn.addEventListener("click", () => {
+  // Event listener para enviar o pedido
+  if (sendOrderButton) {
+    sendOrderButton.addEventListener("click", () => {
       sendOrder();
+      closeCartModal();
     });
   }
 
-  // Clicar fora do conteúdo -> fecha modal
-  if (cartModal) {
-    window.addEventListener("click", (e) => {
-      if (e.target === cartModal) {
-        cartModal.style.display = "none";
-      }
-    });
-  }
-
-  // Modal de Seleção de Preço
-  const priceModal = document.getElementById("price-modal");
-  const closePriceModalBtn = document.getElementById("close-price-modal");
-  const priceOptionsContainer = document.getElementById("price-options");
-
-  // Fecha o modal de preço
-  if (closePriceModalBtn && priceModal) {
-    closePriceModalBtn.innerHTML = "&times;"; // Mantém o símbolo de fechar
-    closePriceModalBtn.addEventListener("click", () => {
-      priceModal.style.display = "none";
-    });
-  }
-
-  // Fecha o modal de preço ao clicar fora
-  if (priceModal) {
-    window.addEventListener("click", (e) => {
-      if (e.target === priceModal) {
-        priceModal.style.display = "none";
-      }
-    });
-  }
+  // Fechar o modal ao clicar fora do conteúdo
+  window.addEventListener("click", (event) => {
+    if (event.target === cartModal) {
+      closeCartModal();
+    }
+  });
 });
 
 /*******************************************************
@@ -673,6 +656,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function openPriceModal(item, button) {
   const priceModal = document.getElementById("price-modal");
   const priceOptionsContainer = document.getElementById("price-options");
+  const closePriceModalBtn = document.getElementById("close-price-modal");
 
   if (!priceModal || !priceOptionsContainer) return;
 
@@ -708,6 +692,23 @@ function openPriceModal(item, button) {
 
   // Exibe o modal
   priceModal.style.display = "flex";
+
+  // Adicionar event listener para fechar o modal ao clicar no 'X'
+  if (closePriceModalBtn) {
+    closePriceModalBtn.addEventListener("click", () => {
+      priceModal.style.display = "none";
+    }, { once: true }); // Use { once: true } para garantir que o listener seja removido após o primeiro clique
+  }
+
+  // Adicionar event listener para fechar o modal ao clicar fora do conteúdo
+  const onClickOutside = (event) => {
+    if (event.target === priceModal) {
+      priceModal.style.display = "none";
+      priceModal.removeEventListener("click", onClickOutside);
+    }
+  };
+
+  priceModal.addEventListener("click", onClickOutside);
 }
 
 /*******************************************************
@@ -756,12 +757,6 @@ function atualizarTextosDinamicos() {
     tituloCarrinho.innerText = t("tituloCarrinho");
   }
 
-  const escolhaTamanhoTitulo = document.getElementById("escolhaTamanhoTitulo");
-  if (escolhaTamanhoTitulo) {
-    escolhaTamanhoTitulo.innerText = t("escolhaTamanhoTitulo");
-  }
-
-  // Atualizar botões do modal do carrinho
   const closeCartBtn = document.getElementById("close-cart");
   if (closeCartBtn) {
     closeCartBtn.innerText = t('fechar');
@@ -772,10 +767,10 @@ function atualizarTextosDinamicos() {
     sendOrderBtn.innerText = t('enviarPedido');
   }
 
-  // Atualizar outros textos estáticos conforme necessário
-  // Exemplo:
-  // const algumElemento = document.getElementById("algum-elemento");
-  // if (algumElemento) {
-  //   algumElemento.innerText = t("chaveCorrespondente");
-  // }
+  // Atualizar títulos e botões do modal de seleção de preço
+  const escolhaTamanhoTitulo = document.createElement("h2"); // Verifique se existe um elemento com este ID
+  const priceModalTitle = document.querySelector("#price-modal h2");
+  if (priceModalTitle) {
+    priceModalTitle.innerText = t("escolhaTamanhoTitulo") || "Escolha o Tamanho";
+  }
 }

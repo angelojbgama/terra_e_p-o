@@ -125,6 +125,16 @@
       </header>
 
       <!-- MODAL DO CARRINHO (inicialmente oculto) -->
+      <button
+        id="floating-cart-button"
+        class="floating-cart-button"
+        aria-label="Carrinho Flutuante"
+        title="Ver Carrinho"
+      >
+        <i class="fa-solid fa-shopping-cart"></i>
+      </button>
+
+      <!-- MODAL DO CARRINHO (inicialmente oculto) -->
       <div id="cart-modal" class="modal" style="display: none;">
         <div id="cart-modal-content" class="modal-content">
           <h2 id="tituloCarrinho">Carrinho</h2>
@@ -141,9 +151,9 @@
       <div id="price-modal" class="modal" style="display: none;">
         <div class="modal-content">
           <span class="close" id="close-price-modal">&times;</span>
-          <h2 id="escolhaTamanhoTitulo">Escolha o Tamanho</h2>
+          <h2>Escolha o Tamanho</h2>
           <div id="price-options">
-            <!-- Opções de preço serão inseridas dinamicamente via JS -->
+            <!-- Botões de seleção de preço serão inseridos dinamicamente via JS -->
           </div>
         </div>
       </div>
@@ -173,7 +183,6 @@
         </a>
       </footer>
     </main>
-
     <!-- Scripts JavaScript -->
     <script src="assets/js/acordeon.js"></script>
     <script src="assets/js/main.js"></script>
