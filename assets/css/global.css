@@ -10,7 +10,7 @@
 }
 
 /* ===========================================================
- 2. Variáveis de Tema
+  2. Variáveis de Tema
 =========================================================== */
 :root {
   /* Tema Escuro (Padrão) */
@@ -47,7 +47,7 @@
 }
 
 /* ===========================================================
- 3. Tema Claro
+  3. Tema Claro
 =========================================================== */
 body.light-theme {
   /* Tema Claro */
@@ -70,7 +70,7 @@ body.light-theme {
 }
 
 /* ===========================================================
- 4. Box Sizing Global
+  4. Box Sizing Global
 =========================================================== */
 *,
 *::before,
@@ -79,7 +79,7 @@ body.light-theme {
 }
 
 /* ===========================================================
- 5. Estilos Básicos
+  5. Estilos Básicos
 =========================================================== */
 body {
   background-color: var(--bg-color);
@@ -101,7 +101,7 @@ a:hover {
 }
 
 /* ===========================================================
- 6. Contêiner Principal (.main)
+  6. Contêiner Principal (.main)
 =========================================================== */
 .main {
   margin: 2rem auto; /* Margem para dar respiro no topo/rodapé */
@@ -117,7 +117,7 @@ a:hover {
 }
 
 /* ===========================================================
- 7. Background Decorativo
+  7. Background Decorativo
 =========================================================== */
 .main::before,
 .main::after {
@@ -139,7 +139,7 @@ a:hover {
 }
 
 /* ===========================================================
- 8. Header (Mobile-first)
+  8. Header (Mobile-first)
 =========================================================== */
 .header {
   display: flex;
@@ -198,7 +198,7 @@ a:hover {
 }
 
 /* ===========================================================
- 9. Container para Theme Toggle e Cart Button lado a lado
+  9. Container para Theme Toggle e Cart Button lado a lado
 =========================================================== */
 .header-buttons {
   position: absolute;
@@ -241,7 +241,7 @@ a:hover {
 }
 
 /* ===========================================================
- 10. Botão Adicionar ao Carrinho
+  10. Botão Adicionar ao Carrinho
 =========================================================== */
 .btn-add-cart {
   background-color: transparent;
@@ -269,18 +269,18 @@ a:hover {
 
 @keyframes glowPulse {
   0% {
-      box-shadow: 0 0 0px rgba(255, 255, 0, 0.5);
+    box-shadow: 0 0 0px rgba(255, 255, 0, 0.5);
   }
   50% {
-      box-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
   }
   100% {
-      box-shadow: 0 0 0px rgba(255, 255, 0, 0.5);
+    box-shadow: 0 0 0px rgba(255, 255, 0, 0.5);
   }
 }
 
 /* ===========================================================
- 11. Modal de Seleção de Preço
+  11. Modal de Seleção de Preço
 =========================================================== */
 #price-modal {
   position: fixed;
@@ -342,7 +342,7 @@ a:hover {
 }
 
 /* ===========================================================
- 12. Accordion
+  12. Accordion
 =========================================================== */
 .acordeon {
   display: flex;
@@ -399,7 +399,7 @@ a:hover {
   height: 0;
   opacity: 0;
   transition: opacity 0.25s ease-in-out, height 0.25s ease-in-out,
-      padding 0.25s ease-in-out;
+    padding 0.25s ease-in-out;
   padding: 0 1rem;
 }
 
@@ -412,7 +412,7 @@ a:hover {
 }
 
 /* ===========================================================
- 13. Lista de Produtos (Atualizado)
+  13. Lista de Produtos (Atualizado)
 =========================================================== */
 .acordeon .content ul {
   display: flex;
@@ -491,7 +491,7 @@ a:hover {
 }
 
 /* ===========================================================
- 14. Balão de Imagem
+  14. Balão de Imagem
 =========================================================== */
 .image-balloon {
   position: absolute;
@@ -514,17 +514,17 @@ a:hover {
 /* Animação de Fade In */
 @keyframes fadeIn {
   from {
-      opacity: 0;
-      transform: translateY(-10px);
+    opacity: 0;
+    transform: translateY(-10px);
   }
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 /* ===========================================================
- 15. Observações Box
+  15. Observações Box
 =========================================================== */
 .observacoes-box {
   background-color: var(--accordion-bg-color);
@@ -557,7 +557,7 @@ a:hover {
 }
 
 /* ===========================================================
- 16. Modal do Carrinho
+  16. Modal do Carrinho
 =========================================================== */
 #cart-modal {
   position: fixed;
@@ -646,7 +646,7 @@ a:hover {
 }
 
 /* ===========================================================
- 17. Cart Total
+  17. Cart Total
 =========================================================== */
 .cart-total {
   text-align: right;
@@ -657,7 +657,7 @@ a:hover {
 }
 
 /* ===========================================================
- 18. Rodapé
+  18. Rodapé
 =========================================================== */
 footer {
   width: 100%;
@@ -680,13 +680,13 @@ footer a:hover {
 }
 
 /* ===========================================================
- 19. Balão de Imagem
+  19. Balão de Imagem
 =========================================================== */
 
 /* As regras para .image-balloon já foram definidas acima */
 
 /* ===========================================================
- 20. Botão de Carrinho Flutuante
+  20. Botão de Carrinho Flutuante
 =========================================================== */
 .floating-cart-button {
   position: fixed;
@@ -718,164 +718,365 @@ footer a:hover {
 }
 
 /* ===========================================================
- 21. Media Queries (Atualizado)
+  21. Media Queries (Atualizado)
 =========================================================== */
 
 /* Telas muito pequenas (máximo de 480px) */
 @media (max-width: 480px) {
   .header-buttons {
-      position: absolute;
-      top: -0.5rem;
-      right: -1rem;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 1rem;
+    position: absolute;
+    top: -0.5rem;
+    right: -1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
   }
 
   .main {
-      margin: 0;
-      max-width: 100%;
-      border: none;
-      border-radius: 0;
-      width: 100%;
+    margin: 0;
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    width: 100%;
   }
 
   /* Ajuste da largura dos modais em dispositivos muito pequenos */
   .modal-content {
-      width: 95%;
-      padding: 1rem;
+    width: 95%;
+    padding: 1rem;
   }
 
   /* Melhorar a responsividade dos botões dentro dos modais */
   .modal-buttons {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .modal-buttons button {
-      width: 100%;
-      max-width: none;
+    width: 100%;
+    max-width: none;
   }
 
   /* Ajustes no Padding dos Itens de Lista */
   .acordeon .content ul li {
-      padding: 1rem 1rem 1rem 2rem; /* Adiciona padding-left quando o ícone está visível */
+    padding: 1rem 1rem 1rem 2rem; /* Adiciona padding-left quando o ícone está visível */
   }
 
   /* Exibe o ícone e oculta a imagem */
   .acordeon .content ul li img.menu-item-image {
-      display: none; /* Garante que a imagem esteja oculta */
+    display: none; /* Garante que a imagem esteja oculta */
   }
 
   .acordeon .content ul li i.menu-item-icon {
-      display: block; /* Garante que o ícone esteja visível */
+    display: block; /* Garante que o ícone esteja visível */
+  }
+
+  /* ===========================================================
+    23. Botões de Filtro (Finalizado e Suavizado)
+  ============================================================ */
+  .filter-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espaçamento ajustado */
+    margin: 1rem 0; /* Margem vertical para separar dos outros elementos */
+  }
+
+  .filter-button {
+    width: 2.5rem; /* Ajusta a largura para telas menores */
+    height: 2.5rem; /* Ajusta a altura para telas menores */
+    padding: 0; /* Remove o padding para evitar distorções */
+    border-radius: 0.5rem; /* Bordas arredondadas */
+    display: flex; /* Centraliza o conteúdo */
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accordion-bg-color); /* Cor de fundo */
+    border: 1px solid var(--border-color); /* Borda */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    cursor: pointer;
+    font-size: 1rem; /* Tamanho do ícone */
+    color: var(--text-color); /* Cor do texto */
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+  }
+
+  .filter-button i {
+    font-size: 1rem; /* Tamanho do ícone */
+    color: inherit; /* Herda a cor do botão */
+  }
+
+  /* Estado Ativo */
+  .filter-button.active {
+    background-color: var(--toggle-button-color); /* Fundo para filtros ativos */
+    color: var(--accordion-bg-color); /* Texto contrastante */
+    border-color: var(--toggle-button-color); /* Borda combinando */
+  }
+
+  /* Hover */
+  .filter-button:hover {
+    background-color: var(--toggle-button-color); /* Fundo mais claro no hover */
+    color: var(--accordion-bg-color); /* Texto contrastante no hover */
+    transform: scale(1.05); /* Aumento sutil no hover */
+  }
+
+  /* Botão de Reset dos Filtros */
+  #filter-reset {
+    background-color: transparent; /* Fundo transparente */
+    border: 1px dashed var(--border-color); /* Borda pontilhada */
+    color: var(--text-color); /* Cor do texto */
+  }
+
+  #filter-reset:hover {
+    background-color: var(--accordion-bg-color); /* Fundo no hover */
+    color: var(--text-color); /* Texto no hover */
+    transform: scale(1.05); /* Aumento sutil no hover */
+  }
+
+  /* Ícones específicos de cada filtro */
+  .vegan-icon {
+    color: var(--toggle-button-color); /* Verde para veganismo */
+  }
+
+  .alcool-icon {
+    color: var(--toggle-button-color); /* Laranja para alcoólico */
   }
 }
 
 /* Telas médias (tablet) a partir de 768px */
 @media (min-width: 768px) {
   .header {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      padding: 2rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
   }
 
   .header .photo {
-      width: 14rem;
-      height: 14rem;
-      margin-bottom: 0;
-      margin-right: 2rem;
+    width: 14rem;
+    height: 14rem;
+    margin-bottom: 0;
+    margin-right: 2rem;
   }
 
   .header .information {
-      text-align: left;
-      align-items: flex-start;
+    text-align: left;
+    align-items: flex-start;
   }
 
   .acordeon .content ul li img.menu-item-image {
-      display: block; /* Exibe a imagem em telas médias e maiores */
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 0.5rem;
-      margin-bottom: 1rem;
+    display: block; /* Exibe a imagem em telas médias e maiores */
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .acordeon .content ul li i.menu-item-icon {
-      display: none; /* Oculta o ícone em telas médias e maiores */
+    display: none; /* Oculta o ícone em telas médias e maiores */
   }
 
   .acordeon .content ul li {
-      padding: 1rem; /* Reverte para padding padrão quando a imagem está visível */
+    padding: 1rem; /* Reverte para padding padrão quando a imagem está visível */
   }
 
   /* Ajustes na lista de produtos */
   .acordeon .content ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  /* ===========================================================
+    23. Botões de Filtro (Continuado)
+  ============================================================ */
+  .filter-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espaçamento ajustado */
+    margin: 1rem 0; /* Margem vertical para separar dos outros elementos */
+  }
+
+  .filter-button {
+    width: 2.5rem; /* Ajusta a largura para telas menores */
+    height: 2.5rem; /* Ajusta a altura para telas menores */
+    padding: 0; /* Remove o padding para evitar distorções */
+    border-radius: 0.5rem; /* Bordas arredondadas */
+    display: flex; /* Centraliza o conteúdo */
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accordion-bg-color); /* Cor de fundo */
+    border: 1px solid var(--border-color); /* Borda */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    cursor: pointer;
+    font-size: 1rem; /* Tamanho do ícone */
+    color: var(--text-color); /* Cor do texto */
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+  }
+
+  .filter-button i {
+    font-size: 1rem; /* Tamanho do ícone */
+    color: inherit; /* Herda a cor do botão */
+  }
+
+  /* Estado Ativo */
+  .filter-button.active {
+    background-color: var(--toggle-button-color); /* Fundo para filtros ativos */
+    color: var(--accordion-bg-color); /* Texto contrastante */
+    border-color: var(--toggle-button-color); /* Borda combinando */
+  }
+
+  /* Hover */
+  .filter-button:hover {
+    background-color: var(--toggle-button-color); /* Fundo mais claro no hover */
+    color: var(--accordion-bg-color); /* Texto contrastante no hover */
+    transform: scale(1.05); /* Aumento sutil no hover */
+  }
+
+  /* Botão de Reset dos Filtros */
+  #filter-reset {
+    background-color: transparent; /* Fundo transparente */
+    border: 1px dashed var(--border-color); /* Borda pontilhada */
+    color: var(--text-color); /* Cor do texto */
+  }
+
+  #filter-reset:hover {
+    background-color: var(--accordion-bg-color); /* Fundo no hover */
+    color: var(--text-color); /* Texto no hover */
+    transform: scale(1.05); /* Aumento sutil no hover */
+  }
+
+  /* Ícones específicos de cada filtro */
+  .vegan-icon {
+    color: var(--toggle-button-color); /* Verde para veganismo */
+  }
+
+  .alcool-icon {
+    color: var(--toggle-button-color); /* Laranja para alcoólico */
   }
 }
 
 /* Telas grandes (desktop) a partir de 992px */
 @media (min-width: 992px) {
   .header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: center;
-      justify-items: center;
-      padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    padding: 2rem;
   }
 
   .main {
-      width: 80%;
+    width: 80%;
   }
 
   .header .photo {
-      width: 20rem;
-      height: 20rem;
+    width: 20rem;
+    height: 20rem;
   }
 
   .header .title {
-      font-size: 2rem;
+    font-size: 2rem;
   }
 
   .header .slogan {
-      font-size: 1.25rem;
+    font-size: 1.25rem;
   }
 
   .acordeon .content ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
   }
 
   .acordeon .content ul li {
-      align-items: center;
-      text-align: center;
+    align-items: center;
+    text-align: center;
   }
 
   .acordeon .content ul li img.menu-item-image {
-      width: 150px;
-      height: 150px;
+    width: 150px;
+    height: 150px;
   }
 
   .acordeon .content ul li strong {
-      font-size: 1.25rem;
+    font-size: 1.25rem;
+  }
+
+  .filter-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espaçamento ajustado */
+    margin: 1rem 0; /* Margem vertical para separar dos outros elementos */
+  }
+
+  .filter-button {
+    width: 2.5rem; /* Ajusta a largura para telas menores */
+    height: 2.5rem; /* Ajusta a altura para telas menores */
+    padding: 0; /* Remove o padding para evitar distorções */
+    border-radius: 0.5rem; /* Bordas arredondadas */
+    display: flex; /* Centraliza o conteúdo */
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accordion-bg-color); /* Cor de fundo */
+    border: 1px solid var(--border-color); /* Borda */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    cursor: pointer;
+    font-size: 1rem; /* Tamanho do ícone */
+    color: var(--text-color); /* Cor do texto */
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+  }
+
+  .filter-button i {
+    font-size: 1rem; /* Tamanho do ícone */
+    color: inherit; /* Herda a cor do botão */
+  }
+
+  /* Estado Ativo */
+  .filter-button.active {
+    background-color: var(--toggle-button-color); /* Fundo para filtros ativos */
+    color: var(--accordion-bg-color); /* Texto contrastante */
+    border-color: var(--toggle-button-color); /* Borda combinando */
+  }
+
+  /* Hover */
+  .filter-button:hover {
+    background-color: var(--toggle-button-color); /* Fundo mais claro no hover */
+    color: var(--accordion-bg-color); /* Texto contrastante no hover */
+    transform: scale(1.05); /* Aumento sutil no hover */
+  }
+
+  /* Botão de Reset dos Filtros */
+  #filter-reset {
+    background-color: transparent; /* Fundo transparente */
+    border: 1px dashed var(--border-color); /* Borda pontilhada */
+    color: var(--text-color); /* Cor do texto */
+  }
+
+  #filter-reset:hover {
+    background-color: var(--accordion-bg-color); /* Fundo no hover */
+    color: var(--text-color); /* Texto no hover */
+    transform: scale(1.05); /* Aumento sutil no hover */
+  }
+
+  /* Ícones específicos de cada filtro */
+  .vegan-icon {
+    color: var(--toggle-button-color); /* Verde para veganismo */
+  }
+
+  .alcool-icon {
+    color: var(--toggle-button-color); /* Laranja para alcoólico */
   }
 }
 
 /* Telas ainda maiores (ex: 1200px) */
 @media (min-width: 1200px) {
   .main {
-      max-width: 1200px;
+    max-width: 1200px;
   }
 }
 
 /* ===========================================================
- 22. Estilização da Barra de Rolagem
+  22. Estilização da Barra de Rolagem
 =========================================================== */
 
 /* Estilização para Webkit Browsers (Chrome, Safari, Edge) */
@@ -917,4 +1118,74 @@ footer a:hover {
 #price-options {
   scrollbar-width: thin; /* "auto" ou "thin" */
   scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+}
+
+/* ===========================================================
+  23. Botões de Filtro (Finalizado e Suavizado)
+=========================================================== */
+
+/* A seção de Botões de Filtro já foi atualizada nas Media Queries */
+
+/* ===========================================================
+  24. Ícones de Categorização no Topo Direito
+=========================================================== */
+.categorization-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2rem;
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
+  border-radius: 50%; /* Ícone circular */
+  padding: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  z-index: 1; /* Garante que o ícone fique acima de outros elementos */
+}
+
+/* ===========================================================
+  25. Itens do Cardápio com Posicionamento Relativo
+=========================================================== */
+.cardapio ul li {
+  position: relative; /* Necessário para posicionamento absoluto dos ícones */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.delivery-address-section {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}
+
+.delivery-address-section label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.delivery-address-section input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
+#delivery-address-input {
+  width: 100%;
+  height: 80px;
+  margin-top: 10px;
+  padding: 10px;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
 }

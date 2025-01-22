@@ -25,9 +25,6 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-..."
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
 
     <!-- Google Fonts: Open Sans -->
@@ -46,6 +43,29 @@
     <main class="main">
       <!-- Cabeçalho com foto e informações do perfil -->
       <header class="header">
+        <!-- Container para Botões (Tema + Carrinho) -->
+        <div class="header-buttons">
+          <!-- Botão do Carrinho -->
+          <button
+            id="cart-button"
+            class="cart-button"
+            aria-label="Carrinho"
+            title="Ver Carrinho"
+          >
+            <i class="fa-solid fa-shopping-cart"></i>
+          </button>
+
+          <!-- Botão para alternar tema (claro/escuro) -->
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Alternar Tema"
+            title="Alternar Tema"
+          >
+            <i class="fa-solid fa-toggle-off"></i>
+          </button>
+        </div>
+
         <!-- Foto de perfil carregada dinamicamente -->
         <img
           src="assets/img/my-photo.jpg"
@@ -99,32 +119,37 @@
             <ul id="perfil-observacoesIniciais"></ul>
           </div>
         </div>
-
-        <!-- Container para Botões (Tema + Carrinho) -->
-        <div class="header-buttons">
-          <!-- Botão do Carrinho -->
-          <button
-            id="cart-button"
-            class="cart-button"
-            aria-label="Carrinho"
-            title="Ver Carrinho"
-          >
-            <i class="fa-solid fa-shopping-cart"></i>
-          </button>
-
-          <!-- Botão para alternar tema (claro/escuro) -->
-          <button
-            id="theme-toggle"
-            class="theme-toggle"
-            aria-label="Alternar Tema"
-            title="Alternar Tema"
-          >
-            <i class="fa-solid fa-toggle-off"></i>
-          </button>
-        </div>
       </header>
 
-      <!-- MODAL DO CARRINHO (inicialmente oculto) -->
+      <!-- Botões de Filtro Abaixo do Cabeçalho -->
+      <div class="filter-buttons">
+        <button
+          id="filter-vegan"
+          class="filter-button"
+          aria-label="Filtrar Veganos"
+          title="Filtrar Veganos"
+        >
+          <i class="fa-solid fa-seedling vegan-icon"></i>
+        </button>
+        <button
+          id="filter-alcoolico"
+          class="filter-button"
+          aria-label="Filtrar Bebidas Alcoólicas"
+          title="Filtrar Bebidas Alcoólicas"
+        >
+          <i class="fa-solid fa-beer-mug-empty alcool-icon"></i>
+        </button>
+        <button
+          id="filter-reset"
+          class="filter-button"
+          aria-label="Resetar Filtros"
+          title="Resetar Filtros"
+        >
+          <i class="fa-solid fa-filter-circle-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Botão de Carrinho Flutuante -->
       <button
         id="floating-cart-button"
         class="floating-cart-button"
@@ -135,10 +160,23 @@
       </button>
 
       <!-- MODAL DO CARRINHO (inicialmente oculto) -->
-      <div id="cart-modal" class="modal" style="display: none;">
+      <div id="cart-modal" class="modal" style="display: none">
         <div id="cart-modal-content" class="modal-content">
           <h2 id="tituloCarrinho">Carrinho</h2>
           <div id="cart-content"></div>
+
+          <!-- Nova Seção para Endereço de Entrega -->
+          <div class="delivery-address-section">
+            <label for="delivery-address-checkbox">
+              <input type="checkbox" id="delivery-address-checkbox" />
+              Enviar para outro endereço
+            </label>
+            <textarea
+              id="delivery-address-input"
+              placeholder="Digite o endereço para entrega"
+              style="display: none"
+            ></textarea>
+          </div>
 
           <div class="modal-buttons">
             <button id="close-cart">Fechar</button>
@@ -146,12 +184,11 @@
           </div>
         </div>
       </div>
-
       <!-- MODAL DE SELEÇÃO DE PREÇO (inicialmente oculto) -->
-      <div id="price-modal" class="modal" style="display: none;">
+      <div id="price-modal" class="modal" style="display: none">
         <div class="modal-content">
           <span class="close" id="close-price-modal">&times;</span>
-          <h2>Escolha o Tamanho</h2>
+          <h2 id="price-modal-title">Escolha o Tamanho</h2>
           <div id="price-options">
             <!-- Botões de seleção de preço serão inseridos dinamicamente via JS -->
           </div>

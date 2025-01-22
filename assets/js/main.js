@@ -2,64 +2,20 @@
  * 1) Mapeamento de Ícones -> Font Awesome
  *******************************************************/
 const IconMapping = {
-  pizza: "fas fa-pizza-slice",
-  burger: "fas fa-burger",
-  hotdog: "fas fa-hotdog",
-  fries: "fas fa-french-fries",
-  sushi: "fas fa-sushi",
-  fish: "fas fa-fish",
-  bacon: "fas fa-bacon",
-  egg: "fas fa-egg",
-  cheese: "fas fa-cheese",
-  bread: "fas fa-bread-slice",
-  croissant: "fas fa-croissant",
-  carrot: "fas fa-carrot",
-  apple: "fas fa-apple-whole",
-  lemon: "fas fa-lemon",
-  pepperHot: "fas fa-pepper-hot",
-  seedling: "fas fa-seedling",
-  drumstick: "fas fa-drumstick-bite",
-  shrimp: "fas fa-shrimp",
-  coffee: "fas fa-mug-saucer",
-  tea: "fas fa-mug-hot",
-  soda: "fas fa-cup-straw",
-  beer: "fas fa-beer-mug-empty",
-  wine: "fas fa-wine-bottle",
-  cocktail: "fas fa-martini-glass-citrus",
-  cupcake: "fas fa-cupcake",
-  iceCream: "fas fa-ice-cream",
-  cake: "fas fa-cake-candles",
-  home: "fas fa-house",
-  user: "fas fa-user",
-  envelope: "fas fa-envelope",
-  phone: "fas fa-phone",
-  mapMarker: "fas fa-map-marker-alt",
-  shoppingCart: "fas fa-shopping-cart",
-  check: "fas fa-check",
-  times: "fas fa-xmark",
-  plus: "fas fa-plus",
-  minus: "fas fa-minus",
-  arrowRight: "fas fa-arrow-right",
-  arrowLeft: "fas fa-arrow-left",
-  gear: "fas fa-gear",
-  search: "fas fa-magnifying-glass",
-  trash: "fas fa-trash",
-  edit: "fas fa-pen-to-square",
-  save: "fas fa-floppy-disk",
-  folder: "fas fa-folder",
-  file: "fas fa-file",
-  download: "fas fa-download",
-  upload: "fas fa-upload",
-  github: "fab fa-github",
-  linkedin: "fab fa-linkedin",
-  instagram: "fab fa-instagram",
-  facebook: "fab fa-facebook",
-  twitter: "fab fa-twitter",
+  // ... [Seu mapeamento existente]
   default: "fas fa-question",
 };
 
 /*******************************************************
- * 2) Detectar idioma e carregar JSON do perfil
+ * 2) Variáveis para Gerenciar Filtros
+ *******************************************************/
+let activeFilters = {
+  vegan: false,
+  alcoolico: false,
+};
+
+/*******************************************************
+ * 3) Detectar idioma e carregar JSON do perfil
  *******************************************************/
 async function fetchProfileData() {
   let language = navigator.language || navigator.userLanguage;
@@ -89,7 +45,7 @@ async function fetchProfileData() {
 let profileDataGlobal = null;
 
 /*******************************************************
- * 3) Helper Function para acessar textos do JSON
+ * 4) Helper Function para acessar textos do JSON
  *******************************************************/
 function t(key) {
   return (
@@ -102,7 +58,7 @@ function t(key) {
 }
 
 /*******************************************************
- * 4) Atualizar elementos de PERFIL
+ * 5) Atualizar elementos de PERFIL
  *******************************************************/
 function updatePerfil(perfilData) {
   if (!perfilData) return;
@@ -171,7 +127,7 @@ function updatePerfil(perfilData) {
 }
 
 /*******************************************************
- * 5) Criar dinamicamente o CARDÁPIO (categorias)
+ * 6) Atualizar Categorias com Filtros
  *******************************************************/
 function updateCategorias(categorias) {
   if (!categorias) return;
@@ -209,7 +165,20 @@ function updateCategorias(categorias) {
 
     // Função auxiliar para criar um <li> com item do cardápio
     function criarItemCardapio(item) {
+      // Aplicar filtros
+      if (activeFilters.vegan && !item.vegan) return null;
+      if (activeFilters.alcoolico && !item.alcoolico) return null;
+
       const li = document.createElement("li");
+      li.style.position = "relative"; // Garantir que o posicionamento absoluto funcione
+
+      // Ícone de Ação (Balão de Imagem)
+      const iconClass = "fa-solid fa-image menu-item-icon";
+      const iconElem = document.createElement("i");
+      iconElem.className = iconClass;
+      iconElem.setAttribute("aria-hidden", "true");
+      iconElem.setAttribute("aria-label", "Ver imagem"); // Acessibilidade
+      li.appendChild(iconElem);
 
       // Imagem
       const img = document.createElement("img");
@@ -218,14 +187,6 @@ function updateCategorias(categorias) {
       img.classList.add("menu-item-image");
       img.loading = "lazy"; // Adiciona lazy loading para performance
       li.appendChild(img);
-
-      // Ícone - Usar sempre fa-solid fa-image
-      const iconClass = "fa-solid fa-image menu-item-icon";
-      const iconElem = document.createElement("i");
-      iconElem.className = iconClass;
-      iconElem.setAttribute("aria-hidden", "true");
-      iconElem.setAttribute("aria-label", "Ver imagem"); // Acessibilidade
-      li.appendChild(iconElem);
 
       // Nome
       const strong = document.createElement("strong");
@@ -250,10 +211,27 @@ function updateCategorias(categorias) {
         li.appendChild(em);
       }
 
+      // Indicadores de Veganismo e Alcoólico (se aplicável)
+      if (item.vegan) {
+        const veganIcon = document.createElement("i");
+        veganIcon.className = "fa-solid fa-seedling categorization-icon vegan-icon";
+        veganIcon.setAttribute("aria-hidden", "true");
+        veganIcon.setAttribute("aria-label", "Vegan");
+        li.appendChild(veganIcon);
+      }
+
+      if (item.alcoolico) {
+        const alcoolIcon = document.createElement("i");
+        alcoolIcon.className = "fa-solid fa-beer-mug-empty categorization-icon alcool-icon";
+        alcoolIcon.setAttribute("aria-hidden", "true");
+        alcoolIcon.setAttribute("aria-label", "Alcoólico");
+        li.appendChild(alcoolIcon);
+      }
+
       // Botão Adicionar ao Carrinho
       const addBtn = document.createElement("button");
       addBtn.classList.add("btn-add-cart");
-      addBtn.innerHTML = `${t('adicionarAoCarrinho')} <i class="fa-solid fa-cart-plus"></i>`;
+      addBtn.innerHTML = `${t('adicionarAoCarrinho')} <i class="fas fa-cart-plus"></i>`;
 
       // Verifica se o item tem múltiplos preços
       const hasMultiplePrices =
@@ -287,7 +265,7 @@ function updateCategorias(categorias) {
         const ulSub = document.createElement("ul");
         subcat.itens.forEach((item) => {
           const li = criarItemCardapio(item);
-          ulSub.appendChild(li);
+          if (li) ulSub.appendChild(li);
         });
         contentDiv.appendChild(ulSub);
       });
@@ -298,9 +276,14 @@ function updateCategorias(categorias) {
       const ul = document.createElement("ul");
       categoria.itens.forEach((item) => {
         const li = criarItemCardapio(item);
-        ul.appendChild(li);
+        if (li) ul.appendChild(li);
       });
       contentDiv.appendChild(ul);
+    }
+
+    // Se não houver itens após aplicar filtros, não exibe a categoria
+    if (contentDiv.querySelectorAll("li").length === 0) {
+      return;
     }
 
     // Toggle do acordeon
@@ -316,7 +299,7 @@ function updateCategorias(categorias) {
 }
 
 /*******************************************************
- * 6) Função para obter string de preço
+ * 7) Função para obter string de preço
  *******************************************************/
 function getPreco(item) {
   if (typeof item.preco === "number") {
@@ -332,7 +315,7 @@ function getPreco(item) {
 }
 
 /*******************************************************
- * 7) Rodapé (WhatsApp, Instagram)
+ * 8) Rodapé (WhatsApp, Instagram)
  *******************************************************/
 function updateFooterLinks(footerData) {
   if (!footerData) return;
@@ -353,7 +336,7 @@ function updateFooterLinks(footerData) {
 }
 
 /*******************************************************
- * 8) Tema Claro/Escuro
+ * 9) Tema Claro/Escuro
  *******************************************************/
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
@@ -387,10 +370,13 @@ document.addEventListener("DOMContentLoaded", () => {
     updateIcon(theme);
     localStorage.setItem("theme", theme);
   });
+
+  // Inicializar Filtros após o DOM estar pronto
+  initializeFilterButtons();
 });
 
 /*******************************************************
- * 9) Balão de Imagem (Mobile)
+ * 10) Balão de Imagem (Mobile)
  *******************************************************/
 function closeAllImageBalloons() {
   const balloons = document.querySelectorAll(".image-balloon");
@@ -443,7 +429,7 @@ window.addEventListener("resize", () => {
 });
 
 /*******************************************************
- * 10) LÓGICA DE CARRINHO (com remover item + modal + brilho no botão)
+ * 11) LÓGICA DE CARRINHO (com remover item + modal + brilho no botão)
  *******************************************************/
 let cart = [];
 
@@ -589,14 +575,29 @@ function sendOrder() {
   }
 
   const mensagem = montarMensagemWhatsApp();
-  const encodedMsg = encodeURIComponent(mensagem);
+
+  // Verifica se a opção de endereço está marcada
+  const deliveryCheckbox = document.getElementById("delivery-address-checkbox");
+  let endereco = "";
+  if (deliveryCheckbox && deliveryCheckbox.checked) {
+    const deliveryInput = document.getElementById("delivery-address-input");
+    if (deliveryInput && deliveryInput.value.trim() !== "") {
+      endereco = `\nEndereço de Entrega: ${deliveryInput.value.trim()}`;
+    } else {
+      alert("Por favor, insira o endereço de entrega ou desmarque a opção.");
+      return;
+    }
+  }
+
+  const mensagemFinal = `${mensagem}${endereco}`;
+  const encodedMsg = encodeURIComponent(mensagemFinal);
 
   const url = `https://wa.me/${numeroWhats}?text=${encodedMsg}`;
   window.open(url, "_blank");
 }
 
 /*******************************************************
- * 11) MODAL DO CARRINHO (Abrir, Fechar, Enviar Pedido)
+ * 12) MODAL DO CARRINHO (Abrir, Fechar, Enviar Pedido)
  *******************************************************/
 document.addEventListener("DOMContentLoaded", () => {
   const cartButton = document.getElementById("cart-button");
@@ -604,6 +605,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartModal = document.getElementById("cart-modal");
   const closeCartButton = document.getElementById("close-cart");
   const sendOrderButton = document.getElementById("send-order");
+
+  // Elementos da nova seção de endereço
+  const deliveryCheckbox = document.getElementById("delivery-address-checkbox");
+  const deliveryInput = document.getElementById("delivery-address-input");
 
   // Função para abrir o modal do carrinho
   const openCartModal = () => {
@@ -642,10 +647,21 @@ document.addEventListener("DOMContentLoaded", () => {
       closeCartModal();
     }
   });
+
+  // Lógica para mostrar/ocultar a caixa de endereço
+  if (deliveryCheckbox && deliveryInput) {
+    deliveryCheckbox.addEventListener("change", () => {
+      if (deliveryCheckbox.checked) {
+        deliveryInput.style.display = "block";
+      } else {
+        deliveryInput.style.display = "none";
+      }
+    });
+  }
 });
 
 /*******************************************************
- * 12) Modal de Seleção de Preço
+ * 13) Modal de Seleção de Preço
  *******************************************************/
 
 /**
@@ -657,11 +673,15 @@ function openPriceModal(item, button) {
   const priceModal = document.getElementById("price-modal");
   const priceOptionsContainer = document.getElementById("price-options");
   const closePriceModalBtn = document.getElementById("close-price-modal");
+  const priceModalTitle = document.getElementById("price-modal-title");
 
   if (!priceModal || !priceOptionsContainer) return;
 
   // Limpa as opções anteriores
   priceOptionsContainer.innerHTML = "";
+
+  // Atualiza o título do modal
+  priceModalTitle.innerText = t("escolhaTamanhoTitulo") || "Escolha o Tamanho";
 
   // Cria opções com base nos preços disponíveis
   if (item.precoGrande) {
@@ -695,9 +715,13 @@ function openPriceModal(item, button) {
 
   // Adicionar event listener para fechar o modal ao clicar no 'X'
   if (closePriceModalBtn) {
-    closePriceModalBtn.addEventListener("click", () => {
-      priceModal.style.display = "none";
-    }, { once: true }); // Use { once: true } para garantir que o listener seja removido após o primeiro clique
+    closePriceModalBtn.addEventListener(
+      "click",
+      () => {
+        priceModal.style.display = "none";
+      },
+      { once: true } // Use { once: true } para garantir que o listener seja removido após o primeiro clique
+    );
   }
 
   // Adicionar event listener para fechar o modal ao clicar fora do conteúdo
@@ -712,7 +736,7 @@ function openPriceModal(item, button) {
 }
 
 /*******************************************************
- * 13) Inicialização Geral (fetch JSON, etc.)
+ * 14) Inicialização Geral (fetch JSON, etc.)
  *******************************************************/
 (async () => {
   try {
@@ -726,7 +750,7 @@ function openPriceModal(item, button) {
     // 1) Atualiza PERFIL
     updatePerfil(data.perfil);
 
-    // 2) Categorias (cardápio)
+    // 2) Categorias (cardápio) com filtros aplicados
     updateCategorias(data.categorias);
 
     // 3) Rodapé
@@ -743,7 +767,7 @@ function openPriceModal(item, button) {
 })();
 
 /*******************************************************
- * 14) Atualizar Textos Estáticos
+ * 15) Atualizar Textos Estáticos
  *******************************************************/
 function atualizarTextosDinamicos() {
   // Atualizar títulos, botões e outros elementos estáticos
@@ -768,9 +792,120 @@ function atualizarTextosDinamicos() {
   }
 
   // Atualizar títulos e botões do modal de seleção de preço
-  const escolhaTamanhoTitulo = document.createElement("h2"); // Verifique se existe um elemento com este ID
-  const priceModalTitle = document.querySelector("#price-modal h2");
+  const priceModalTitle = document.getElementById("price-modal-title");
   if (priceModalTitle) {
     priceModalTitle.innerText = t("escolhaTamanhoTitulo") || "Escolha o Tamanho";
+  }
+
+  // Atualizar textos para a nova seção de endereço de entrega
+  const deliveryLabel = document.querySelector(".delivery-address-section label");
+  if (deliveryLabel) {
+    const checkbox = deliveryLabel.querySelector("#delivery-address-checkbox");
+    if (checkbox) {
+      // Não substitua o innerHTML para preservar o checkbox e o event listener
+      const labelText = t("Enviar para meu endereço");
+      // Limpa o texto existente (preservando o checkbox)
+      deliveryLabel.childNodes.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          deliveryLabel.removeChild(node);
+        }
+      });
+      // Adiciona o novo texto
+      deliveryLabel.appendChild(document.createTextNode(` ${labelText}`));
+    }
+  }
+
+  const deliveryInput = document.getElementById("delivery-address-input");
+  if (deliveryInput) {
+    deliveryInput.placeholder = t("Digite o endereço para entrega");
+  }
+}
+
+/*******************************************************
+ * 16) Inicializar Botões de Filtro
+ *******************************************************/
+function initializeFilterButtons() {
+  const filterVeganBtn = document.getElementById("filter-vegan");
+  const filterAlcoolicoBtn = document.getElementById("filter-alcoolico");
+  const filterResetBtn = document.getElementById("filter-reset");
+
+  if (filterVeganBtn) {
+    filterVeganBtn.addEventListener("click", () => {
+      if (!activeFilters.vegan) {
+        // Ativa o filtro 'vegan' e desativa 'alcoolico'
+        activeFilters = { vegan: true, alcoolico: false };
+      } else {
+        // Se já estiver ativo, desativa todos os filtros
+        activeFilters = { vegan: false, alcoolico: false };
+      }
+      updateFilterButtonStates(); // Atualiza a aparência dos botões
+      updateCardapioWithFilters(); // Atualiza o cardápio com os filtros aplicados
+      localStorage.setItem("activeFilters", JSON.stringify(activeFilters)); // Salva o estado dos filtros
+    });
+  }
+
+  if (filterAlcoolicoBtn) {
+    filterAlcoolicoBtn.addEventListener("click", () => {
+      if (!activeFilters.alcoolico) {
+        // Ativa o filtro 'alcoolico' e desativa 'vegan'
+        activeFilters = { vegan: false, alcoolico: true };
+      } else {
+        // Se já estiver ativo, desativa todos os filtros
+        activeFilters = { vegan: false, alcoolico: false };
+      }
+      updateFilterButtonStates(); // Atualiza a aparência dos botões
+      updateCardapioWithFilters(); // Atualiza o cardápio com os filtros aplicados
+      localStorage.setItem("activeFilters", JSON.stringify(activeFilters)); // Salva o estado dos filtros
+    });
+  }
+
+  if (filterResetBtn) {
+    filterResetBtn.addEventListener("click", () => {
+      // Desativa todos os filtros
+      activeFilters = { vegan: false, alcoolico: false };
+      // Remove a classe 'active' de todos os botões de filtro
+      document.querySelectorAll(".filter-button").forEach((btn) => btn.classList.remove("active"));
+      updateFilterButtonStates(); // Atualiza a aparência dos botões
+      updateCardapioWithFilters(); // Atualiza o cardápio sem filtros
+      localStorage.setItem("activeFilters", JSON.stringify(activeFilters)); // Salva o estado dos filtros
+    });
+  }
+
+  // Restaurar estado salvo dos filtros ao carregar a página
+  const savedFilters = JSON.parse(localStorage.getItem("activeFilters"));
+  if (savedFilters) {
+    activeFilters = savedFilters;
+    updateFilterButtonStates(); // Atualiza a aparência dos botões com base no estado salvo
+  }
+}
+
+/** 
+ * Atualiza a aparência dos botões de filtro com base nos filtros ativos 
+ */
+function updateFilterButtonStates() {
+  const filterVeganBtn = document.getElementById("filter-vegan");
+  const filterAlcoolicoBtn = document.getElementById("filter-alcoolico");
+
+  if (activeFilters.vegan && filterVeganBtn) {
+    filterVeganBtn.classList.add("active");
+  } else if (filterVeganBtn) {
+    filterVeganBtn.classList.remove("active");
+  }
+
+  if (activeFilters.alcoolico && filterAlcoolicoBtn) {
+    filterAlcoolicoBtn.classList.add("active");
+  } else if (filterAlcoolicoBtn) {
+    filterAlcoolicoBtn.classList.remove("active");
+  }
+}
+
+/*******************************************************
+ * 17) Atualizar Cardápio com Filtros
+ *******************************************************/
+function updateCardapioWithFilters() {
+  // Re-fetch o perfilDataGlobal para obter as categorias
+  if (profileDataGlobal && profileDataGlobal.categorias) {
+    updateCategorias(profileDataGlobal.categorias);
+    initializeImageBalloons(); // Re-inicializar os balões após atualizar as categorias
   }
 }
