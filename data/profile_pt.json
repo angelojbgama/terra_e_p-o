@@ -18,7 +18,21 @@
     "produtoSemNome": "Produto Sem Nome",
     "escolhaTamanhoTitulo": "Escolha o Tamanho",
     "fotoPerfil": "Foto de Perfil",
-    "tituloModalPreco": "Escolha o Tamanho"
+    "tituloModalPreco": "Escolha o Tamanho",
+    "informeNumeroMesa": "Por favor, insira o número da mesa ou selecione 'Entrega em Outro Endereço'.",
+    "enderecoEntrega": "Endereço de Entrega",
+    "informeEnderecoEntrega": "Por favor, insira o endereço de entrega ou selecione 'Pedido no Local'.",
+    "numeroMesa": "Número da Mesa",
+    "pedidoLocal": "Pedido no Local",
+    "entregaOutroEndereco": "Pedido em meu Endereço",
+    "digiteNumeroMesa": "Digite o número da mesa",
+    "digiteEnderecoEntrega": "Digite o endereço para entrega",
+    "pedidoLocalMesaPlaceholder": "Digite o número da mesa",
+    "pedidoEntregaEnderecoPlaceholder": "Digite o endereço para entrega",
+    "pedidoTipoLocal": "Pedido no Local (Mesa)",
+    "pedidoTipoEntrega": "Entrega em Outro Endereço",
+    "confirmarPedido": "Confirmar Pedido",
+    "cancelar": "Cancelar"
   },
   "perfil": {
     "foto": "https://pps.whatsapp.net/v/t61.24694-24/122766043_180134643595352_7992627227379500289_n.jpg?ccb=11-4&oh=01_Q5AaIDf44nIsI05SnYL-nYUT9d9-ARg1AtMuLf2_SGWZMMkH&oe=678F8700&_nc_sid=5e03e0&_nc_cat=103",

@@ -165,16 +165,40 @@
           <h2 id="tituloCarrinho">Carrinho</h2>
           <div id="cart-content"></div>
 
-          <!-- Nova Seção para Endereço de Entrega -->
-          <div class="delivery-address-section">
-            <label for="delivery-address-checkbox">
-              <input type="checkbox" id="delivery-address-checkbox" />
-              Enviar para outro endereço
-            </label>
+          <!-- Nova Seção para Seleção de Tipo de Pedido -->
+          <div class="delivery-type-section">
+            <fieldset>
+              <legend>Tipo de Pedido:</legend>
+              <label class="delivery-option">
+                <input type="radio" name="delivery-type" value="local" checked />
+                <i class="fas fa-utensils"></i>
+                <span>Local</span>
+              </label>
+              <label class="delivery-option">
+                <input type="radio" name="delivery-type" value="delivery" />
+                <i class="fas fa-truck"></i>
+                <span>Delivery</span>
+              </label>
+            </fieldset>
+          </div>
+
+          <!-- Seção para Informar a Mesa -->
+          <div class="table-number-section">
+            <label for="table-number-input">Número da Mesa:</label>
+            <input
+              type="number"
+              id="table-number-input"
+              placeholder="Digite o número da mesa"
+            />
+          </div>
+
+          <!-- Seção para Informar o Endereço de Entrega -->
+          <div class="delivery-address-section" style="display: none;">
+            <label for="delivery-address-input">Endereço de Entrega:</label>
             <textarea
               id="delivery-address-input"
               placeholder="Digite o endereço para entrega"
-              style="display: none"
+              rows="3"
             ></textarea>
           </div>
 
@@ -184,6 +208,7 @@
           </div>
         </div>
       </div>
+
       <!-- MODAL DE SELEÇÃO DE PREÇO (inicialmente oculto) -->
       <div id="price-modal" class="modal" style="display: none">
         <div class="modal-content">

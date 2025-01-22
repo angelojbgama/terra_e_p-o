@@ -2,7 +2,15 @@
  * 1) Mapeamento de Ícones -> Font Awesome
  *******************************************************/
 const IconMapping = {
-  // ... [Seu mapeamento existente]
+  // Exemplo de mapeamento de ícones
+  "perfil": "fas fa-user",
+  "telefone": "fas fa-phone",
+  "localizacao": "fas fa-map-marker-alt",
+  "email": "fas fa-envelope",
+  "observacoes": "fas fa-sticky-note",
+  "vegan": "fas fa-seedling",
+  "alcoolico": "fas fa-beer-mug-empty",
+  // Adicione outros mapeamentos conforme necessário
   default: "fas fa-question",
 };
 
@@ -554,6 +562,29 @@ function montarMensagemWhatsApp() {
   });
 
   mensagem += `\n${t('total')}: R$ ${total.toFixed(2)}`;
+
+  // Adicionar Tipo de Pedido
+  const deliveryType = document.querySelector('input[name="delivery-type"]:checked')?.value;
+  if (deliveryType === "delivery") {
+    const deliveryInput = document.getElementById("delivery-address-input");
+    const endereco = deliveryInput.value.trim();
+    if (endereco) {
+      mensagem += `\n\n${t('enderecoEntrega')}: ${endereco}`;
+    } else {
+      alert(t('informeEnderecoEntrega'));
+      return null;
+    }
+  } else if (deliveryType === "local") {
+    const tableInput = document.getElementById("table-number-input");
+    const mesa = tableInput.value.trim();
+    if (mesa) {
+      mensagem += `\n\n${t('numeroMesa')}: ${mesa}`;
+    } else {
+      alert(t('informeNumeroMesa'));
+      return null;
+    }
+  }
+
   return mensagem;
 }
 
@@ -563,6 +594,9 @@ function sendOrder() {
     alert(t('carrinhoVazio'));
     return;
   }
+
+  const mensagem = montarMensagemWhatsApp();
+  if (!mensagem) return; // Caso haja algum problema na montagem
 
   // Pega o número do JSON (se existir)
   let numeroWhats = "5511999999999"; // fallback
@@ -574,23 +608,7 @@ function sendOrder() {
     }
   }
 
-  const mensagem = montarMensagemWhatsApp();
-
-  // Verifica se a opção de endereço está marcada
-  const deliveryCheckbox = document.getElementById("delivery-address-checkbox");
-  let endereco = "";
-  if (deliveryCheckbox && deliveryCheckbox.checked) {
-    const deliveryInput = document.getElementById("delivery-address-input");
-    if (deliveryInput && deliveryInput.value.trim() !== "") {
-      endereco = `\nEndereço de Entrega: ${deliveryInput.value.trim()}`;
-    } else {
-      alert("Por favor, insira o endereço de entrega ou desmarque a opção.");
-      return;
-    }
-  }
-
-  const mensagemFinal = `${mensagem}${endereco}`;
-  const encodedMsg = encodeURIComponent(mensagemFinal);
+  const encodedMsg = encodeURIComponent(mensagem);
 
   const url = `https://wa.me/${numeroWhats}?text=${encodedMsg}`;
   window.open(url, "_blank");
@@ -606,9 +624,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeCartButton = document.getElementById("close-cart");
   const sendOrderButton = document.getElementById("send-order");
 
-  // Elementos da nova seção de endereço
-  const deliveryCheckbox = document.getElementById("delivery-address-checkbox");
-  const deliveryInput = document.getElementById("delivery-address-input");
+  // Elementos das novas seções
+  const deliveryTypeRadios = document.querySelectorAll('input[name="delivery-type"]');
+  const tableNumberSection = document.querySelector(".table-number-section");
+  const deliveryAddressSection = document.querySelector(".delivery-address-section");
 
   // Função para abrir o modal do carrinho
   const openCartModal = () => {
@@ -648,16 +667,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Lógica para mostrar/ocultar a caixa de endereço
-  if (deliveryCheckbox && deliveryInput) {
-    deliveryCheckbox.addEventListener("change", () => {
-      if (deliveryCheckbox.checked) {
-        deliveryInput.style.display = "block";
-      } else {
-        deliveryInput.style.display = "none";
+  // Lógica para mostrar/ocultar as seções com base na seleção do tipo de pedido
+  deliveryTypeRadios.forEach(radio => {
+    radio.addEventListener("change", () => {
+      if (radio.value === "delivery") {
+        deliveryAddressSection.style.display = "block";
+        tableNumberSection.style.display = "none";
+      } else if (radio.value === "local") {
+        deliveryAddressSection.style.display = "none";
+        tableNumberSection.style.display = "block";
       }
     });
-  }
+  });
 });
 
 /*******************************************************
@@ -797,27 +818,35 @@ function atualizarTextosDinamicos() {
     priceModalTitle.innerText = t("escolhaTamanhoTitulo") || "Escolha o Tamanho";
   }
 
-  // Atualizar textos para a nova seção de endereço de entrega
-  const deliveryLabel = document.querySelector(".delivery-address-section label");
-  if (deliveryLabel) {
-    const checkbox = deliveryLabel.querySelector("#delivery-address-checkbox");
-    if (checkbox) {
-      // Não substitua o innerHTML para preservar o checkbox e o event listener
-      const labelText = t("Enviar para meu endereço");
-      // Limpa o texto existente (preservando o checkbox)
-      deliveryLabel.childNodes.forEach((node) => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          deliveryLabel.removeChild(node);
-        }
-      });
-      // Adiciona o novo texto
-      deliveryLabel.appendChild(document.createTextNode(` ${labelText}`));
+  // Atualizar textos para a nova seção de seleção de tipo de pedido
+  const deliveryTypeSection = document.querySelector(".delivery-type-section");
+  if (deliveryTypeSection) {
+    const labels = deliveryTypeSection.querySelectorAll("label.delivery-option span");
+    if (labels.length >= 2) {
+      labels[0].innerText = t("pedidoLocal") || "Local";
+      labels[1].innerText = t("entregaOutroEndereco") || "Delivery";
     }
   }
 
-  const deliveryInput = document.getElementById("delivery-address-input");
-  if (deliveryInput) {
-    deliveryInput.placeholder = t("Digite o endereço para entrega");
+  // Atualizar títulos e placeholders das novas seções
+  const tableNumberLabel = document.querySelector(".table-number-section label");
+  if (tableNumberLabel) {
+    tableNumberLabel.innerText = t("numeroMesa");
+  }
+
+  const tableNumberInput = document.getElementById("table-number-input");
+  if (tableNumberInput) {
+    tableNumberInput.placeholder = t("digiteNumeroMesa");
+  }
+
+  const deliveryAddressLabel = document.querySelector(".delivery-address-section label");
+  if (deliveryAddressLabel) {
+    deliveryAddressLabel.innerText = t("enderecoEntrega");
+  }
+
+  const deliveryAddressInput = document.getElementById("delivery-address-input");
+  if (deliveryAddressInput) {
+    deliveryAddressInput.placeholder = t("digiteEnderecoEntrega");
   }
 }
 
@@ -909,3 +938,111 @@ function updateCardapioWithFilters() {
     initializeImageBalloons(); // Re-inicializar os balões após atualizar as categorias
   }
 }
+
+/*******************************************************
+ * 18) Lógica para Seleção de Tipo de Pedido (Mesa ou Entrega)
+ *******************************************************/
+document.addEventListener("DOMContentLoaded", () => {
+  const deliveryTypeRadios = document.querySelectorAll('input[name="delivery-type"]');
+  const tableNumberSection = document.querySelector(".table-number-section");
+  const deliveryAddressSection = document.querySelector(".delivery-address-section");
+
+  deliveryTypeRadios.forEach(radio => {
+    radio.addEventListener("change", () => {
+      if (radio.value === "delivery") {
+        deliveryAddressSection.style.display = "block";
+        tableNumberSection.style.display = "none";
+      } else if (radio.value === "local") {
+        deliveryAddressSection.style.display = "none";
+        tableNumberSection.style.display = "block";
+      }
+    });
+  });
+});
+
+/*******************************************************
+ * 19) Atualizar Função para Montar Mensagem com Tipo de Pedido
+ *******************************************************/
+function montarMensagemWhatsApp() {
+  if (cart.length === 0) {
+    return t('carrinhoVazio');
+  }
+
+  let mensagem = `${t('mensagemPedido')}\n\n`;
+  let total = 0;
+
+  cart.forEach((item) => {
+    const subtotal = item.preco * item.quantidade;
+    total += subtotal;
+    mensagem += `- ${item.nome} (x${item.quantidade}) = R$ ${subtotal.toFixed(2)}\n`;
+  });
+
+  mensagem += `\n${t('total')}: R$ ${total.toFixed(2)}`;
+
+  // Adicionar Tipo de Pedido
+  const deliveryType = document.querySelector('input[name="delivery-type"]:checked')?.value;
+  if (deliveryType === "delivery") {
+    const deliveryInput = document.getElementById("delivery-address-input");
+    const endereco = deliveryInput.value.trim();
+    if (endereco) {
+      mensagem += `\n\n${t('enderecoEntrega')}: ${endereco}`;
+    } else {
+      alert(t('informeEnderecoEntrega'));
+      return null;
+    }
+  } else if (deliveryType === "local") {
+    const tableInput = document.getElementById("table-number-input");
+    const mesa = tableInput.value.trim();
+    if (mesa) {
+      mensagem += `\n\n${t('numeroMesa')}: ${mesa}`;
+    } else {
+      alert(t('informeNumeroMesa'));
+      return null;
+    }
+  }
+
+  return mensagem;
+}
+
+/*******************************************************
+ * 20) Atualizar Função para Enviar Pedido
+ *******************************************************/
+function sendOrder() {
+  if (cart.length === 0) {
+    alert(t('carrinhoVazio'));
+    return;
+  }
+
+  const mensagem = montarMensagemWhatsApp();
+  if (!mensagem) return; // Caso haja algum problema na montagem
+
+  // Pega o número do JSON (se existir)
+  let numeroWhats = "5511999999999"; // fallback
+  if (profileDataGlobal && profileDataGlobal.footer) {
+    const footerData = profileDataGlobal.footer;
+    if (footerData.contatoWhats) {
+      numeroWhats = footerData.contatoWhats.replace(/\D/g, "");
+      numeroWhats = "55" + numeroWhats;
+    }
+  }
+
+  const encodedMsg = encodeURIComponent(mensagem);
+
+  const url = `https://wa.me/${numeroWhats}?text=${encodedMsg}`;
+  window.open(url, "_blank");
+}
+
+/*******************************************************
+ * 21) Inicialização de Tudo Após DOM Carregado
+ *******************************************************/
+document.addEventListener("DOMContentLoaded", () => {
+  // Outros elementos já foram inicializados anteriormente
+
+  // Já inicializamos os botões de filtro e seleção de tipo de pedido
+  // Outros initializations podem ser adicionados aqui se necessário
+});
+
+/*******************************************************
+ * 22) Inclusão de Eventos Adicionais se Necessário
+ *******************************************************/
+// Caso precise adicionar mais eventos ou inicializações, faça aqui.

@@ -1,7 +1,7 @@
-/* ===========================================================
-   1. Inclusão da Fonte Personalizada
-=========================================================== */
-@font-face {
+/*******************************************************
+ * 1. Inclusão da Fonte Personalizada
+ *******************************************************/
+ @font-face {
   font-family: "Neue Machina";
   src: url("assets/font/neue-machina-regular.otf") format("opentype");
   font-weight: normal;
@@ -9,9 +9,9 @@
   font-display: swap;
 }
 
-/* ===========================================================
-  2. Variáveis de Tema
-=========================================================== */
+/*******************************************************
+ * 2. Variáveis de Tema
+ *******************************************************/
 :root {
   /* Tema Escuro (Padrão) */
   --bg-color: #121212;
@@ -46,9 +46,9 @@
   --light-scrollbar-thumb-hover-color: #bfbfbf;
 }
 
-/* ===========================================================
-  3. Tema Claro
-=========================================================== */
+/*******************************************************
+ * 3. Tema Claro
+ *******************************************************/
 body.light-theme {
   /* Tema Claro */
   --bg-color: var(--light-bg-color);
@@ -69,18 +69,18 @@ body.light-theme {
   --scrollbar-thumb-hover-color: var(--light-scrollbar-thumb-hover-color);
 }
 
-/* ===========================================================
-  4. Box Sizing Global
-=========================================================== */
+/*******************************************************
+ * 4. Box Sizing Global
+ *******************************************************/
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* ===========================================================
-  5. Estilos Básicos
-=========================================================== */
+/*******************************************************
+ * 5. Estilos Básicos
+ *******************************************************/
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -100,9 +100,9 @@ a:hover {
   text-decoration: underline;
 }
 
-/* ===========================================================
-  6. Contêiner Principal (.main)
-=========================================================== */
+/*******************************************************
+ * 6. Contêiner Principal (.main)
+ *******************************************************/
 .main {
   margin: 2rem auto; /* Margem para dar respiro no topo/rodapé */
   padding: 1rem;
@@ -116,9 +116,9 @@ a:hover {
   position: relative; /* para usar ::before e ::after */
 }
 
-/* ===========================================================
-  7. Background Decorativo
-=========================================================== */
+/*******************************************************
+ * 7. Background Decorativo
+ *******************************************************/
 .main::before,
 .main::after {
   content: "";
@@ -138,9 +138,9 @@ a:hover {
   transform: rotate(180deg);
 }
 
-/* ===========================================================
-  8. Header (Mobile-first)
-=========================================================== */
+/*******************************************************
+ * 8. Header (Mobile-first)
+ *******************************************************/
 .header {
   display: flex;
   flex-direction: column;
@@ -197,9 +197,9 @@ a:hover {
   transition: color 0.3s;
 }
 
-/* ===========================================================
-  9. Container para Theme Toggle e Cart Button lado a lado
-=========================================================== */
+/*******************************************************
+ * 9. Container para Theme Toggle e Cart Button lado a lado
+ *******************************************************/
 .header-buttons {
   position: absolute;
   top: 1rem;
@@ -240,9 +240,9 @@ a:hover {
   transform: scale(1.1);
 }
 
-/* ===========================================================
-  10. Botão Adicionar ao Carrinho
-=========================================================== */
+/*******************************************************
+ * 10. Botão Adicionar ao Carrinho
+ *******************************************************/
 .btn-add-cart {
   background-color: transparent;
   color: var(--text-color);
@@ -279,9 +279,9 @@ a:hover {
   }
 }
 
-/* ===========================================================
-  11. Modal de Seleção de Preço
-=========================================================== */
+/*******************************************************
+ * 11. Modal de Seleção de Preço
+ *******************************************************/
 #price-modal {
   position: fixed;
   top: 0;
@@ -341,9 +341,9 @@ a:hover {
   color: var(--accordion-bg-color);
 }
 
-/* ===========================================================
-  12. Accordion
-=========================================================== */
+/*******************************************************
+ * 12. Accordion
+ *******************************************************/
 .acordeon {
   display: flex;
   flex-direction: column;
@@ -411,9 +411,9 @@ a:hover {
   padding: 0 1rem 1rem;
 }
 
-/* ===========================================================
-  13. Lista de Produtos (Atualizado)
-=========================================================== */
+/*******************************************************
+ * 13. Lista de Produtos (Atualizado)
+ *******************************************************/
 .acordeon .content ul {
   display: flex;
   flex-direction: column;
@@ -490,9 +490,9 @@ a:hover {
   color: var(--text-color);
 }
 
-/* ===========================================================
-  14. Balão de Imagem
-=========================================================== */
+/*******************************************************
+ * 14. Balão de Imagem
+ *******************************************************/
 .image-balloon {
   position: absolute;
   background-color: var(--balloon-bg-color);
@@ -523,9 +523,9 @@ a:hover {
   }
 }
 
-/* ===========================================================
-  15. Observações Box
-=========================================================== */
+/*******************************************************
+ * 15. Observações Box
+ *******************************************************/
 .observacoes-box {
   background-color: var(--accordion-bg-color);
   border: 1px solid var(--border-color);
@@ -556,9 +556,9 @@ a:hover {
   color: var(--text-color);
 }
 
-/* ===========================================================
-  16. Modal do Carrinho
-=========================================================== */
+/*******************************************************
+ * 16. Modal do Carrinho
+ *******************************************************/
 #cart-modal {
   position: fixed;
   top: 0;
@@ -645,9 +645,9 @@ a:hover {
   color: var(--accordion-bg-color);
 }
 
-/* ===========================================================
-  17. Cart Total
-=========================================================== */
+/*******************************************************
+ * 17. Cart Total
+ *******************************************************/
 .cart-total {
   text-align: right;
   margin-top: 1rem;
@@ -656,9 +656,468 @@ a:hover {
   word-wrap: break-word; /* Garante que textos longos quebrem */
 }
 
-/* ===========================================================
-  18. Rodapé
-=========================================================== */
+/*******************************************************
+ * 18. Seção de Tipo de Pedido
+ *******************************************************/
+.delivery-type-section {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.delivery-type-section label {
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.delivery-type-section input[type="radio"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
+/* Seção Número da Mesa */
+.table-number-section {
+  margin-top: 15px;
+}
+
+.table-number-section label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#table-number-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Seção Endereço de Entrega */
+.delivery-address-section {
+  margin-top: 15px;
+}
+
+.delivery-address-section label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#delivery-address-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+/*******************************************************
+ * 19. Accordion Ajustado para Responsividade
+ *******************************************************/
+.acordeon .content ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.acordeon .content ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/*******************************************************
+ * 20. Modal de Seleção de Preço
+ *******************************************************/
+#price-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none; /* Oculto por padrão */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000; /* Maior que o modal do carrinho */
+}
+
+#price-modal .modal-content {
+  background-color: var(--header-bg-color);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  overflow-x: hidden; /* Previne overflow horizontal */
+}
+
+#price-modal .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#price-modal h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.btn-price-option {
+  background-color: var(--toggle-button-color);
+  color: var(--accordion-bg-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 1rem;
+  width: 100%; /* Ocupa a largura disponível */
+  max-width: 250px; /* Limita a largura máxima dos botões */
+  box-sizing: border-box; /* Garante que padding não cause overflow */
+}
+
+.btn-price-option:hover {
+  background-color: var(--text-color);
+  color: var(--accordion-bg-color);
+}
+
+/*******************************************************
+ * 21. Accordion
+ *******************************************************/
+.acordeon {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 1rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  background-color: var(--accordion-bg-color);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.acordeon.open,
+.acordeon:hover {
+  background-color: var(--accordion-hover-bg-color);
+  border-color: var(--accordion-hover-bg-color);
+}
+
+.acordeon .trigger {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 1rem;
+  background-color: transparent;
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.acordeon .trigger h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  text-align: start;
+}
+
+.acordeon .trigger::after {
+  font-family: "Font Awesome 6 Free";
+  content: "\f077"; /* ícone seta para cima (fa-chevron-up) */
+  font-weight: 900;
+  transition: transform 0.25s;
+  color: var(--text-color);
+}
+
+.acordeon.open .trigger::after {
+  transform: rotate(180deg);
+}
+
+.acordeon .content {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out, height 0.25s ease-in-out,
+    padding 0.25s ease-in-out;
+  padding: 0 1rem;
+}
+
+/* Quando aberto */
+.acordeon.open .content {
+  display: block;
+  height: auto;
+  opacity: 1;
+  padding: 0 1rem 1rem;
+}
+
+/*******************************************************
+ * 22. Lista de Produtos (Atualizado)
+ *******************************************************/
+.acordeon .content ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.acordeon .content ul li {
+  background-color: var(--accordion-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 1rem; /* Padding uniforme por padrão */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.acordeon .content ul li:hover {
+  transform: translateY(-5px);
+  background-color: var(--accordion-hover-bg-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagem do Item */
+.acordeon .content ul li img.menu-item-image {
+  display: none; /* Oculta a imagem em dispositivos menores */
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ícone de Ação (Balão de Imagem) */
+.acordeon .content ul li i.menu-item-icon {
+  display: block; /* Exibe o ícone em dispositivos menores */
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem; /* Alterado de right para left */
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+  z-index: 1;
+}
+
+.acordeon .content ul li i.menu-item-icon:hover {
+  transform: scale(1.3);
+  color: var(--accordion-bg-color);
+}
+
+/* Nome do Item */
+.acordeon .content ul li strong {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+/* Preço do Item */
+.acordeon .content ul li .preco {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Descrição do Item */
+.acordeon .content ul li em {
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
+
+/*******************************************************
+ * 23. Balão de Imagem
+ *******************************************************/
+.image-balloon {
+  position: absolute;
+  background-color: var(--balloon-bg-color);
+  color: var(--balloon-text-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transform: translateY(-10px);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.image-balloon img {
+  width: 200px;
+  height: auto;
+  border-radius: 0.25rem;
+}
+
+/* Animação de Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*******************************************************
+ * 24. Observações Box
+ *******************************************************/
+.observacoes-box {
+  background-color: var(--accordion-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.observacoes-box h2 {
+  font-family: "Neue Machina", sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+#perfil-observacoesIniciais {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#perfil-observacoesIniciais li {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+/*******************************************************
+ * 25. MODAL DO CARRINHO (Finalizado)
+ *******************************************************/
+#cart-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none; /* Oculto por padrão */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+#cart-modal .modal-content {
+  background-color: var(--header-bg-color);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  overflow-x: hidden; /* Previne overflow horizontal */
+  max-height: 90vh; /* Limita a altura para evitar overflow vertical */
+  display: flex;
+  flex-direction: column;
+}
+
+#cart-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  word-wrap: break-word; /* Garante que palavras longas quebrem */
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.25rem;
+}
+
+.cart-item span {
+  font-size: 0.9rem;
+  word-wrap: break-word; /* Garante que textos longos quebrem */
+}
+
+/* Botão remover item */
+.remove-btn {
+  background: #cc0000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.remove-btn:hover {
+  background-color: #aa0000;
+}
+
+/* Botões dentro do modal (fechar, enviar) */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.modal-buttons button {
+  background-color: var(--toggle-button-color);
+  border: none;
+  border-radius: 0.25rem;
+  color: var(--accordion-bg-color);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.modal-buttons button:hover {
+  background-color: var(--text-color);
+  color: var(--accordion-bg-color);
+}
+
+/*******************************************************
+ * 26. Cart Total
+ *******************************************************/
+.cart-total {
+  text-align: right;
+  margin-top: 1rem;
+  font-size: 1.2em;
+  font-weight: bold;
+  word-wrap: break-word; /* Garante que textos longos quebrem */
+}
+
+/*******************************************************
+ * 27. Rodapé
+ *******************************************************/
 footer {
   width: 100%;
   display: flex;
@@ -679,15 +1138,227 @@ footer a:hover {
   transform: scale(1.2);
 }
 
-/* ===========================================================
-  19. Balão de Imagem
-=========================================================== */
+/*******************************************************
+ * 28. Modal de Seleção de Preço
+ *******************************************************/
+#price-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none; /* Oculto por padrão */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000; /* Maior que o modal do carrinho */
+}
 
-/* As regras para .image-balloon já foram definidas acima */
+#price-modal .modal-content {
+  background-color: var(--header-bg-color);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  overflow-x: hidden; /* Previne overflow horizontal */
+}
 
-/* ===========================================================
-  20. Botão de Carrinho Flutuante
-=========================================================== */
+#price-modal .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#price-modal h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.btn-price-option {
+  background-color: var(--toggle-button-color);
+  color: var(--accordion-bg-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 1rem;
+  width: 100%; /* Ocupa a largura disponível */
+  max-width: 250px; /* Limita a largura máxima dos botões */
+  box-sizing: border-box; /* Garante que padding não cause overflow */
+}
+
+.btn-price-option:hover {
+  background-color: var(--text-color);
+  color: var(--accordion-bg-color);
+}
+
+/*******************************************************
+ * 29. Accordion Responsivo
+ *******************************************************/
+.acordeon .content ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.acordeon .content ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/*******************************************************
+ * 30. Modal de Seleção de Preço (Duplicado)
+ *******************************************************/
+#price-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none; /* Oculto por padrão */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000; /* Maior que o modal do carrinho */
+}
+
+#price-modal .modal-content {
+  background-color: var(--header-bg-color);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  overflow-x: hidden; /* Previne overflow horizontal */
+}
+
+#price-modal .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#price-modal h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.btn-price-option {
+  background-color: var(--toggle-button-color);
+  color: var(--accordion-bg-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 1rem;
+  width: 100%; /* Ocupa a largura disponível */
+  max-width: 250px; /* Limita a largura máxima dos botões */
+  box-sizing: border-box; /* Garante que padding não cause overflow */
+}
+
+.btn-price-option:hover {
+  background-color: var(--text-color);
+  color: var(--accordion-bg-color);
+}
+
+/*******************************************************
+ * 31. Cardápio Responsivo
+ *******************************************************/
+.cardapio ul li {
+  position: relative; /* Necessário para posicionamento absoluto dos ícones */
+}
+
+/*******************************************************
+ * 32. Seção de Filtros Responsiva
+ *******************************************************/
+.filter-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espaçamento ajustado */
+  margin: 1rem 0; /* Margem vertical para separar dos outros elementos */
+}
+
+.filter-button {
+  width: 2.5rem; /* Ajusta a largura para telas menores */
+  height: 2.5rem; /* Ajusta a altura para telas menores */
+  padding: 0; /* Remove o padding para evitar distorções */
+  border-radius: 0.5rem; /* Bordas arredondadas */
+  display: flex; /* Centraliza o conteúdo */
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accordion-bg-color); /* Cor de fundo */
+  border: 1px solid var(--border-color); /* Borda */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+  cursor: pointer;
+  font-size: 1rem; /* Tamanho do ícone */
+  color: var(--text-color); /* Cor do texto */
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.filter-button i {
+  font-size: 1rem; /* Tamanho do ícone */
+  color: inherit; /* Herda a cor do botão */
+}
+
+/* Estado Ativo */
+.filter-button.active {
+  background-color: var(--toggle-button-color); /* Fundo para filtros ativos */
+  color: var(--accordion-bg-color); /* Texto contrastante */
+  border-color: var(--toggle-button-color); /* Borda combinando */
+}
+
+/* Hover */
+.filter-button:hover {
+  background-color: var(--toggle-button-color); /* Fundo mais claro no hover */
+  color: var(--accordion-bg-color); /* Texto contrastante no hover */
+  transform: scale(1.05); /* Aumento sutil no hover */
+}
+
+/* Botão de Reset dos Filtros */
+#filter-reset {
+  background-color: transparent; /* Fundo transparente */
+  border: 1px dashed var(--border-color); /* Borda pontilhada */
+  color: var(--text-color); /* Cor do texto */
+}
+
+#filter-reset:hover {
+  background-color: var(--accordion-bg-color); /* Fundo no hover */
+  color: var(--text-color); /* Texto no hover */
+  transform: scale(1.05); /* Aumento sutil no hover */
+}
+
+/* Ícones específicos de cada filtro */
+.vegan-icon {
+  color: var(--toggle-button-color); /* Verde para veganismo */
+}
+
+.alcool-icon {
+  color: var(--toggle-button-color); /* Laranja para alcoólico */
+}
+
+/*******************************************************
+ * 33. Botão de Carrinho Flutuante
+ *******************************************************/
 .floating-cart-button {
   position: fixed;
   bottom: 1rem; /* Distância do fundo da tela */
@@ -717,9 +1388,9 @@ footer a:hover {
   font-size: 1.5rem;
 }
 
-/* ===========================================================
-  21. Media Queries (Atualizado)
-=========================================================== */
+/*******************************************************
+ * 34. Media Queries (Responsividade)
+ *******************************************************/
 
 /* Telas muito pequenas (máximo de 480px) */
 @media (max-width: 480px) {
@@ -772,7 +1443,7 @@ footer a:hover {
   }
 
   /* ===========================================================
-    23. Botões de Filtro (Finalizado e Suavizado)
+    35. Botões de Filtro (Finalizado e Suavizado)
   ============================================================ */
   .filter-buttons {
     display: flex;
@@ -886,7 +1557,7 @@ footer a:hover {
   }
 
   /* ===========================================================
-    23. Botões de Filtro (Continuado)
+    36. Botões de Filtro (Continuado)
   ============================================================ */
   .filter-buttons {
     display: flex;
@@ -1075,9 +1746,9 @@ footer a:hover {
   }
 }
 
-/* ===========================================================
-  22. Estilização da Barra de Rolagem
-=========================================================== */
+/*******************************************************
+ * 34. Estilização da Barra de Rolagem
+ *******************************************************/
 
 /* Estilização para Webkit Browsers (Chrome, Safari, Edge) */
 #cart-modal .modal-content::-webkit-scrollbar,
@@ -1120,15 +1791,9 @@ footer a:hover {
   scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
 }
 
-/* ===========================================================
-  23. Botões de Filtro (Finalizado e Suavizado)
-=========================================================== */
-
-/* A seção de Botões de Filtro já foi atualizada nas Media Queries */
-
-/* ===========================================================
-  24. Ícones de Categorização no Topo Direito
-=========================================================== */
+/*******************************************************
+ * 35. Ícones de Categorização no Topo Direito
+ *******************************************************/
 .categorization-icon {
   position: absolute;
   top: 10px;
@@ -1141,51 +1806,9 @@ footer a:hover {
   z-index: 1; /* Garante que o ícone fique acima de outros elementos */
 }
 
-/* ===========================================================
-  25. Itens do Cardápio com Posicionamento Relativo
-=========================================================== */
+/*******************************************************
+ * 36. Itens do Cardápio com Posicionamento Relativo
+ *******************************************************/
 .cardapio ul li {
   position: relative; /* Necessário para posicionamento absoluto dos ícones */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-.delivery-address-section {
-  margin-top: 20px;
-  border-top: 1px solid #ddd;
-  padding-top: 15px;
-}
-
-.delivery-address-section label {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.delivery-address-section input[type="checkbox"] {
-  margin-right: 10px;
-  transform: scale(1.2);
-}
-
-#delivery-address-input {
-  width: 100%;
-  height: 80px;
-  margin-top: 10px;
-  padding: 10px;
-  resize: vertical;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
 }
