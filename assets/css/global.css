@@ -120,15 +120,6 @@ a:hover {
  * 7. Background Decorativo
  *******************************************************/
 .main::before,
-.main::after {
-  content: "";
-  background-image: url("../img/background.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  z-index: -1;
-  opacity: 0.1; /* Deixa bem sutil */
-}
 
 .main::after {
   top: auto;
@@ -575,7 +566,7 @@ a:hover {
 #cart-modal .modal-content {
   background-color: var(--header-bg-color);
   color: var(--text-color);
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   width: 90%;
   max-width: 500px;
@@ -1034,7 +1025,7 @@ a:hover {
 #cart-modal .modal-content {
   background-color: var(--header-bg-color);
   color: var(--text-color);
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   width: 90%;
   max-width: 500px;

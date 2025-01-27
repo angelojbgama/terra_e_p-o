@@ -13,21 +13,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Título da página -->
     <title>Carregando...</title>
 
-    <!-- Normalize CSS -->
+    <!-- Normalize CSS: Biblioteca para normalizar estilos entre navegadores -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     />
 
-    <!-- Font Awesome (all.min) -->
+    <!-- Font Awesome: Biblioteca de ícones -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <!-- Google Fonts: Open Sans -->
+    <!-- Google Fonts: Importação da fonte Open Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -35,11 +36,12 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
     />
 
-    <!-- CSS Customizado -->
+    <!-- CSS Customizado: Arquivo de estilos personalizados -->
     <link rel="stylesheet" href="assets/css/global.css" />
   </head>
 
   <body>
+    <!-- Conteúdo principal da página -->
     <main class="main">
       <!-- Cabeçalho com foto e informações do perfil -->
       <header class="header">
@@ -123,6 +125,7 @@
 
       <!-- Botões de Filtro Abaixo do Cabeçalho -->
       <div class="filter-buttons">
+        <!-- Botão para filtrar itens veganos -->
         <button
           id="filter-vegan"
           class="filter-button"
@@ -131,6 +134,8 @@
         >
           <i class="fa-solid fa-seedling vegan-icon"></i>
         </button>
+
+        <!-- Botão para filtrar bebidas alcoólicas -->
         <button
           id="filter-alcoolico"
           class="filter-button"
@@ -139,6 +144,8 @@
         >
           <i class="fa-solid fa-beer-mug-empty alcool-icon"></i>
         </button>
+
+        <!-- Botão para resetar filtros -->
         <button
           id="filter-reset"
           class="filter-button"
@@ -165,15 +172,17 @@
           <h2 id="tituloCarrinho">Carrinho</h2>
           <div id="cart-content"></div>
 
-          <!-- Nova Seção para Seleção de Tipo de Pedido -->
+          <!-- Seção para Seleção de Tipo de Pedido -->
           <div class="delivery-type-section">
             <fieldset>
               <legend>Tipo de Pedido:</legend>
+              <!-- Opção para pedido local -->
               <label class="delivery-option">
                 <input type="radio" name="delivery-type" value="local" checked />
                 <i class="fas fa-utensils"></i>
                 <span>Local</span>
               </label>
+              <!-- Opção para pedido delivery -->
               <label class="delivery-option">
                 <input type="radio" name="delivery-type" value="delivery" />
                 <i class="fas fa-truck"></i>
@@ -192,7 +201,7 @@
             />
           </div>
 
-          <!-- Seção para Informar o Endereço de Entrega -->
+          <!-- Seção para Informar o Endereço de Entrega (visível apenas para delivery) -->
           <div class="delivery-address-section" style="display: none;">
             <label for="delivery-address-input">Endereço de Entrega:</label>
             <textarea
@@ -202,6 +211,7 @@
             ></textarea>
           </div>
 
+          <!-- Botões do Modal -->
           <div class="modal-buttons">
             <button id="close-cart">Fechar</button>
             <button id="send-order">Enviar Pedido</button>
@@ -245,6 +255,7 @@
         </a>
       </footer>
     </main>
+
     <!-- Scripts JavaScript -->
     <script src="assets/js/acordeon.js"></script>
     <script src="assets/js/main.js"></script>
